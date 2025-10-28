@@ -653,9 +653,9 @@ paths:
       tags:
         - Messages
       operationId: streamDomainMessages
-      summary: Stream messages for a domain
+      summary: Stream all messages for a domain
       description: >-
-        Streams messages for the supplied domain. Use the optional query
+        Streams all messages near live for the supplied domain. Use the optional query
         parameters to control pagination, throttling, and message handling.
       parameters:
         - $ref: '#/components/parameters/DomainParam'
@@ -677,9 +677,9 @@ paths:
       tags:
         - Messages
       operationId: streamInboxMessages
-      summary: Stream messages for a specific inbox
+      summary: Stream all messages for a specific inbox
       description: >-
-        Streams messages for a specific inbox within a domain. Use the optional query
+        Streams all messages near live for a specific inbox. Use the optional query
         parameters to control pagination, throttling, and message handling.
       parameters:
         - $ref: '#/components/parameters/DomainParam'
@@ -695,7 +695,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/InboxMessagesResponse'
-        default:
+        "500":
           $ref: '#/components/responses/ErrorResponse'
 components:
   securitySchemes:
@@ -717,7 +717,7 @@ components:
       in: path
       required: true
       description: >-
-        Domain scope. Use `public`, `private`, or a specific private domain name
+        Domain scope. Use `private`, or a specific private domain name
         assigned to the team.
       schema:
         type: string
