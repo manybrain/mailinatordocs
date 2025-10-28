@@ -1,0 +1,1163 @@
+openapi: 3.0.3
+info:
+  title: Mailinator API
+  description: >-
+    OpenAPI 3 definition for the Mailinator API reference. The specification captures the documented message,
+    stats, domain, and rule endpoints exposed under api.mailinator.com.
+  version: "2025-10-28"
+  contact:
+    name: Mailinator
+    url: https://www.mailinator.com/
+servers:
+  - url: https://api.mailinator.com
+    description: Production server
+security:
+  - ApiTokenHeader: []
+  - ApiTokenQuery: []
+tags:
+  - name: Messages
+    description: Message retrieval and mailbox management
+  - name: Attachments
+    description: Attachment and link retrieval
+  - name: Delivery
+    description: Message injection endpoints
+  - name: Stats
+    description: Team usage statistics
+  - name: Domains
+    description: Private domain management
+  - name: Rules
+    description: Routing rule management
+paths:
+  /api/v2/domains/{domain}/inboxes:
+    get:
+      tags:
+        - Messages
+      operationId: listDomainMessages
+      summary: Fetch message summaries for a domain
+      description: >-
+        Returns message summaries for the supplied domain. Use the optional query
+        parameters to scope results to an inbox, control pagination, or request
+        full message payloads. Per the documentation, omitting the inbox filter
+        or setting it to `*` returns messages across the domain.
+      parameters:
+        - $ref: '#/components/parameters/DomainParam'
+        - $ref: '#/components/parameters/InboxWildcardParam'
+        - $ref: '#/components/parameters/SkipParam'
+        - $ref: '#/components/parameters/LimitParam'
+        - $ref: '#/components/parameters/SortParam'
+        - $ref: '#/components/parameters/DecodeSubjectParam'
+        - $ref: '#/components/parameters/CursorParam'
+        - $ref: '#/components/parameters/FullParam'
+        - $ref: '#/components/parameters/WaitParam'
+        - $ref: '#/components/parameters/DeleteOnFetchParam'
+      responses:
+        "200":
+          description: Message summaries retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InboxMessagesResponse'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+    delete:
+      tags:
+        - Messages
+      operationId: deleteDomainMessages
+      summary: Delete all messages in a domain
+      description: Deletes every message in the specified private domain.
+      parameters:
+        - $ref: '#/components/parameters/DomainParam'
+      responses:
+        "200":
+          description: Domain messages deleted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteResponse'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+  /api/v2/domains/{domain}/inboxes/{inbox}:
+    get:
+      tags:
+        - Messages
+      operationId: listInboxMessages
+      summary: Fetch message summaries for a specific inbox
+      description: >-
+        Retrieves messages for a specific inbox. To fetch SMS messages, provide
+        the team-assigned SMS phone number as the inbox value.
+      parameters:
+        - $ref: '#/components/parameters/DomainParam'
+        - $ref: '#/components/parameters/InboxParam'
+        - $ref: '#/components/parameters/SkipParam'
+        - $ref: '#/components/parameters/LimitParam'
+        - $ref: '#/components/parameters/SortParam'
+        - $ref: '#/components/parameters/DecodeSubjectParam'
+        - $ref: '#/components/parameters/CursorParam'
+        - $ref: '#/components/parameters/FullParam'
+        - $ref: '#/components/parameters/WaitParam'
+        - $ref: '#/components/parameters/DeleteOnFetchParam'
+      responses:
+        "200":
+          description: Message summaries retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InboxMessagesResponse'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+    delete:
+      tags:
+        - Messages
+      operationId: deleteInboxMessages
+      summary: Delete all messages from an inbox
+      description: >-
+        Permanently deletes every message in the targeted inbox. Only private
+        domains are supported.
+      parameters:
+        - $ref: '#/components/parameters/DomainParam'
+        - $ref: '#/components/parameters/InboxParam'
+      responses:
+        "200":
+          description: Inbox cleared
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteResponse'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+  /api/v2/domains/{domain}/inboxes/{inbox}/messages/{messageId}:
+    get:
+      tags:
+        - Messages
+      operationId: getInboxMessage
+      summary: Fetch a message scoped to an inbox
+      parameters:
+        - $ref: '#/components/parameters/DomainParam'
+        - $ref: '#/components/parameters/InboxParam'
+        - $ref: '#/components/parameters/MessageIdParam'
+        - $ref: '#/components/parameters/DeleteOnFetchParam'
+      responses:
+        "200":
+          description: Message retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MessageDetail'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+    delete:
+      tags:
+        - Messages
+      operationId: deleteInboxMessage
+      summary: Delete a specific message
+      parameters:
+        - $ref: '#/components/parameters/DomainParam'
+        - $ref: '#/components/parameters/InboxParam'
+        - $ref: '#/components/parameters/MessageIdParam'
+      responses:
+        "200":
+          description: Message deleted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteResponse'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+  /api/v2/domains/{domain}/messages/{messageId}:
+    get:
+      tags:
+        - Messages
+      operationId: getDomainMessage
+      summary: Fetch a message scoped to a domain
+      parameters:
+        - $ref: '#/components/parameters/DomainParam'
+        - $ref: '#/components/parameters/MessageIdParam'
+        - $ref: '#/components/parameters/DeleteOnFetchParam'
+      responses:
+        "200":
+          description: Message retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MessageDetail'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+  /api/v2/domains/{domain}/inboxes/{inbox}/messages/{messageId}/attachments:
+    get:
+      tags:
+        - Attachments
+      operationId: listInboxMessageAttachments
+      summary: List attachments for a message within an inbox
+      parameters:
+        - $ref: '#/components/parameters/DomainParam'
+        - $ref: '#/components/parameters/InboxParam'
+        - $ref: '#/components/parameters/MessageIdParam'
+      responses:
+        "200":
+          description: Attachments listed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AttachmentListResponse'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+  /api/v2/domains/{domain}/messages/{messageId}/attachments:
+    get:
+      tags:
+        - Attachments
+      operationId: listMessageAttachments
+      summary: List attachments for a message
+      parameters:
+        - $ref: '#/components/parameters/DomainParam'
+        - $ref: '#/components/parameters/MessageIdParam'
+      responses:
+        "200":
+          description: Attachments listed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AttachmentListResponse'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+  /api/v2/domains/{domain}/inboxes/{inbox}/messages/{messageId}/attachments/{attachmentName}:
+    get:
+      tags:
+        - Attachments
+      operationId: getInboxMessageAttachment
+      summary: Download an attachment scoped to an inbox
+      parameters:
+        - $ref: '#/components/parameters/DomainParam'
+        - $ref: '#/components/parameters/InboxParam'
+        - $ref: '#/components/parameters/MessageIdParam'
+        - $ref: '#/components/parameters/AttachmentNameParam'
+      responses:
+        "200":
+          description: Attachment retrieved
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+  /api/v2/domains/{domain}/messages/{messageId}/attachments/{attachmentName}:
+    get:
+      tags:
+        - Attachments
+      operationId: getMessageAttachment
+      summary: Download an attachment
+      parameters:
+        - $ref: '#/components/parameters/DomainParam'
+        - $ref: '#/components/parameters/MessageIdParam'
+        - $ref: '#/components/parameters/AttachmentNameParam'
+      responses:
+        "200":
+          description: Attachment retrieved
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+  /api/v2/domains/{domain}/inboxes/{inbox}/messages/{messageId}/links:
+    get:
+      tags:
+        - Attachments
+      operationId: listInboxMessageLinks
+      summary: List links in a message scoped to an inbox
+      parameters:
+        - $ref: '#/components/parameters/DomainParam'
+        - $ref: '#/components/parameters/InboxParam'
+        - $ref: '#/components/parameters/MessageIdParam'
+      responses:
+        "200":
+          description: Links listed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LinksResponse'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+  /api/v2/domains/{domain}/messages/{messageId}/links:
+    get:
+      tags:
+        - Attachments
+      operationId: listMessageLinks
+      summary: List links in a message
+      parameters:
+        - $ref: '#/components/parameters/DomainParam'
+        - $ref: '#/components/parameters/MessageIdParam'
+      responses:
+        "200":
+          description: Links listed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LinksResponse'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+  /api/v2/domains/{domain}/messages/{messageId}/linksfull:
+    get:
+      tags:
+        - Attachments
+      operationId: listMessageLinksFull
+      summary: Retrieve link metadata for a message
+      parameters:
+        - $ref: '#/components/parameters/DomainParam'
+        - $ref: '#/components/parameters/MessageIdParam'
+      responses:
+        "200":
+          description: Link metadata returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LinksFullResponse'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+  /api/v2/domains/{domain}/inboxes/{inbox}/messages/{messageId}/smtplog:
+    get:
+      tags:
+        - Messages
+      operationId: getInboxMessageSmtpLog
+      summary: Fetch SMTP log entries for a message scoped to an inbox
+      parameters:
+        - $ref: '#/components/parameters/DomainParam'
+        - $ref: '#/components/parameters/InboxParam'
+        - $ref: '#/components/parameters/MessageIdParam'
+      responses:
+        "200":
+          description: SMTP log returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SmtpLogResponse'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+  /api/v2/domains/{domain}/messages/{messageId}/smtplog:
+    get:
+      tags:
+        - Messages
+      operationId: getMessageSmtpLog
+      summary: Fetch SMTP log entries for a message
+      parameters:
+        - $ref: '#/components/parameters/DomainParam'
+        - $ref: '#/components/parameters/MessageIdParam'
+      responses:
+        "200":
+          description: SMTP log returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SmtpLogResponse'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+  /api/v2/domains/{domain}/inboxes/{inbox}/messages/{messageId}/raw:
+    get:
+      tags:
+        - Messages
+      operationId: getInboxMessageRaw
+      summary: Fetch the raw RFC 822 payload scoped to an inbox
+      parameters:
+        - $ref: '#/components/parameters/DomainParam'
+        - $ref: '#/components/parameters/InboxParam'
+        - $ref: '#/components/parameters/MessageIdParam'
+      responses:
+        "200":
+          description: Raw message returned
+          content:
+            text/plain:
+              schema:
+                type: string
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+  /api/v2/domains/{domain}/messages/{messageId}/raw:
+    get:
+      tags:
+        - Messages
+      operationId: getMessageRaw
+      summary: Fetch the raw RFC 822 payload for a message
+      parameters:
+        - $ref: '#/components/parameters/DomainParam'
+        - $ref: '#/components/parameters/MessageIdParam'
+      responses:
+        "200":
+          description: Raw message returned
+          content:
+            text/plain:
+              schema:
+                type: string
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+  /api/v2/domains/{domain}/inboxes/{inbox}/messages/latest:
+    get:
+      tags:
+        - Messages
+      operationId: getLatestInboxMessages
+      summary: Fetch the latest messages for an inbox
+      description: >-
+        Returns the five most recent messages for the specified inbox. The
+        documented wildcard endpoint (`messages/*`) is represented here as a
+        `messages/latest` alias for OpenAPI compatibility.
+      parameters:
+        - $ref: '#/components/parameters/DomainParam'
+        - $ref: '#/components/parameters/InboxParam'
+      responses:
+        "200":
+          description: Latest messages retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InboxMessagesResponse'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+  /api/v2/domains/{domain}/messages/latest:
+    get:
+      tags:
+        - Messages
+      operationId: getLatestDomainMessages
+      summary: Fetch the latest messages for a domain
+      description: >-
+        Returns the five most recent messages for the domain. The documented
+        wildcard endpoint (`messages/*`) is represented here as a
+        `messages/latest` alias for OpenAPI compatibility.
+      parameters:
+        - $ref: '#/components/parameters/DomainParam'
+      responses:
+        "200":
+          description: Latest messages retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InboxMessagesResponse'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+  /api/v2/domains/{domain}/inboxes/{inbox}/messages:
+    post:
+      tags:
+        - Delivery
+      operationId: postMessage
+      summary: Inject a message into an inbox
+      description: >-
+        Posts a JSON-formatted message into the specified private inbox. The
+        payload should follow the documented email-like structure to render in
+        the Mailinator web interface.
+      parameters:
+        - $ref: '#/components/parameters/DomainParam'
+        - $ref: '#/components/parameters/InboxParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MessageToPost'
+      responses:
+        "200":
+          description: Message accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PostMessageResponse'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+  /api/v2/team/stats:
+    get:
+      tags:
+        - Stats
+      operationId: getTeamStats
+      summary: Retrieve team statistics
+      responses:
+        "200":
+          description: Team statistics retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TeamStatsResponse'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+  /api/v2/team:
+    get:
+      tags:
+        - Stats
+      operationId: getTeam
+      summary: Retrieve team configuration
+      responses:
+        "200":
+          description: Team information retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TeamResponse'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+  /api/v2/teaminfo:
+    get:
+      tags:
+        - Stats
+      operationId: getTeamInfo
+      summary: Retrieve team info snapshot
+      responses:
+        "200":
+          description: Team info retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TeamInfoResponse'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+  /api/v2/domains:
+    get:
+      tags:
+        - Domains
+      operationId: listDomains
+      summary: List private domains
+      responses:
+        "200":
+          description: Domains retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DomainsResponse'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+    post:
+      tags:
+        - Domains
+      operationId: createDomain
+      summary: Create a private domain
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateDomainRequest'
+      responses:
+        "200":
+          description: Domain created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+  /api/v2/domains/{domainId}:
+    get:
+      tags:
+        - Domains
+      operationId: getDomain
+      summary: Retrieve a private domain
+      parameters:
+        - $ref: '#/components/parameters/DomainIdParam'
+      responses:
+        "200":
+          description: Domain retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Domain'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+    delete:
+      tags:
+        - Domains
+      operationId: deleteDomain
+      summary: Delete a private domain
+      parameters:
+        - $ref: '#/components/parameters/DomainIdParam'
+      responses:
+        "200":
+          description: Domain deleted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+  /api/v2/domains/{domainId}/rules:
+    get:
+      tags:
+        - Rules
+      operationId: listRules
+      summary: List rules for a domain
+      parameters:
+        - $ref: '#/components/parameters/DomainIdParam'
+      responses:
+        "200":
+          description: Rules retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RulesResponse'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+    post:
+      tags:
+        - Rules
+      operationId: createRule
+      summary: Create a routing rule
+      parameters:
+        - $ref: '#/components/parameters/DomainIdParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RuleCreateRequest'
+      responses:
+        "200":
+          description: Rule created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Rule'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+  /api/v2/domains/{domainId}/rules/{ruleId}:
+    get:
+      tags:
+        - Rules
+      operationId: getRule
+      summary: Retrieve a routing rule
+      parameters:
+        - $ref: '#/components/parameters/DomainIdParam'
+        - $ref: '#/components/parameters/RuleIdParam'
+      responses:
+        "200":
+          description: Rule retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Rule'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+    put:
+      tags:
+        - Rules
+      operationId: updateRuleState
+      summary: Enable or disable a routing rule
+      parameters:
+        - $ref: '#/components/parameters/DomainIdParam'
+        - $ref: '#/components/parameters/RuleIdParam'
+        - $ref: '#/components/parameters/RuleActionParam'
+      responses:
+        "200":
+          description: Rule state updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+components:
+  securitySchemes:
+    ApiTokenHeader:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: >-
+        Provide the team API token in the Authorization header. Example:
+        `Authorization: YourTeamAPIToken`.
+    ApiTokenQuery:
+      type: apiKey
+      in: query
+      name: token
+      description: Provide the team API token as the `token` query parameter.
+  parameters:
+    DomainParam:
+      name: domain
+      in: path
+      required: true
+      description: >-
+        Domain scope. Use `public`, `private`, or a specific private domain name
+        assigned to the team.
+      schema:
+        type: string
+    InboxParam:
+      name: inbox
+      in: path
+      required: true
+      description: Inbox identifier. Provide a mailbox name or the team SMS
+        phone number (for SMS retrieval). Use `*` to match inbox prefixes where
+        supported by the endpoint.
+      schema:
+        type: string
+    InboxWildcardParam:
+      name: inbox
+      in: query
+      required: false
+      description: Optional inbox filter. Use `*` to include every inbox in the
+        domain.
+      schema:
+        type: string
+        default: "*"
+    MessageIdParam:
+      name: messageId
+      in: path
+      required: true
+      description: Unique Mailinator message identifier.
+      schema:
+        type: string
+    AttachmentNameParam:
+      name: attachmentName
+      in: path
+      required: true
+      description: Attachment name or identifier. The API also accepts an
+        attachment id.
+      schema:
+        type: string
+    SkipParam:
+      name: skip
+      in: query
+      required: false
+      description: Number of messages to skip from the start of the result set.
+      schema:
+        type: integer
+        minimum: 0
+    LimitParam:
+      name: limit
+      in: query
+      required: false
+      description: Number of messages to return (1-99 unless `full=true`).
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 99
+        default: 50
+    SortParam:
+      name: sort
+      in: query
+      required: false
+      description: Sort order for returned messages.
+      schema:
+        type: string
+        enum:
+          - ascending
+          - descending
+        default: descending
+    DecodeSubjectParam:
+      name: decode_subject
+      in: query
+      required: false
+      description: Decode MIME-encoded subjects when true.
+      schema:
+        type: boolean
+        default: false
+    CursorParam:
+      name: cursor
+      in: query
+      required: false
+      description: Cursor token to continue a prior paged request.
+      schema:
+        type: string
+    FullParam:
+      name: full
+      in: query
+      required: false
+      description: >-
+        When true, returns the full message entity instead of the summary. The
+        Mailinator API enforces a limit of 1 when `full=true`.
+      schema:
+        type: boolean
+        default: false
+    WaitParam:
+      name: wait
+      in: query
+      required: false
+      description: >-
+        Optional long-polling interval. The API waits up to the provided
+        duration (e.g., `1s`, `2m`) for new messages before returning.
+      schema:
+        type: string
+    DeleteOnFetchParam:
+      name: delete
+      in: query
+      required: false
+      description: >-
+        Minimum delay before the fetched message is scheduled for deletion (e.g.,
+        `1s`, `5m`, `1h`).
+      schema:
+        type: string
+    DomainIdParam:
+      name: domainId
+      in: path
+      required: true
+      description: Domain identifier or name returned by the Domains API.
+      schema:
+        type: string
+    RuleIdParam:
+      name: ruleId
+      in: path
+      required: true
+      description: Unique rule identifier or rule name.
+      schema:
+        type: string
+    RuleActionParam:
+      name: action
+      in: query
+      required: true
+      description: Rule state transition to apply.
+      schema:
+        type: string
+        enum:
+          - enable
+          - disable
+  responses:
+    ErrorResponse:
+      description: Error response
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  schemas:
+    InboxMessagesResponse:
+      type: object
+      properties:
+        domain:
+          type: string
+        inbox:
+          type: string
+          nullable: true
+        msgs:
+          type: array
+          items:
+            $ref: '#/components/schemas/MessageSummary'
+        cursor:
+          type: string
+          nullable: true
+      additionalProperties: true
+    MessageSummary:
+      type: object
+      properties:
+        id:
+          type: string
+        subject:
+          type: string
+        from:
+          type: string
+        fromfull:
+          type: string
+        to:
+          type: string
+        time:
+          type: integer
+          format: int64
+        seconds_ago:
+          type: integer
+        size:
+          type: integer
+        parts:
+          type: array
+          items:
+            type: string
+      additionalProperties: true
+    MessageDetail:
+      allOf:
+        - $ref: '#/components/schemas/MessageSummary'
+        - type: object
+          properties:
+            headers:
+              type: object
+              additionalProperties:
+                type: string
+            text:
+              type: string
+            html:
+              type: string
+            raw_subject:
+              type: string
+            attachments:
+              type: array
+              items:
+                $ref: '#/components/schemas/Attachment'
+            links:
+              type: array
+              items:
+                type: string
+            smtp_log:
+              type: array
+              items:
+                type: object
+                additionalProperties: true
+      additionalProperties: true
+    AttachmentListResponse:
+      type: object
+      properties:
+        attachments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Attachment'
+      additionalProperties: true
+    Attachment:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        contentType:
+          type: string
+        size:
+          type: integer
+        downloadUrl:
+          type: string
+          format: uri
+      additionalProperties: true
+    LinksResponse:
+      type: object
+      properties:
+        links:
+          type: array
+          items:
+            type: string
+      additionalProperties: true
+    LinksFullResponse:
+      type: object
+      properties:
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/LinkDetail'
+      additionalProperties: true
+    LinkDetail:
+      type: object
+      properties:
+        url:
+          type: string
+          format: uri
+        text:
+          type: string
+        rel:
+          type: string
+        contentType:
+          type: string
+      additionalProperties: true
+    SmtpLogResponse:
+      type: object
+      properties:
+        log:
+          type: array
+          items:
+            type: object
+            properties:
+              timestamp:
+                type: string
+              event:
+                type: string
+              details:
+                type: string
+            additionalProperties: true
+      additionalProperties: true
+    DeleteResponse:
+      type: object
+      properties:
+        status:
+          type: string
+        count:
+          type: integer
+      required:
+        - status
+      additionalProperties: true
+    MessageToPost:
+      type: object
+      properties:
+        subject:
+          type: string
+        from:
+          type: string
+        to:
+          type: string
+        text:
+          type: string
+        html:
+          type: string
+        headers:
+          type: object
+          additionalProperties:
+            type: string
+        parts:
+          type: array
+          description: Multipart payload segments. Each part follows RFC 822 conventions.
+          items:
+            type: object
+            additionalProperties: true
+      required:
+        - subject
+        - from
+      additionalProperties: true
+    PostMessageResponse:
+      type: object
+      properties:
+        status:
+          type: string
+        id:
+          type: string
+      required:
+        - status
+        - id
+      additionalProperties: true
+    TeamStatsResponse:
+      type: object
+      properties:
+        stats:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+      additionalProperties: true
+    TeamResponse:
+      type: object
+      properties:
+        private_domains:
+          type: array
+          items:
+            type: string
+        token:
+          type: string
+        team:
+          type: object
+          additionalProperties: true
+      additionalProperties: true
+    TeamInfoResponse:
+      type: object
+      properties:
+        server_time:
+          type: string
+        plan:
+          type: string
+        usage:
+          type: object
+          additionalProperties: true
+      additionalProperties: true
+    DomainsResponse:
+      type: object
+      properties:
+        domains:
+          type: array
+          items:
+            $ref: '#/components/schemas/Domain'
+      additionalProperties: true
+    Domain:
+      type: object
+      properties:
+        _id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        rules:
+          type: array
+          items:
+            $ref: '#/components/schemas/Rule'
+        verified:
+          type: boolean
+      additionalProperties: true
+    CreateDomainRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Desired domain name or subdomain.
+      required:
+        - name
+      additionalProperties: false
+    StatusResponse:
+      type: object
+      properties:
+        status:
+          type: string
+      required:
+        - status
+      additionalProperties: true
+    RulesResponse:
+      type: object
+      properties:
+        rules:
+          type: array
+          items:
+            $ref: '#/components/schemas/Rule'
+      additionalProperties: true
+    RuleCreateRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        enabled:
+          type: boolean
+          default: true
+        match:
+          type: string
+          enum:
+            - ANY
+            - ALL
+            - ALWAYS_MATCH
+        priority:
+          type: integer
+        conditions:
+          type: array
+          items:
+            $ref: '#/components/schemas/RuleCondition'
+        actions:
+          type: array
+          items:
+            $ref: '#/components/schemas/RuleAction'
+      required:
+        - name
+        - priority
+        - conditions
+        - actions
+      additionalProperties: false
+    Rule:
+      allOf:
+        - $ref: '#/components/schemas/RuleCreateRequest'
+        - type: object
+          properties:
+            _id:
+              type: string
+      additionalProperties: true
+    RuleCondition:
+      type: object
+      properties:
+        operation:
+          type: string
+          enum:
+            - EQUALS
+            - PREFIX
+        field:
+          type: string
+        value:
+          type: string
+      required:
+        - operation
+        - field
+        - value
+      additionalProperties: false
+    RuleAction:
+      type: object
+      properties:
+        action:
+          type: string
+          enum:
+            - WEBHOOK
+            - DROP
+        action_data:
+          type: object
+          additionalProperties: true
+      required:
+        - action
+        - action_data
+      additionalProperties: false
+    ErrorResponse:
+      type: object
+      properties:
+        status:
+          type: string
+        message:
+          type: string
+        errors:
+          type: array
+          items:
+            type: string
+      additionalProperties: true
