@@ -658,7 +658,7 @@ paths:
         Streams all messages near live for the supplied domain. Use the optional query
         parameters to control pagination, throttling, and message handling.
       parameters:
-        - $ref: '#/components/parameters/DomainParam'
+        - $ref: '#/components/parameters/PrivateDomainParam'
         - $ref: '#/components/parameters/FullParam'
         - $ref: '#/components/parameters/LimitParam'
         - $ref: '#/components/parameters/ThrottleIntervalParam'
@@ -682,7 +682,7 @@ paths:
         Streams all messages near live for a specific inbox. Use the optional query
         parameters to control pagination, throttling, and message handling.
       parameters:
-        - $ref: '#/components/parameters/DomainParam'
+        - $ref: '#/components/parameters/PrivateDomainParam'
         - $ref: '#/components/parameters/InboxParam'
         - $ref: '#/components/parameters/FullParam'
         - $ref: '#/components/parameters/LimitParam'
@@ -717,8 +717,17 @@ components:
       in: path
       required: true
       description: >-
-        Domain scope. Use `private`, or a specific private domain name
+        Domain scope. Use `public`, `private`, or a specific private domain name
         assigned to the team.
+      schema:
+        type: string
+    PrivateDomainParam:
+      name: domain
+      in: path
+      required: true
+      description: >-
+        Private domain scope. Provide a team private domain or custom domain.
+        The public domain is not supported by streaming endpoints.
       schema:
         type: string
     InboxParam:
