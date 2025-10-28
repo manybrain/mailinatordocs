@@ -648,6 +648,55 @@ paths:
                 $ref: '#/components/schemas/StatusResponse'
         default:
           $ref: '#/components/responses/ErrorResponse'
+  /api/v2/domains/{domain}/stream:
+    get:
+      tags:
+        - Messages
+      operationId: streamDomainMessages
+      summary: Stream messages for a domain
+      description: >-
+        Streams messages for the supplied domain. Use the optional query
+        parameters to control pagination, throttling, and message handling.
+      parameters:
+        - $ref: '#/components/parameters/DomainParam'
+        - $ref: '#/components/parameters/FullParam'
+        - $ref: '#/components/parameters/LimitParam'
+        - $ref: '#/components/parameters/ThrottleIntervalParam'
+        - $ref: '#/components/parameters/DeleteOnFetchParam'
+      responses:
+        "200":
+          description: Message stream retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InboxMessagesResponse'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+  /api/v2/domains/{domain}/stream/{inbox}:
+    get:
+      tags:
+        - Messages
+      operationId: streamInboxMessages
+      summary: Stream messages for a specific inbox
+      description: >-
+        Streams messages for a specific inbox within a domain. Use the optional query
+        parameters to control pagination, throttling, and message handling.
+      parameters:
+        - $ref: '#/components/parameters/DomainParam'
+        - $ref: '#/components/parameters/InboxParam'
+        - $ref: '#/components/parameters/FullParam'
+        - $ref: '#/components/parameters/LimitParam'
+        - $ref: '#/components/parameters/ThrottleIntervalParam'
+        - $ref: '#/components/parameters/DeleteOnFetchParam'
+      responses:
+        "200":
+          description: Message stream retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InboxMessagesResponse'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
 components:
   securitySchemes:
     ApiTokenHeader:
@@ -801,6 +850,15 @@ components:
         enum:
           - enable
           - disable
+    ThrottleIntervalParam:
+      name: throttleInterval
+      in: query
+      required: false
+      description: >-
+        Throttle interval to control the rate of streaming messages (e.g.,
+        `1s`, `5s`, `1m`).
+      schema:
+        type: string
   responses:
     ErrorResponse:
       description: Error response
