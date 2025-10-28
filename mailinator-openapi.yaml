@@ -1,0 +1,1485 @@
+openapi: 3.0.3
+info:
+  title: Mailinator API
+  description: |
+    The Mailinator API provides programmatic access to the Mailinator system. This includes fetching and injecting messages into the Mailinator system and creating routing rules for specific message domains within the system.
+    
+    Mailinator offers both public and private email systems:
+    - **Public Mailinator**: All email addresses @mailinator.com are completely public and usable by anyone
+    - **Private Mailinator**: Subscribers receive private domains with API access and persistent storage
+    
+    ## Authentication
+    All API calls require an API token either as a query parameter `?token=YourTeamAPIToken` or as an Authorization header.
+  version: "2.0"
+  contact:
+    name: Mailinator Support
+    email: support@manybrain.com
+    url: https://www.mailinator.com/
+  license:
+    name: Mailinator Terms of Service
+    url: https://www.mailinator.com/terms-of-service
+
+servers:
+  - url: https://api.mailinator.com/api/v2
+    description: Production API Server
+
+security:
+  - ApiKeyAuth: []
+  - ApiKeyQuery: []
+
+tags:
+  - name: Messages
+    description: Operations for managing and retrieving messages (emails, SMS, webhooks)
+  - name: Domains
+    description: Operations for managing private domains
+  - name: Rules
+    description: Operations for managing routing rules
+  - name: Webhooks
+    description: Operations for webhook message injection
+  - name: Stats
+    description: Operations for retrieving usage statistics
+  - name: Authenticators
+    description: Operations for TOTP 2FA codes
+
+paths:
+  # Messages API
+  /domains/{domain}/inboxes/{inbox}:
+    get:
+      tags: [Messages]
+      summary: Fetch Inbox (Message Summaries)
+      description: Retrieves a list of message summaries for a specific inbox or entire domain
+      operationId: fetchInbox
+      parameters:
+        - $ref: '#/components/parameters/DomainPath'
+        - $ref: '#/components/parameters/InboxPath'
+        - name: skip
+          in: query
+          description: Number of emails to skip
+          schema:
+            type: integer
+            default: 0
+            minimum: 0
+        - name: limit
+          in: query
+          description: Number of emails to fetch (1-99, or 1 with full=true)
+          schema:
+            type: integer
+            default: 50
+            minimum: 1
+            maximum: 99
+        - name: sort
+          in: query
+          description: Sort order for results
+          schema:
+            type: string
+            enum: [ascending, descending]
+            default: descending
+        - name: decode_subject
+          in: query
+          description: Whether to decode encoded subjects
+          schema:
+            type: boolean
+            default: false
+        - name: cursor
+          in: query
+          description: Pagination cursor from previous response
+          schema:
+            type: string
+        - name: full
+          in: query
+          description: Returns full message rather than summary (sets limit to 1)
+          schema:
+            type: boolean
+            default: false
+        - name: wait
+          in: query
+          description: Wait time for future messages (e.g. "10s", "1m")
+          schema:
+            type: string
+        - name: delete
+          in: query
+          description: Schedule deletion after successful fetch (e.g. "1s", "5m", "1h")
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of message summaries
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InboxResponse'
+
+  /domains/{domain}/inboxes/{inbox}/messages/{messageId}:
+    get:
+      tags: [Messages]
+      summary: Fetch Inbox Message
+      description: Retrieves a specific message by ID for a specific inbox
+      operationId: fetchInboxMessage
+      parameters:
+        - $ref: '#/components/parameters/DomainPath'
+        - $ref: '#/components/parameters/InboxPath'
+        - $ref: '#/components/parameters/MessageIdPath'
+      responses:
+        '200':
+          description: Full message details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+
+  /domains/{domain}/messages/{messageId}:
+    get:
+      tags: [Messages]
+      summary: Fetch Message
+      description: Retrieves a specific message by ID
+      operationId: fetchMessage
+      parameters:
+        - $ref: '#/components/parameters/DomainPath'
+        - $ref: '#/components/parameters/MessageIdPath'
+        - name: delete
+          in: query
+          description: Schedule deletion after successful fetch
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Full message details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+
+  /domains/{domain}/inboxes/{inbox}/messages/{messageId}/attachments:
+    get:
+      tags: [Messages]
+      summary: Fetch Inbox Message Attachments
+      description: Retrieves list of attachments for a specific message in an inbox
+      operationId: fetchInboxMessageAttachments
+      parameters:
+        - $ref: '#/components/parameters/DomainPath'
+        - $ref: '#/components/parameters/InboxPath'
+        - $ref: '#/components/parameters/MessageIdPath'
+      responses:
+        '200':
+          description: List of message attachments
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AttachmentsResponse'
+
+  /domains/{domain}/messages/{messageId}/attachments:
+    get:
+      tags: [Messages]
+      summary: Fetch Message Attachments
+      description: Retrieves list of attachments for a specific message
+      operationId: fetchMessageAttachments
+      parameters:
+        - $ref: '#/components/parameters/DomainPath'
+        - $ref: '#/components/parameters/MessageIdPath'
+      responses:
+        '200':
+          description: List of message attachments
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AttachmentsResponse'
+
+  /domains/{domain}/inboxes/{inbox}/messages/{messageId}/attachments/{attachmentId}:
+    get:
+      tags: [Messages]
+      summary: Fetch Inbox Message Attachment
+      description: Downloads a specific attachment from a message in an inbox
+      operationId: fetchInboxMessageAttachment
+      parameters:
+        - $ref: '#/components/parameters/DomainPath'
+        - $ref: '#/components/parameters/InboxPath'
+        - $ref: '#/components/parameters/MessageIdPath'
+        - name: attachmentId
+          in: path
+          required: true
+          description: Attachment ID or filename
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Attachment file content
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+
+  /domains/{domain}/messages/{messageId}/attachments/{attachmentId}:
+    get:
+      tags: [Messages]
+      summary: Fetch Message Attachment
+      description: Downloads a specific attachment from a message
+      operationId: fetchMessageAttachment
+      parameters:
+        - $ref: '#/components/parameters/DomainPath'
+        - $ref: '#/components/parameters/MessageIdPath'
+        - name: attachmentId
+          in: path
+          required: true
+          description: Attachment ID or filename
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Attachment file content
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+
+  /domains/{domain}/inboxes/{inbox}/messages/{messageId}/links:
+    get:
+      tags: [Messages]
+      summary: Fetch Inbox Message Links
+      description: Retrieves all links found within a message in an inbox
+      operationId: fetchInboxMessageLinks
+      parameters:
+        - $ref: '#/components/parameters/DomainPath'
+        - $ref: '#/components/parameters/InboxPath'
+        - $ref: '#/components/parameters/MessageIdPath'
+      responses:
+        '200':
+          description: List of links found in the message
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LinksResponse'
+
+  /domains/{domain}/messages/{messageId}/links:
+    get:
+      tags: [Messages]
+      summary: Fetch Message Links
+      description: Retrieves all links found within a message
+      operationId: fetchMessageLinks
+      parameters:
+        - $ref: '#/components/parameters/DomainPath'
+        - $ref: '#/components/parameters/MessageIdPath'
+      responses:
+        '200':
+          description: List of links found in the message
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LinksResponse'
+
+  /domains/{domain}/messages/{messageId}/linksfull:
+    get:
+      tags: [Messages]
+      summary: Fetch Message Links Full
+      description: Retrieves all links with full info found within a message
+      operationId: fetchMessageLinksFull
+      parameters:
+        - $ref: '#/components/parameters/DomainPath'
+        - $ref: '#/components/parameters/MessageIdPath'
+      responses:
+        '200':
+          description: List of links with full information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LinksFullResponse'
+
+  /domains/{domain}/inboxes/{inbox}/messages/{messageId}/smtplog:
+    get:
+      tags: [Messages]
+      summary: Fetch Inbox Message SMTP Log
+      description: Retrieves SMTP log for a specific message in an inbox
+      operationId: fetchInboxMessageSmtpLog
+      parameters:
+        - $ref: '#/components/parameters/DomainPath'
+        - $ref: '#/components/parameters/InboxPath'
+        - $ref: '#/components/parameters/MessageIdPath'
+      responses:
+        '200':
+          description: SMTP log entries
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SmtpLogResponse'
+
+  /domains/{domain}/messages/{messageId}/smtplog:
+    get:
+      tags: [Messages]
+      summary: Fetch Message SMTP Log
+      description: Retrieves SMTP log for a specific message
+      operationId: fetchMessageSmtpLog
+      parameters:
+        - $ref: '#/components/parameters/DomainPath'
+        - $ref: '#/components/parameters/MessageIdPath'
+      responses:
+        '200':
+          description: SMTP log entries
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SmtpLogResponse'
+
+  /domains/{domain}/inboxes/{inbox}/messages/{messageId}/raw:
+    get:
+      tags: [Messages]
+      summary: Fetch Inbox Message Raw
+      description: Retrieves raw message data for a specific message in an inbox
+      operationId: fetchInboxMessageRaw
+      parameters:
+        - $ref: '#/components/parameters/DomainPath'
+        - $ref: '#/components/parameters/InboxPath'
+        - $ref: '#/components/parameters/MessageIdPath'
+      responses:
+        '200':
+          description: Raw message data
+          content:
+            text/plain:
+              schema:
+                type: string
+
+  /domains/{domain}/messages/{messageId}/raw:
+    get:
+      tags: [Messages]
+      summary: Fetch Message Raw
+      description: Retrieves raw message data for a specific message
+      operationId: fetchMessageRaw
+      parameters:
+        - $ref: '#/components/parameters/DomainPath'
+        - $ref: '#/components/parameters/MessageIdPath'
+      responses:
+        '200':
+          description: Raw message data
+          content:
+            text/plain:
+              schema:
+                type: string
+
+    post:
+      tags: [Messages]
+      summary: Post Message
+      description: Inject a message into a private domain inbox
+      operationId: postMessage
+      parameters:
+        - $ref: '#/components/parameters/DomainPath'
+        - $ref: '#/components/parameters/InboxPath'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostMessage'
+      responses:
+        '200':
+          description: Message posted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PostMessageResponse'
+
+  # Stats API
+  /team/stats:
+    get:
+      tags: [Stats]
+      summary: Get All Team Stats
+      description: Retrieves usage statistics for your team
+      operationId: getTeamStats
+      responses:
+        '200':
+          description: Team usage statistics
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TeamStatsResponse'
+
+  /team:
+    get:
+      tags: [Stats]
+      summary: Get Team
+      description: Retrieves team information including domains, members, and plan details
+      operationId: getTeam
+      responses:
+        '200':
+          description: Team information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TeamResponse'
+
+  /teaminfo:
+    get:
+      tags: [Stats]
+      summary: Get Team Info
+      description: Retrieves basic team information including server time and domains
+      operationId: getTeamInfo
+      responses:
+        '200':
+          description: Basic team information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TeamInfoResponse'
+
+  # Domains API
+  /domains:
+    get:
+      tags: [Domains]
+      summary: Get All Domains
+      description: Fetches a list of all your private domains
+      operationId: getDomains
+      responses:
+        '200':
+          description: List of domains
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DomainsResponse'
+
+  /domains/{domainId}:
+    get:
+      tags: [Domains]
+      summary: Get Domain
+      description: Fetches a specific domain by ID or name
+      operationId: getDomain
+      parameters:
+        - name: domainId
+          in: path
+          required: true
+          description: Domain ID or domain name
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Domain details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Domain'
+
+    post:
+      tags: [Domains]
+      summary: Create Private Domain
+      description: Creates a new private domain attached to your account
+      operationId: createDomain
+      parameters:
+        - name: domainId
+          in: path
+          required: true
+          description: Domain name to create
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Domain created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
+
+    delete:
+      tags: [Domains]
+      summary: Delete Private Domain
+      description: Deletes a private domain
+      operationId: deleteDomain
+      parameters:
+        - name: domainId
+          in: path
+          required: true
+          description: Domain ID or domain name
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Domain deleted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
+
+  # Rules API
+  /domains/{domainId}/rules:
+    get:
+      tags: [Rules]
+      summary: Get All Rules
+      description: Fetches all rules for a domain
+      operationId: getAllRules
+      parameters:
+        - name: domainId
+          in: path
+          required: true
+          description: Domain ID or domain name
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of rules
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RulesResponse'
+
+    post:
+      tags: [Rules]
+      summary: Create Rule
+      description: Creates a new routing rule for a domain
+      operationId: createRule
+      parameters:
+        - name: domainId
+          in: path
+          required: true
+          description: Domain ID or domain name
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RuleCreate'
+      responses:
+        '200':
+          description: Rule created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Rule'
+
+  /domains/{domainId}/rules/{ruleId}:
+    get:
+      tags: [Rules]
+      summary: Get Rule
+      description: Fetches a specific rule by ID
+      operationId: getRule
+      parameters:
+        - name: domainId
+          in: path
+          required: true
+          description: Domain ID or domain name
+          schema:
+            type: string
+        - name: ruleId
+          in: path
+          required: true
+          description: Rule ID or rule name
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Rule details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Rule'
+
+    delete:
+      tags: [Rules]
+      summary: Delete Rule
+      description: Deletes a specific rule from a domain
+      operationId: deleteRule
+      parameters:
+        - name: domainId
+          in: path
+          required: true
+          description: Domain ID or domain name
+          schema:
+            type: string
+        - name: ruleId
+          in: path
+          required: true
+          description: Rule ID or rule name
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Rule deleted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
+
+    put:
+      tags: [Rules]
+      summary: Enable/Disable Rule
+      description: Enables or disables a rule
+      operationId: updateRuleStatus
+      parameters:
+        - name: domainId
+          in: path
+          required: true
+          description: Domain ID or domain name
+          schema:
+            type: string
+        - name: ruleId
+          in: path
+          required: true
+          description: Rule ID or rule name
+          schema:
+            type: string
+        - name: action
+          in: query
+          required: true
+          description: Action to perform on the rule
+          schema:
+            type: string
+            enum: [enable, disable]
+      responses:
+        '200':
+          description: Rule status updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
+
+  # Webhooks API
+  /domains/webhook:
+    post:
+      tags: [Webhooks]
+      summary: Private Webhook
+      description: Webhook messages into your private domain
+      operationId: privateWebhook
+      parameters:
+        - name: whtoken
+          in: query
+          required: true
+          description: Webhook token (not your API token)
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Webhook'
+      responses:
+        '200':
+          description: Message delivered successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookResponse'
+      security: []
+
+  /domains/webhook/{inbox}:
+    post:
+      tags: [Webhooks]
+      summary: Private Inbox Webhook
+      description: Delivers a message to a specific inbox
+      operationId: privateInboxWebhook
+      parameters:
+        - name: inbox
+          in: path
+          required: true
+          description: Target inbox name
+          schema:
+            type: string
+        - name: whtoken
+          in: query
+          required: true
+          description: Webhook token (not your API token)
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Webhook'
+      responses:
+        '200':
+          description: Message delivered successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookResponse'
+      security: []
+
+  /domains/{customService}:
+    post:
+      tags: [Webhooks]
+      summary: Private Custom Service Webhook
+      description: Webhook for custom services like Twilio
+      operationId: privateCustomServiceWebhook
+      parameters:
+        - name: customService
+          in: path
+          required: true
+          description: Custom service name (e.g., "twilio")
+          schema:
+            type: string
+        - name: whtoken
+          in: query
+          required: true
+          description: Webhook token (not your API token)
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Webhook'
+      responses:
+        '200':
+          description: Message delivered successfully
+      security: []
+
+  /domains/{customService}/{inbox}:
+    post:
+      tags: [Webhooks]
+      summary: Private Custom Service Inbox Webhook
+      description: Webhook for custom services to a specific inbox
+      operationId: privateCustomServiceInboxWebhook
+      parameters:
+        - name: customService
+          in: path
+          required: true
+          description: Custom service name (e.g., "twilio")
+          schema:
+            type: string
+        - name: inbox
+          in: path
+          required: true
+          description: Target inbox name
+          schema:
+            type: string
+        - name: whtoken
+          in: query
+          required: true
+          description: Webhook token (not your API token)
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Webhook'
+      responses:
+        '200':
+          description: Message delivered successfully
+      security: []
+
+  # Authenticators API
+  /totp/{totpSecretKey}:
+    get:
+      tags: [Authenticators]
+      summary: Instant TOTP 2FA Code
+      description: Generates instant TOTP 2FA code
+      operationId: instantTOTP2FACode
+      parameters:
+        - name: totpSecretKey
+          in: path
+          required: true
+          description: TOTP secret key
+          schema:
+            type: string
+      responses:
+        '200':
+          description: TOTP code generated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TOTPResponse'
+
+  /authenticators:
+    get:
+      tags: [Authenticators]
+      summary: Get Authenticators
+      description: Fetch all authenticators
+      operationId: getAuthenticators
+      responses:
+        '200':
+          description: List of authenticators
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticatorsResponse'
+
+  /authenticators/{authId}:
+    get:
+      tags: [Authenticators]
+      summary: Get Authenticators By ID
+      description: Fetch authenticator by ID
+      operationId: getAuthenticatorsById
+      parameters:
+        - name: authId
+          in: path
+          required: true
+          description: Authenticator ID
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Authenticator details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticatorResponse'
+
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: API token for authentication
+    ApiKeyQuery:
+      type: apiKey
+      in: query
+      name: token
+      description: API token as query parameter
+
+  parameters:
+    DomainPath:
+      name: domain
+      in: path
+      required: true
+      description: Domain identifier (public, private, or specific domain name)
+      schema:
+        type: string
+        enum: [public, private]
+      example: private
+
+    InboxPath:
+      name: inbox
+      in: path
+      required: true
+      description: Inbox name or wildcard (*, null for all)
+      schema:
+        type: string
+      example: testinbox
+
+    MessageIdPath:
+      name: messageId
+      in: path
+      required: true
+      description: Message ID
+      schema:
+        type: string
+      example: testinbox-1571155952-33840774
+
+  schemas:
+    # Message Schemas
+    MessageSummary:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique message identifier
+        subject:
+          type: string
+          description: Message subject
+        from:
+          type: string
+          description: Sender information
+        to:
+          type: string
+          description: Recipient information
+        domain:
+          type: string
+          description: Domain where message was received
+        time:
+          type: integer
+          format: int64
+          description: Message timestamp in milliseconds
+        seconds_ago:
+          type: integer
+          description: Seconds since message was received
+
+    Message:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique message identifier
+        subject:
+          type: string
+          description: Message subject
+        from:
+          type: string
+          description: Sender information
+        fromfull:
+          type: string
+          description: Full sender information
+        to:
+          type: string
+          description: Recipient information
+        time:
+          type: integer
+          format: int64
+          description: Message timestamp in milliseconds
+        seconds_ago:
+          type: integer
+          description: Seconds since message was received
+        headers:
+          type: object
+          additionalProperties: true
+          description: Message headers
+        parts:
+          type: array
+          description: Message parts/body content
+          items:
+            $ref: '#/components/schemas/MessagePart'
+
+    MessagePart:
+      type: object
+      properties:
+        headers:
+          type: object
+          additionalProperties: true
+          description: Part-specific headers
+        body:
+          type: string
+          description: Part content
+
+    InboxResponse:
+      type: object
+      properties:
+        domain:
+          type: string
+          description: Domain name
+        to:
+          type: string
+          description: Inbox name
+        msgs:
+          type: array
+          description: Array of message summaries
+          items:
+            $ref: '#/components/schemas/MessageSummary'
+        cursor:
+          type: string
+          description: Pagination cursor for next request
+
+    PostMessage:
+      type: object
+      required: [from, subject, text, to]
+      properties:
+        from:
+          type: string
+          description: Sender email address
+          example: test@example.com
+        subject:
+          type: string
+          description: Message subject
+          example: Test Message
+        text:
+          type: string
+          description: Message body
+          example: Hello, this is a test message
+        to:
+          type: string
+          description: Recipient (inbox name)
+          example: testinbox
+
+    PostMessageResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: ok
+
+    # Attachment Schemas
+    Attachment:
+      type: object
+      properties:
+        filename:
+          type: string
+          description: Attachment filename
+        content-disposition:
+          type: string
+          description: Content disposition header
+        content-transfer-encoding:
+          type: string
+          description: Transfer encoding
+        content-type:
+          type: string
+          description: MIME type
+        attachment-id:
+          type: integer
+          description: Unique attachment identifier
+
+    AttachmentsResponse:
+      type: object
+      properties:
+        attachments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Attachment'
+
+    # Links Schemas
+    LinksResponse:
+      type: object
+      properties:
+        links:
+          type: array
+          description: Array of link URLs found in the message
+          items:
+            type: string
+            format: uri
+
+    LinkInfo:
+      type: object
+      properties:
+        link:
+          type: string
+          format: uri
+          description: The URL
+        text:
+          type: string
+          description: The link text/anchor text
+
+    LinksFullResponse:
+      type: object
+      properties:
+        links:
+          type: array
+          description: Array of links with full information
+          items:
+            $ref: '#/components/schemas/LinkInfo'
+
+    # SMTP Log Schemas
+    SmtpLogEntry:
+      type: object
+      properties:
+        time:
+          type: string
+          description: Time offset from start
+          example: "0ms"
+        event:
+          type: string
+          description: SMTP event type
+          example: "SOCKET_OPEN"
+        details:
+          type: string
+          description: Event details
+          example: "Connection from: 92.46.141.000"
+
+    SmtpLogResponse:
+      type: object
+      properties:
+        log:
+          type: array
+          description: Array of SMTP log entries
+          items:
+            $ref: '#/components/schemas/SmtpLogEntry'
+
+    # Stats Schemas
+    RetrievedStats:
+      type: object
+      properties:
+        web_private:
+          type: integer
+          description: Messages retrieved via web interface (private)
+        web_public:
+          type: integer
+          description: Messages retrieved via web interface (public)
+        api_email:
+          type: integer
+          description: Messages retrieved via API
+        api_error:
+          type: integer
+          description: API errors
+
+    SentStats:
+      type: object
+      properties:
+        sms:
+          type: integer
+          description: SMS messages sent
+        email:
+          type: integer
+          description: Email messages sent
+
+    TeamStat:
+      type: object
+      properties:
+        date:
+          type: string
+          description: Date in YYYYMMDD format
+          example: "20200921"
+        retrieved:
+          $ref: '#/components/schemas/RetrievedStats'
+        sent:
+          $ref: '#/components/schemas/SentStats'
+
+    TeamStatsResponse:
+      type: object
+      properties:
+        stats:
+          type: array
+          description: Array of daily statistics
+          items:
+            $ref: '#/components/schemas/TeamStat'
+
+    PlanData:
+      type: object
+      properties:
+        storage_mb:
+          type: integer
+          description: Storage limit in MB
+        num_private_domains:
+          type: integer
+          description: Number of private domains allowed
+        email_reads_per_day:
+          type: integer
+          description: Daily email read limit
+        team_accounts:
+          type: integer
+          description: Number of team accounts allowed
+
+    TeamMember:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: Member ID
+        email:
+          type: string
+          description: Member email address
+        role:
+          type: string
+          description: Member role
+          example: team_admin
+
+    WebhookToken:
+      type: object
+      properties:
+        description:
+          type: string
+          description: Token description
+        whtoken:
+          type: string
+          description: Webhook token value
+
+    PrivateDomain:
+      type: object
+      properties:
+        pd:
+          type: string
+          description: Domain name
+        enabled:
+          type: boolean
+          description: Whether domain is enabled
+
+    TeamResponse:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: Team ID
+        team_name:
+          type: string
+          description: Team name
+        status:
+          type: string
+          description: Team status
+          example: active
+        plan:
+          type: string
+          description: Plan type
+        token:
+          type: string
+          description: API token
+        plan_data:
+          $ref: '#/components/schemas/PlanData'
+        members:
+          type: array
+          description: Team members
+          items:
+            $ref: '#/components/schemas/TeamMember'
+        webhook_tokens:
+          type: array
+          description: Webhook tokens
+          items:
+            $ref: '#/components/schemas/WebhookToken'
+        private_domains:
+          type: array
+          description: Private domains
+          items:
+            $ref: '#/components/schemas/PrivateDomain'
+        sms_numbers:
+          type: array
+          description: SMS numbers
+          items:
+            type: string
+
+    TeamInfoResponse:
+      type: object
+      properties:
+        server_time:
+          type: string
+          description: Current server time
+        domains:
+          type: array
+          description: List of domain names
+          items:
+            type: string
+
+    # Domain Schemas
+    Domain:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: Domain ID
+        name:
+          type: string
+          description: Domain name
+        description:
+          type: string
+          description: Domain description
+        enabled:
+          type: boolean
+          description: Whether domain is enabled
+        ownerid:
+          type: string
+          description: Owner ID
+        rules:
+          type: array
+          description: Domain rules
+          items:
+            $ref: '#/components/schemas/Rule'
+
+    DomainsResponse:
+      type: object
+      properties:
+        domains:
+          type: array
+          description: Array of domains
+          items:
+            $ref: '#/components/schemas/Domain'
+
+    # Rule Schemas
+    ConditionData:
+      type: object
+      properties:
+        field:
+          type: string
+          description: Message field to compare
+          enum: [to]
+          example: to
+        value:
+          type: string
+          description: Value to compare against
+          example: test
+
+    Condition:
+      type: object
+      properties:
+        operation:
+          type: string
+          description: Comparison operation
+          enum: [EQUALS, PREFIX]
+          example: PREFIX
+        condition_data:
+          $ref: '#/components/schemas/ConditionData'
+
+    ActionData:
+      type: object
+      properties:
+        url:
+          type: string
+          format: uri
+          description: Webhook URL for WEBHOOK actions
+          example: https://www.mywebsite.com/restendpoint
+
+    Action:
+      type: object
+      properties:
+        action:
+          type: string
+          description: Action to perform
+          enum: [WEBHOOK, DROP]
+          example: WEBHOOK
+        action_data:
+          $ref: '#/components/schemas/ActionData'
+
+    Rule:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: Rule ID
+        name:
+          type: string
+          description: Rule name (lowercase, 1-15 chars, alphanumeric/dot/underscore only)
+        description:
+          type: string
+          description: Rule description (1-255 chars)
+        enabled:
+          type: boolean
+          description: Whether rule is enabled
+          default: true
+        match:
+          type: string
+          description: Condition matching type
+          enum: [ANY, ALL, ALWAYS_MATCH]
+          default: ALL
+        priority:
+          type: integer
+          description: Rule execution priority (1-99999, 1 is highest)
+          minimum: 1
+          maximum: 99999
+        conditions:
+          type: array
+          description: Array of conditions (IF part)
+          items:
+            $ref: '#/components/schemas/Condition'
+        actions:
+          type: array
+          description: Array of actions (THEN part)
+          items:
+            $ref: '#/components/schemas/Action'
+
+    RuleCreate:
+      type: object
+      required: [name, priority, conditions, actions]
+      properties:
+        name:
+          type: string
+          description: Rule name (lowercase, 1-15 chars, alphanumeric/dot/underscore only)
+          pattern: '^[a-z0-9._]{1,15}$'
+        description:
+          type: string
+          description: Rule description (1-255 chars)
+          maxLength: 255
+        enabled:
+          type: boolean
+          description: Whether rule is enabled
+          default: true
+        match:
+          type: string
+          description: Condition matching type
+          enum: [ANY, ALL]
+          default: ALL
+        priority:
+          type: integer
+          description: Rule execution priority (1-99999, 1 is highest)
+          minimum: 1
+          maximum: 99999
+        conditions:
+          type: array
+          description: Array of conditions (IF part)
+          minItems: 1
+          items:
+            $ref: '#/components/schemas/Condition'
+        actions:
+          type: array
+          description: Array of actions (THEN part)
+          minItems: 1
+          items:
+            $ref: '#/components/schemas/Action'
+
+    RulesResponse:
+      type: object
+      properties:
+        rules:
+          type: array
+          description: Array of rules
+          items:
+            $ref: '#/components/schemas/Rule'
+
+    # Webhook Schemas
+    Webhook:
+      type: object
+      required: [from, subject, text, to]
+      properties:
+        from:
+          type: string
+          description: Sender information
+          example: MyMailinatorTest
+        subject:
+          type: string
+          description: Message subject
+          example: testing message
+        text:
+          type: string
+          description: Message body
+          example: hello world
+        to:
+          type: string
+          description: Target inbox
+          example: jack
+
+    WebhookResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Message ID
+        status:
+          type: string
+          description: Status
+          example: ok
+
+    # Authenticator Schemas
+    TOTPResponse:
+      type: object
+      properties:
+        time_step:
+          type: integer
+          description: Time step in seconds
+          example: 30
+        passcode:
+          type: string
+          description: Current TOTP code
+          example: "652214"
+        next_reset_secs:
+          type: integer
+          description: Seconds until next code
+          example: 18
+        futurecodes:
+          type: array
+          description: Future TOTP codes
+          items:
+            type: string
+          example: ["540822", "023305", "517071"]
+
+    AuthenticatorResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Authenticator ID
+        time_step:
+          type: integer
+          description: Time step in seconds
+        passcode:
+          type: string
+          description: Current TOTP code
+        next_reset_secs:
+          type: integer
+          description: Seconds until next code
+        futurecodes:
+          type: array
+          description: Future TOTP codes
+          items:
+            type: string
+
+    AuthenticatorsResponse:
+      type: object
+      properties:
+        passcodes:
+          type: array
+          description: Array of authenticators
+          items:
+            $ref: '#/components/schemas/AuthenticatorResponse'
+
+    # Common Schemas
+    StatusResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          description: Operation status
+          example: ok
+
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message
+        code:
+          type: integer
+          description: Error code
