@@ -1,3 +1,7 @@
-# Mailinator Docs   
+# Mailinator Documentation 
 
-The new Mailinator API docs are built from an OpenAPI specification file. This file is the source of truth for the new API docs, so any new changes need to be made directly to the specification.
+The new Mailinator documentation site is hosted on GitBook. The majority of the pages live on GitBook except for the API Reference, which is dynamically pulled from this directory. 
+
+In the ([openapi directory](https://github.com/manybrain/mailinatordocs/tree/main/openapi)) is the OpenAPI specification for Mailinator's API. Any changes (bugs, updates, etc.) need to be made directly to that file. GitBook will refresh that connection and automatically pull in changes to the website. 
+
+(The [old documentation site](https://github.com/manybrain/m8rdocs) still lives here but is very outdated.)
