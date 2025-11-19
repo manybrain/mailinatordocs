@@ -27,6 +27,8 @@ tags:
     description: Private domain management
   - name: Rules
     description: Routing rule management
+  - name: Authentication
+    description: 2FA and TOTP 
 paths:
   /api/v2/domains/{domain}/inboxes:
     get:
@@ -696,6 +698,77 @@ paths:
               schema:
                 $ref: '#/components/schemas/InboxMessagesResponse'
         "500":
+          $ref: '#/components/responses/ErrorResponse'
+  /api/v2/totp/{totp_secret_key}:
+    get:
+      tags:
+        - Authentication
+      operationId: getInstantTOTPCode
+      summary: Generate a TOTP code based on a secret key
+      description: >-
+        Generates a Time-based One-Time Password (TOTP) code using the provided
+        secret key. The generated code can be used for two-factor authentication (2FA)
+        during login or other secure operations.
+      parameters:
+        - name: totp_secret_key
+          in: path
+          required: true
+          description: The secret key used to generate the TOTP code.
+          schema:
+            type: string
+      responses:
+        "200":
+          description: TOTP code generated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  totp_code:
+                    type: string
+                    description: The generated TOTP code.
+        "400":
+          description: Invalid secret key provided
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+  /api/v2/authenticators/{authenticator_id}:
+    get: 
+      tags:
+        - Authentication
+      operationId: getStoredAuthenticatorCode
+      summary: Retrieves a TOTP code based on a stored authenticator ID found in Web Interface
+      description: >-
+        Generates a Time-based One-Time Password (TOTP) code using an already saved authenticator. The generated code can be used for two-factor authentication (2FA)
+        during login or other secure operations. authenticator_id is case sensitive.
+      parameters:
+        - name: authenticator_id
+          in: path
+          required: true
+          description: The unique identifier of the authenticator as found in Web Interface.
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Authenticator status retrieved
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    description: The generated TOTP code.
+        "400":
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        default:
           $ref: '#/components/responses/ErrorResponse'
 components:
   securitySchemes:
