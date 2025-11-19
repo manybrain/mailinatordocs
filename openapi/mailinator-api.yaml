@@ -4,7 +4,7 @@ info:
   description: >-
     OpenAPI 3 definition for the Mailinator API reference. The specification captures the documented message,
     stats, domain, and rule endpoints exposed under api.mailinator.com.
-  version: "2025-10-28"
+  version: "2025-11-19"
   contact:
     name: Mailinator
     url: https://www.mailinator.com/
@@ -25,7 +25,7 @@ tags:
     description: Private domain management
   - name: Rules
     description: Routing rule management
-  - name: Authenticators
+  - name: Authenticatorinator
     description: 2FA and TOTP 
   - name: Stats
     description: Team usage statistics
@@ -702,7 +702,7 @@ paths:
   /api/v2/totp/{totp_secret_key}:
     get:
       tags:
-        - Authenticators
+        - Authenticatorinator
       operationId: getInstantTOTPCode
       summary: Generate a TOTP code based on a secret key
       description: >-
@@ -738,12 +738,16 @@ paths:
                   next_reset_secs:
                     type: integer
                     description: Seconds until the current TOTP code resets.
-        "default":
-          $ref: '#/components/responses/ErrorResponse'
+        "400":
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /api/v2/authenticators/{authenticator_id}:
     get: 
       tags:
-        - Authenticators
+        - Authenticatorinator
       operationId: getStoredAuthenticatorCode
       summary: Retrieves a TOTP code based on a stored authenticator ID found in Web Interface
       description: >-
@@ -787,8 +791,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-        default:
-          $ref: '#/components/responses/ErrorResponse'
 components:
   securitySchemes:
     ApiTokenHeader:
