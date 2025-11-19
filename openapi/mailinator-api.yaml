@@ -21,14 +21,14 @@ tags:
     description: Attachment and link retrieval
   - name: Delivery
     description: Message injection endpoints
-  - name: Stats
-    description: Team usage statistics
   - name: Domains
     description: Private domain management
   - name: Rules
     description: Routing rule management
-  - name: Authentication
+  - name: Authenticators
     description: 2FA and TOTP 
+  - name: Stats
+    description: Team usage statistics
 paths:
   /api/v2/domains/{domain}/inboxes:
     get:
@@ -702,7 +702,7 @@ paths:
   /api/v2/totp/{totp_secret_key}:
     get:
       tags:
-        - Authentication
+        - Authenticators
       operationId: getInstantTOTPCode
       summary: Generate a TOTP code based on a secret key
       description: >-
@@ -724,21 +724,26 @@ paths:
               schema:
                 type: object
                 properties:
-                  totp_code:
+                  passcode:
                     type: string
-                    description: The generated TOTP code.
-        "400":
-          description: Invalid secret key provided
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-        default:
+                    description: The current TOTP code.
+                  time_step:
+                    type: integer
+                    description: The time step in seconds for the TOTP code.
+                  futurecodes:
+                    type: array
+                    items:
+                      type: string
+                    description: The next 5 "future" TOTP codes.
+                  next_reset_secs:
+                    type: integer
+                    description: Seconds until the current TOTP code resets.
+        "default":
           $ref: '#/components/responses/ErrorResponse'
   /api/v2/authenticators/{authenticator_id}:
     get: 
       tags:
-        - Authentication
+        - Authenticators
       operationId: getStoredAuthenticatorCode
       summary: Retrieves a TOTP code based on a stored authenticator ID found in Web Interface
       description: >-
@@ -759,9 +764,23 @@ paths:
               schema:
                 type: object
                 properties:
-                  status:
+                  passcode:
                     type: string
-                    description: The generated TOTP code.
+                    description: The current TOTP code.
+                  time_step:
+                    type: integer
+                    description: The time step in seconds for the TOTP code.
+                  id: 
+                    type: string
+                    description: The authenticator ID.
+                  futurecodes:
+                    type: array
+                    items:
+                      type: string
+                    description: The next 5 "future" TOTP codes.
+                  next_reset_secs:
+                    type: integer
+                    description: Seconds until the current TOTP code resets.
         "400":
           description: Bad request
           content:
