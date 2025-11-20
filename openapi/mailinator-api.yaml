@@ -1168,7 +1168,6 @@ components:
           type: string
         token:
           type: string
-      additionalProperties: true
     TeamInfoResponse:
       type: object
       properties:
@@ -1185,7 +1184,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Domain'
-      additionalProperties: true
     Domain:
       type: object
       properties:
@@ -1201,7 +1199,6 @@ components:
             $ref: '#/components/schemas/Rule'
         verified:
           type: boolean
-      additionalProperties: true
     CreateDomainRequest:
       type: object
       properties:
