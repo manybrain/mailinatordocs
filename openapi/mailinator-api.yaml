@@ -542,7 +542,7 @@ paths:
                 $ref: '#/components/schemas/StatusResponse'
         default:
           $ref: '#/components/responses/ErrorResponse'
-  /api/v2/domains/{domainId}:
+  /api/v2/domains/{domain_name}:
     get:
       tags:
         - Domains
@@ -575,7 +575,7 @@ paths:
                 $ref: '#/components/schemas/StatusResponse'
         default:
           $ref: '#/components/responses/ErrorResponse'
-  /api/v2/domains/{domainId}/rules:
+  /api/v2/domains/{domain_name}/rules:
     get:
       tags:
         - Rules
@@ -614,7 +614,7 @@ paths:
                 $ref: '#/components/schemas/Rule'
         default:
           $ref: '#/components/responses/ErrorResponse'
-  /api/v2/domains/{domainId}/rules/{ruleId}:
+  /api/v2/domains/{domain_name}/rules/{ruleId}:
     get:
       tags:
         - Rules
@@ -1187,8 +1187,6 @@ components:
     Domain:
       type: object
       properties:
-        _id:
-          type: string
         name:
           type: string
         description:
