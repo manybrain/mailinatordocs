@@ -25,7 +25,7 @@ tags:
     description: Private domain management
   - name: Rules
     description: Routing rule management
-  - name: Authenticatorinator
+  - name: Authenticator
     description: 2FA and TOTP 
   - name: Stats
     description: Team usage statistics
@@ -702,7 +702,7 @@ paths:
   /api/v2/totp/{totp_secret_key}:
     get:
       tags:
-        - Authenticatorinator
+        - Authenticator
       operationId: getInstantTOTPCode
       summary: Generate a TOTP code based on a secret key
       description: >-
@@ -722,22 +722,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  passcode:
-                    type: string
-                    description: The current TOTP code.
-                  time_step:
-                    type: integer
-                    description: The time step in seconds for the TOTP code.
-                  futurecodes:
-                    type: array
-                    items:
-                      type: string
-                    description: The next 5 "future" TOTP codes.
-                  next_reset_secs:
-                    type: integer
-                    description: Seconds until the current TOTP code resets.
+                $ref: '#/components/schemas/TOTPResponse'
         "400":
           description: Bad request
           content:
@@ -747,7 +732,7 @@ paths:
   /api/v2/authenticators/{authenticator_id}:
     get: 
       tags:
-        - Authenticatorinator
+        - Authenticator
       operationId: getStoredAuthenticatorCode
       summary: Retrieves a TOTP code based on a stored authenticator ID found in Web Interface
       description: >-
@@ -766,25 +751,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  passcode:
-                    type: string
-                    description: The current TOTP code.
-                  time_step:
-                    type: integer
-                    description: The time step in seconds for the TOTP code.
-                  id: 
-                    type: string
-                    description: The authenticator ID.
-                  futurecodes:
-                    type: array
-                    items:
-                      type: string
-                    description: The next 5 "future" TOTP codes.
-                  next_reset_secs:
-                    type: integer
-                    description: Seconds until the current TOTP code resets.
+                $ref: '#/components/schemas/AuthenticatorIDResponse'
         "400":
           description: Bad request
           content:
@@ -1163,8 +1130,13 @@ components:
           type: array
           items:
             type: object
-            additionalProperties: true
-      additionalProperties: true
+            properties:
+              date:
+                type: string
+              retrieved:
+                type: object
+              sent:
+                type: object
     TeamResponse:
       type: object
       properties:
@@ -1172,23 +1144,40 @@ components:
           type: array
           items:
             type: string
+        webhook_tokens:
+          type: array
+          items:
+            type: string
+        sms_numbers:
+          type: array
+          items:
+            type: string
+        members:
+          type: array
+          items:
+            type: string
+        plan_data:
+          type: object
+        id:
+          type: string
+        plan:
+          type: string
+        team_name:
+          type: string
+        status:
+          type: string
         token:
           type: string
-        team:
-          type: object
-          additionalProperties: true
       additionalProperties: true
     TeamInfoResponse:
       type: object
       properties:
         server_time:
           type: string
-        plan:
-          type: string
-        usage:
-          type: object
-          additionalProperties: true
-      additionalProperties: true
+        domains:
+          type: array
+          items:
+            type: string
     DomainsResponse:
       type: object
       properties:
@@ -1322,3 +1311,40 @@ components:
           items:
             type: string
       additionalProperties: true
+    AuthenticatorIDResponse:
+      type: object
+      properties:
+        passcode:
+          type: string
+          description: The current TOTP code.
+        time_step:
+          type: integer
+          description: The time step in seconds for the TOTP code.
+        id: 
+          type: string
+          description: The authenticator ID.
+        futurecodes:
+          type: array
+          items:
+            type: string
+          description: The next 5 "future" TOTP codes.
+        next_reset_secs:
+          type: integer
+          description: Seconds until the current TOTP code resets.
+    TOTPResponse:
+      type: object
+      properties:
+        passcode:
+          type: string
+          description: The current TOTP code.
+        time_step:
+          type: integer
+          description: The time step in seconds for the TOTP code.
+        futurecodes:
+          type: array
+          items:
+            type: string
+          description: The next 5 "future" TOTP codes.
+        next_reset_secs:
+          type: integer
+          description: Seconds until the current TOTP code resets.
