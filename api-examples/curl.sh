@@ -8,7 +8,7 @@ curl -v -d '{"from":"someplace@xyz.com", "subject":"testing", "text" : "hellowor
 -X POST "https://api.mailinator.com/api/v2/domains/<your_webhook_token>/webhook/bob/"
 
 
-# --- Example 2 ---
+# --- Authentication ---
 # REST calls require your team's API token in every call
 curl "https://api.mailinator.com/api_endpoint_here?token=YourTeamAPIToken"
 
