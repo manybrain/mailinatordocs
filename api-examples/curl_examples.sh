@@ -1,4 +1,4 @@
-## The following are shell examples from our previous documentation.
+# The following are curl examples from our old documentation. The latest versions can be found on the Mailinator website. 
 
 # --- Example 1 ---
 # This command will deliver the message to the "bob" inbox
