@@ -95,57 +95,66 @@ const config = {
             position: 'left',
             label: 'Docs',
           },
-          {to: '/blog', label: 'Blog', position: 'left'},
           {
-            href: 'https://github.com/manybrain/mailinatordocs',
-            label: 'GitHub',
-            position: 'right',
+            label: 'API',
+            position: 'left',
+            docID: 'api',
+            type: 'doc',
           },
+          {to: '/blog', label: 'Blog', position: 'left'},
+          // {
+          //   href: 'https://github.com/manybrain/mailinatordocs',
+          //   label: 'GitHub',
+          //   position: 'right',
+          // },
+          // {
+          //   type: 'docsVersionDropdown'
+          // }
         ],
       },
       footer: {
-        style: 'dark',
-        links: [
-          {
-            title: 'Docs',
-            items: [
-              {
-                label: 'Tutorial',
-                to: '/docs/intro',
-              },
-            ],
-          },
-          {
-            title: 'Community',
-            items: [
-              {
-                label: 'Stack Overflow',
-                href: 'https://stackoverflow.com/questions/tagged/mailinator',
-              },
-              // {
-              //   label: 'Discord',
-              //   href: 'https://discordapp.com/invite/docusaurus',
-              // },
-              {
-                label: 'X',
-                href: 'https://x.com/mailinator',
-              },
-            ],
-          },
-          {
-            title: 'More',
-            items: [
-              {
-                label: 'Blog',
-                to: '/blog',
-              },
-              {
-                label: 'GitHub',
-                href: 'https://github.com/manybrain/mailinatordocs',
-              },
-            ],
-          },
-        ],
+        style: 'light',
+        // links: [
+        //   {
+        //     title: 'Docs',
+        //     items: [
+        //       {
+        //         label: 'Tutorial',
+        //         to: '/docs/intro',
+        //       },
+        //     ],
+        //   },
+        //   {
+        //     title: 'Community',
+        //     items: [
+        //       {
+        //         label: 'Stack Overflow',
+        //         href: 'https://stackoverflow.com/questions/tagged/mailinator',
+        //       },
+        //       // {
+        //       //   label: 'Discord',
+        //       //   href: 'https://discordapp.com/invite/docusaurus',
+        //       // },
+        //       {
+        //         label: 'X',
+        //         href: 'https://x.com/mailinator',
+        //       },
+        //     ],
+        //   },
+        //   {
+        //     title: 'More',
+        //     items: [
+        //       {
+        //         label: 'Blog',
+        //         to: '/blog',
+        //       },
+        //       {
+        //         label: 'GitHub',
+        //         href: 'https://github.com/manybrain/mailinatordocs',
+        //       },
+        //     ],
+        //   },
+        // ],
         copyright: `Copyright © ${new Date().getFullYear()} Manybrain, LLC.`,
       },
       prism: {
