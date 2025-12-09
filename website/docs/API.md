@@ -1,47 +1,30 @@
 ---
 id: api
+title: Introduction
 ---
 
-# Tutorial Intro
+# API Introduction
 
-Let's discover **Docusaurus in less than 5 minutes**.
+## The Mailinator API
 
-## Getting Started
+The Mailinator API provides programmatic access to the Mailinator system. This includes fetching and injecting messages into the Mailinator system and creating routing rules for specific message domains within the system.&#x20;
 
-Get started by **creating a new site**.
+Messages are typically (and historically) email messages. Hence the format of messages tend to look like emails but in reality any message can be fed, routed, and read or delivered through the system. In a broader scope messages generally arrive via email, SMS, or direct HTTP Post.
 
-Or **try Docusaurus immediately** with **[docusaurus.new](https://docusaurus.new)**.
+Subscribers can read messages in both the **Public** and their own **Private** Mailinator email systems with the API. They may also route/inject messages but only to their Private Mailinator domains.
 
-### What you'll need
+Access to the API (and messages in general) are subject to your subscription plan's rate limits.
 
-- [Node.js](https://nodejs.org/en/download/) version 20.0 or above:
-  - When installing Node.js, you are recommended to check all checkboxes related to dependencies.
+### Messages
 
-## Generate a new site
+Messages within Mailinator are typically thought of as emails - however, messages can enter the system in a variety of ways including email, SMS, or HTTP Post. In general, the schema of messages contains a TO, FROM, SUBJECT, and message body. Message bodies can be simple string of text or - as is allowed by email standards, a complicated multi-part, multi-encoded schema.
 
-Generate a new Docusaurus site using the **classic template**.
+### Domains
 
-The classic template will automatically be added to your project after you run the command:
+Domains identify a specific source for messages. Emails automatically are assigned to the domain of their "to" address. Expectedly, each of your Private Domains represent a specific source for messages. Each Domain may have it's own set of rules.
 
-```bash
-npm init docusaurus@latest my-website classic
-```
+### Postman
 
-You can type this command into Command Prompt, Powershell, Terminal, or any other integrated terminal of your code editor.
+If you prefer to use a tool like Postman to get started, we've made it easy by setting you up with a pre-built collection. All you have to do is make a copy, put in your API key and go.
 
-The command also installs all necessary dependencies you need to run Docusaurus.
-
-## Start your site
-
-Run the development server:
-
-```bash
-cd my-website
-npm run start
-```
-
-The `cd` command changes the directory you're working with. In order to work with your newly created Docusaurus site, you'll need to navigate the terminal there.
-
-The `npm run start` command builds your website locally and serves it through a development server, ready for you to view at http://localhost:3000/.
-
-Open `docs/intro.md` (this page) and edit some lines: the site **reloads automatically** and displays your changes.
+<a href="https://www.postman.com/mailinator-api/mailinator/collection/" class="button primary">Postman Collection</a>
