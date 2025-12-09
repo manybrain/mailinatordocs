@@ -24,7 +24,7 @@ const sidebars = {
     {
       type: 'category',
       label: 'Getting Started',
-      items: ['gettingstarted'],
+      items: ['gettingstarted','messagedelivery','privatemailbox','publicmailbox']
     },
     {
       type: 'category',

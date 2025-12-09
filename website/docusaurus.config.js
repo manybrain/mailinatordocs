@@ -99,7 +99,7 @@ const config = {
             label: 'API',
             position: 'left',
             docID: 'api',
-            type: 'doc',
+            to: '/docs/api'
           },
           {to: '/blog', label: 'Blog', position: 'left'},
           // {
