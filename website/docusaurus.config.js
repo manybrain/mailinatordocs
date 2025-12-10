@@ -1,10 +1,9 @@
-// @ts-check
-// `@type` JSDoc annotations allow editor autocompletion and type checking
-// (when paired with `@ts-check`).
-// There are various equivalent ways to declare your Docusaurus config.
-// See: https://docusaurus.io/docs/api/docusaurus-config
-
 import {themes as prismThemes} from 'prism-react-renderer';
+const organizationName = 'manybrain'
+const projectName = 'mailinatordocs'
+const repoUrl = `https://github.com/${organizationName}/${projectName}`
+const xUrl = `https://x.com/mailinator`
+const youtubeUrl = `https://youtube.com/@mailinator5371`
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
@@ -24,11 +23,6 @@ const config = {
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: '/',
-
-  // GitHub pages deployment config.
-  // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'manybrain', // Usually your GitHub org/user name.
-  projectName: 'mailinatordocs', // Usually your repo name.
 
   onBrokenLinks: 'throw',
 
@@ -52,21 +46,7 @@ const config = {
           // editUrl:
           //   'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
         },
-        blog: {
-          showReadingTime: true,
-          feedOptions: {
-            type: ['rss', 'atom'],
-            xslt: true,
-          },
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          // editUrl:
-          //   'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
-          // Useful options to enforce blogging best practices
-          onInlineTags: 'warn',
-          onInlineAuthors: 'warn',
-          onUntruncatedBlogPosts: 'warn',
-        },
+        blog: false,
         theme: {
           customCss: './src/css/custom.css',
         },
@@ -101,12 +81,27 @@ const config = {
             docID: 'api',
             to: '/docs/api'
           },
-          {to: '/blog', label: 'Blog', position: 'left'},
-          // {
-          //   href: 'https://github.com/manybrain/mailinatordocs',
-          //   label: 'GitHub',
-          //   position: 'right',
-          // },
+          {
+          href: xUrl,
+          position: 'right',
+          className: 'icon-link icon-link-mask icon-link-twitter',
+          'aria-label': 'X',
+          target: '_blank',
+          label: 'X',
+          },
+          {
+          href: repoUrl,
+          position: 'right',
+          className: 'icon-link icon-link-mask icon-link-github',
+          'aria-label': 'GitHub repository',
+          target: '_blank',
+          label: 'GitHub',
+          },
+          {
+            href: youtubeUrl,
+            label: 'YouTube',
+            position: 'right',
+          },
           // {
           //   type: 'docsVersionDropdown'
           // }
