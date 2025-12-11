@@ -1,47 +1,27 @@
 ---
 id: intro
+title: Why Mailinator?
+sidebar_position: 1
 ---
 
-# Tutorial Intro
+# Why Mailinator?
 
-Let's discover **Docusaurus in less than 5 minutes**.
+> Explore our product guides and API documentation to learn how to quickly test email with Mailinator.
 
-## Getting Started
+## Mailinator
 
-Get started by **creating a new site**.
+Whereas most email systems are built around the concept of "account/inbox ownership", Mailinator is an email system built around "entire domain-inbox ownership". This allows companies to have instant access to millions of email addresses for system and automation testing of their software.
 
-Or **try Docusaurus immediately** with **[docusaurus.new](https://docusaurus.new)**.
+Learn more about [Private Mailbox](/docs/core/privatemailbox).
 
-### What you'll need
+Mailinator also provides a "public" domain for personal use where all email addresses (@mailinator.com) are completely public and usable by anyone.
 
-- [Node.js](https://nodejs.org/en/download/) version 20.0 or above:
-  - When installing Node.js, you are recommended to check all checkboxes related to dependencies.
+Learn more about [Public Mailbox](/docs/core/publicmailbox).
 
-## Generate a new site
+## Email and SMS Workflow Testing
 
-Generate a new Docusaurus site using the **classic template**.
+Developers and Testing teams can automatically test their Email and SMS workflows like 2FA verifications, sign-ups, and password resets with trillions of inboxes at your fingertips. 
 
-The classic template will automatically be added to your project after you run the command:
+Whether you do test using an API tool like Postman, or a write code in a framework like Selenium, Cypress, Playwright, or Puppeteer - Mailinator closes the loop on email and SMS workflow testing.
 
-```bash
-npm init docusaurus@latest my-website classic
-```
-
-You can type this command into Command Prompt, Powershell, Terminal, or any other integrated terminal of your code editor.
-
-The command also installs all necessary dependencies you need to run Docusaurus.
-
-## Start your site
-
-Run the development server:
-
-```bash
-cd my-website
-npm run start
-```
-
-The `cd` command changes the directory you're working with. In order to work with your newly created Docusaurus site, you'll need to navigate the terminal there.
-
-The `npm run start` command builds your website locally and serves it through a development server, ready for you to view at http://localhost:3000/.
-
-Open `docs/intro.md` (this page) and edit some lines: the site **reloads automatically** and displays your changes.
+Learn more about [our API](/docs/api) or start a free trial. 

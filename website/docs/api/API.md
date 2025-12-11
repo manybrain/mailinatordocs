@@ -27,4 +27,4 @@ Domains identify a specific source for messages. Emails automatically are assign
 
 If you prefer to use a tool like Postman to get started, we've made it easy by setting you up with a pre-built collection. All you have to do is make a copy, put in your API key and go.
 
-<a href="https://www.postman.com/mailinator-api/mailinator/collection/" class="button primary">Postman Collection</a>
+<a href="https://www.postman.com/mailinator-api/mailinator/collection" target="_blank" rel="noopener noreferrer"><img src="https://run.pstmn.io/button.svg" alt="Run In Postman" /></a>
