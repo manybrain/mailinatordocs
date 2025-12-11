@@ -1,5 +1,5 @@
 ---
-id: api
+id: intro
 title: Introduction
 ---
 
