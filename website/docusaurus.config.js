@@ -41,7 +41,6 @@ const config = {
       ({
         docs: {
           sidebarPath: './sidebars.js',
-          // Remove this to remove the "edit this page" links.
           editUrl:
             'https://github.com/manybrain/mailinatordocs/tree/main/website/',
         },
@@ -58,6 +57,11 @@ const config = {
     ({
       // Replace with your project's social card
       image: 'img/docusaurus-social-card.jpg',
+      docs: {
+        sidebar: {
+          hideable: true,
+      },
+    },
       colorMode: {
         respectPrefersColorScheme: true,
       },

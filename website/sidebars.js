@@ -24,26 +24,46 @@ const sidebars = {
     {
       type: 'category',
       label: 'Getting Started',
+      link: {
+        type: 'generated-index',
+        description: 'Start here to get up and running with Mailinator.',
+      },
       items: ['intro','gettingaround','sso']
     },
     {
       type: 'category',
       label: 'Core Concepts',
-      items: ['core/privatemailbox','core/publicmailbox','core/messagedelivery','core/authenticatorinator']
+      link: {
+        type: 'generated-index',
+        description: 'Learn about the core concepts of Mailinator.',
+      },
+      items: ['core/privatemailbox','core/publicmailbox','core/messagedelivery']
     },
     {
       type: 'category',
       label: 'Guides',
-      items: ['guides/goodinboxnames']
+      link: {
+        type: 'generated-index',
+        description: 'Learn essential tips to make the most of Mailinator.',
+      },
+      items: ['guides/authenticatorinator','guides/goodinboxnames']
     },
     {
       type: 'category',
       label: 'SDKs',
+      link: {
+        type: 'generated-index',
+        description: 'Use our SDKs to integrate Mailinator into your applications quickly.',
+      },
       items: ['sdks/sdk']
     },
     {
       type: 'category',
       label: 'Webhooks',
+      link: {
+        type: 'generated-index',
+        description: 'Learn how to use webhooks to automate your email testing workflows.',
+      },
       items: ['webhooks/webhooks','webhooks/twiliowebhooks']
     }
   ],
