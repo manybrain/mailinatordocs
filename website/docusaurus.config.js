@@ -80,8 +80,9 @@ const config = {
           },
           {
             label: 'API',
+            sidebarId: 'apiSidebar',
             position: 'left',
-            to: '/docs/api/intro'
+            type: 'docSidebar',
           },
           {
           href: xUrl,
