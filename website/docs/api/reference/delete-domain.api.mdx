@@ -1,0 +1,71 @@
+---
+id: delete-domain
+title: "Delete a private domain"
+description: "Delete a private domain"
+sidebar_label: "Delete a private domain"
+hide_title: true
+hide_table_of_contents: true
+api: eJy9VU1v4zYQ/SuDOXUBrp246KG6GVgDG7RF0930UBhGw4jjiLsSyZAjJ66g/14MJX97gbaHnmxxvt4M3xt2yPo5YbHED77R1iVcKfSBombr3Z3BAg3VxDSYUWHQUTfEFCWqQ6cbEqdsvjOo0DosMGiuUGGkl9ZGMlhwbEmhoVRGGyQ3FmNJsIYc27WlCD6CJIRI3EZHBp62wBXBCA7m93cTVJjKihqNRYe8DVI+cbTuGft+JTVT8C5REvvs5kZ+rtYdGhPIpXdMjsVTh1DbMnc//ZLEvbss55++UMkyjCizYjsUS6y5TddgHU9iufNbKdTGWCml6/ujTMOs2HItST5n709jV9j3ks7QWrc1X/a2iNFH2M3gf+hNYUMp6We6aiOBcxymY9RbYQlTc3VU/T+bSu7zZCj9Bb3y/YKGEO1GM4HZcbghrvyB25nVXGGBUx3sdDObDp5p2g1//hRS9kI8ipsd89tYY4EVc0jFVAInjba1dZp9nJS+wXM899GbtpQPGPKg0DVR2UbL25xzHuyD/0ruI2lDEYvlqleH099aitt8eBT3WS5wuKPz6MPQg/2JtjttVoNZ7bQ7b7ny0f6ViXEN9cYayjJk0o1oEFjKgHX59CQehuwTWLzpJtRUwOOJvYA/fBsfSDfz+7uM9nEiRDnr8RvQX7J1jzzD+DeIdcqnj/nrEXI62G+0SVaqdWufAYxM+2V/q5LootqvgZwU+B4Mra3LxIW1j7nQaSxEWlMkV9IEHiqCFKi061GRUOrAbaQBofFl25BjMjDKS4FIMKmRxQq0MxDbmoCcCd46TkBvwScy0DpDES4pKbtT+Dsgn93Mfnh/e/v+9sdxTegyr4lxuAfsqM7I/vr6epZ5mkcXfOJGu6Mk39bgyRT31830xtNQi0s/Vu1GcS6FC9LATKLH10phcSRRWamVTyzOXfekE/0e676X45eddhRudLT6Se522aGxSf4bLNa6TudPVHdYn/jdp3GFv4P//HBd7XLHdCfM3ui6lS9U+JW2xy9rv+rVTruCfDDPy5ICHwVeLHlZFvuF92Hx8+JhgX3/N4AixmA=
+sidebar_class_name: "delete api-method"
+info_path: docs/api/reference/mailinator-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Delete a private domain"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"delete"}
+  path={"/api/v2/domains/{domain_name}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Delete a private domain
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"domainId","in":"path","required":true,"description":"Domain identifier or name returned by the Domains API.","schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Domain deleted","content":{"application/json":{"schema":{"type":"object","properties":{"status":{"type":"string"}},"required":["status"],"additionalProperties":true,"title":"StatusResponse"}}}},"default":{"description":"Error response","content":{"application/json":{"schema":{"type":"object","properties":{"status":{"type":"string"},"message":{"type":"string"},"errors":{"type":"array","items":{"type":"string"}}},"additionalProperties":true,"title":"ErrorResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

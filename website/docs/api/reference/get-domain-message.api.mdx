@@ -1,0 +1,71 @@
+---
+id: get-domain-message
+title: "Fetch a message scoped to a domain"
+description: "Fetch a message scoped to a domain"
+sidebar_label: "Fetch a message scoped to a domain"
+hide_title: true
+hide_table_of_contents: true
+api: eJy1V21PGzkQ/ivWfGqlbQLc9aTbb5HK3aETKtfChxNCxKxnsy67trFnQ9No/3s13peEZEGkEl9CsD0zz8w885I1kFwESK/hHEOQCwxwk4B16CVpa84UpLBA+mQrqU33BBJw0ssKCT2LrsHICiEFFV9BAtpACk5SAQl4fKi1RwUp+RoTUBgyrx1rhxRaxSJk1uFEXAUUc1fflTqbJ2LuvF5KwnkirBdSBIeZznUmunPR2hNsXcgQ9MKgEmQFFSgIZTWBBEJWYCUhXQOtHIMM5LVZQNMkA+6q9etMHQT9yuiHGsW51KU2kqwXnR6hFRrSuUb/WgQKSyTszT/U6FdP7OeyDHsAzrXRVV0JhaVciTvMrcfoe46UFag2eIJgEKouUYncehHNaWvEO5wsJomYHweO98eKP4+L+fuXcd8wtOCsCRj4/uToiP/soOuMeySvcYkc3MwaQkP8WDpX6iySbPotsMR6y6Isy895pFZn2959w4yYeZ7JSbq1rNUIvgRC3T4fu8u9rZ69yOuyHL0kO36sOX3DhTaEC/SQQG59Jak9+uP3iAkza1S4lQs7IsEP9I8xXU2sNgpbV9J7yfzQhFUYS1CTgFRKc3BlebEVsZbHpKnETYq+1lUl/QqYjy+Hu0CpYs3vPxy3N8J5IPw+npmCqvHge/l4+1JKJZHMigrNq6J0GJXaAh256Lh8Gc/HOPhsOpV9NKWV6sqPuLtFndpreG0qZ0MIokipzf1BjEkgVORuS7s4JILPI2ua2CYOYOEnJKlLJi+HCHNZl7TfVU69t1703eeQlvJy9gNJqscik/TTYfQOGc5blGb080vvZtNHZTsUf3GXF3Lo8nGGxvknxTCJK6TCdkM8zm0qIIWpdHq6PJm2z8J03X5ppp2uMF0PM7HhUYB+2c/6mlkLBZEL6ZQVTaphAk4yW8EuzgtvVZ3FcdPqAWZGwKz2mlZR58zpS3uP5p/YXyC9vuFe1J/+F8chH27JfeXEtrnbld4kw+l/cdVP1bZ5QV/SMKupsF7/iIQZQ73UCoddQswuzgSxGaFNPH0iL1rtE3H6XVauxFTMn9yn4n9b+0uU1eziLKKdT5hAOz4+A71fCDrkEcYhiGWIp/P431xEdWLY4Sax/rXJ28HUl+Vmr5ldnO1Z++zQsIHfhMJcm0jouFuwoaeywmOOHk2GE3FZ4LDHtYHLpKPaY4tQ2azmJrZZXhLBpRmSjtKJkEYJX5co0ChntaEg8LuzAZWojUIv9inJ2wzzt0V+cnTy8cPx8YfjP7v2Idux0gV3gx2SHbI/Pj7uaJ7G0DkbqJJmS8mravNJQIfM83icupKfNB2AdVe310wL9uWEpdvahQTSrWrvdvgE0s1Se5NAYQOx/Hp9JwNe+bJp+Pihq6w1KB3kXfncqrnetNm33jpHo3CPq+0leSnLmh/FRrKUXjP0A91496Vbrt+LN/8NMupTX+hmte3R4GubUm6Dv+TTa3+c/AK0DbGaG97a+p697u5nWYaOtiT35jKnbRhMf59eQtP8BM8rCk8=
+sidebar_class_name: "get api-method"
+info_path: docs/api/reference/mailinator-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Fetch a message scoped to a domain"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/api/v2/domains/{domain}/messages/{messageId}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Fetch a message scoped to a domain
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"domain","in":"path","required":true,"description":"Domain scope. Use `public`, `private`, or a specific private domain name assigned to the team.","schema":{"type":"string"}},{"name":"messageId","in":"path","required":true,"description":"Unique Mailinator message identifier.","schema":{"type":"string"}},{"name":"delete","in":"query","required":false,"description":"Minimum delay before the fetched message is scheduled for deletion (e.g., `1s`, `5m`, `1h`).","schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Message retrieved","content":{"application/json":{"schema":{"allOf":[{"type":"object","properties":{"id":{"type":"string"},"subject":{"type":"string"},"from":{"type":"string"},"fromfull":{"type":"string"},"to":{"type":"string"},"time":{"type":"integer","format":"int64"},"seconds_ago":{"type":"integer"},"size":{"type":"integer"},"parts":{"type":"array","items":{"type":"string"}}},"additionalProperties":true,"title":"MessageSummary"},{"type":"object","properties":{"headers":{"type":"object","additionalProperties":{"type":"string"}},"text":{"type":"string"},"html":{"type":"string"},"raw_subject":{"type":"string"},"attachments":{"type":"array","items":{"type":"object","properties":{"id":{"type":"string"},"name":{"type":"string"},"contentType":{"type":"string"},"size":{"type":"integer"},"downloadUrl":{"type":"string","format":"uri"}},"additionalProperties":true,"title":"Attachment"}},"links":{"type":"array","items":{"type":"string"}},"smtp_log":{"type":"array","items":{"type":"object","additionalProperties":true}}}}],"additionalProperties":true,"title":"MessageDetail"}}}},"default":{"description":"Error response","content":{"application/json":{"schema":{"type":"object","properties":{"status":{"type":"string"},"message":{"type":"string"},"errors":{"type":"array","items":{"type":"string"}}},"additionalProperties":true,"title":"ErrorResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

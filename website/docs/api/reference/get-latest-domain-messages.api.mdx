@@ -1,0 +1,71 @@
+---
+id: get-latest-domain-messages
+title: "Fetch the latest messages for a domain"
+description: "Returns the five most recent messages for the domain. The documented wildcard endpoint (`messages/*`) is represented here as a `messages/latest` alias for OpenAPI compatibility."
+sidebar_label: "Fetch the latest messages for a domain"
+hide_title: true
+hide_table_of_contents: true
+api: eJzVVk1vIzcM/SsET7uF1k7SD6BzC9BtG7RF02z2UARBLc/QtnZnJEXiOPEa898LSjPj+GPRFOgeevJYFKnHR+pRW2S9jFjc4W8Uo15SxHuFzlPQbJy9qrDAJfGvminyD67Rxo4bFVYUy2C87MQCb4jbYCPwimBh1gSNiwyBSrIMTe8FCxfSjioFm8Bt+i7bhixTBY+mrkodKiBbeWcsw6vZ4Dv9avYaTIRAPlDM+1cUCHQEDbttdUI7A10bnQ/83ZO9vL6C0jVes5mb2vBmggq9DrohpiAcbNHqhrDAjA0VGsnLa16hwkAPrQlUYcGhpcPkMzcQS+dpAu8jwcy389qUMwUzH8xaM80UuAAaoqfSLEwJ/XrPBcjpoGM0S0sVsEs8MelGkMZyRY3GYou88QIycjB2iV13L9iidzZSFPvF2Zn87OPLFdyVIRAHQ2uqUGHpLJNlcdLe16ZMtZ9+iOK5PT7ZzT9QycJekE5hk8/tWTtGKDzO3dOxRaFt61rPa8qkdgqbuIzPNuoQ9EYKwdTEf4ZgqpPHxzZvP2VbBNd81rBo6/qkkd3pZSP9MxqMZVpSQIULFxrNeem7bxImKp2t4l966U54yAbz6VSsLjUtv4SksUM6hbqqjFRV19fPGMudzIalAoMEvGubRocNilvZhujCCyr3wiOupBEGBbnpu1YQdnKhFrqt+bh334bgAgw9/t81bGTN7SnCFPb35KSNBM6X4D/luUdKQsIr18twEixeYYFT7c10fTHNdy5Ot/mjmx6IoAgHhfWgb22oscAVs4/FVGJMGm1qYzW7MCldc6Tp18FVbSl/IMdBkZtIZRsMb1LMS29u3UeyP5OuKGBxd9+p3eofLYVNWnzm904KlGtw6L0j1ZtfaDNo8Cqb1aDQly2vXDCfUuFPoV6bikb9BNF+lmPA2LS65w85+gTePunG11TAbM9ewJ+uDbekm8vrq4R2NpFGOMjxM9AfknVEnmD8G8Q6T9RZ+jeDFA7GuTVJ19TYRVaR4SaPVZVAR6cN4/BrqGhhbGrMcTDv+0KgBQWyJeVRPcyuTFypPbeBYj/Rxyned6ECuWJR9QNOgbYVhLamcbpHoCfvIlXQ2ooCHLekzD7p34z84uzi2zfn52/Ov+9lQGdZ78ndYUd10OyPj48HkaeJOu8iN9o+C/IjcblKGdUHQ3ORxvf4OtgjdbtTpf/lS6jvXaYnnvpaEux6Cre96NxJY0s1LiT3LDyosBj5aHYvw1597hWuXGTx3W7nOtL7UHedLD8MuqBwrYPJk+Rui5WJ8l1hsdB1PHxmPSf51U3/IHsNX/zxdZKc4bZbud1rXbfyDxV+pM3uDdndd2pQL8kvGy/Lkjw/czsaYyKXo/T/9PYWu+5vhcwWUA==
+sidebar_class_name: "get api-method"
+info_path: docs/api/reference/mailinator-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Fetch the latest messages for a domain"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/api/v2/domains/{domain}/messages/latest"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Returns the five most recent messages for the domain. The documented wildcard endpoint (`messages/*`) is represented here as a `messages/latest` alias for OpenAPI compatibility.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"domain","in":"path","required":true,"description":"Domain scope. Use `public`, `private`, or a specific private domain name assigned to the team.","schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Latest messages retrieved","content":{"application/json":{"schema":{"type":"object","properties":{"domain":{"type":"string"},"inbox":{"type":"string","nullable":true},"msgs":{"type":"array","items":{"type":"object","properties":{"id":{"type":"string"},"subject":{"type":"string"},"from":{"type":"string"},"fromfull":{"type":"string"},"to":{"type":"string"},"time":{"type":"integer","format":"int64"},"seconds_ago":{"type":"integer"},"size":{"type":"integer"},"parts":{"type":"array","items":{"type":"string"}}},"additionalProperties":true,"title":"MessageSummary"}},"cursor":{"type":"string","nullable":true}},"additionalProperties":true,"title":"InboxMessagesResponse"}}}},"default":{"description":"Error response","content":{"application/json":{"schema":{"type":"object","properties":{"status":{"type":"string"},"message":{"type":"string"},"errors":{"type":"array","items":{"type":"string"}}},"additionalProperties":true,"title":"ErrorResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

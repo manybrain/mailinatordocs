@@ -1,0 +1,71 @@
+---
+id: delete-domain-messages
+title: "Delete all messages in a domain"
+description: "Deletes every message in the specified private domain."
+sidebar_label: "Delete all messages in a domain"
+hide_title: true
+hide_table_of_contents: true
+api: eJy9VVGPIjcM/iuWn1opB7tUfei8IS1SV+2p2+veQ4WQCBMDuZtJsomHXYrmv1fOzAALVGortU8wcWx//uLPPiDrTcJijh8pJb2hhAuFPlDUbL17NFigoYqYHnytrTveUmgoldEGuYYFPuRLCWhHcQ91dw2sA94SpEClXVsyEKLdaSYwOdoIFQYddU1MUVAc0OmaJGe2o0IrwYPmLSqM9NLYSAYLjg1dIcgukEofaASfE8EyNKvKlksFyz7vUoGPoAdA5QUekOygU7IbRwbYZ/RMuhakqdxSrbE4IO+DgEwcrdtg2y4EWwreJUpin9zdyc9NfD01CTpaDSosvWNyLC46hMqWmfvxlyR+h+u8fvWFShbuorwU2y5rYs1NuoFPMjRd/N5iHdOGIrbtOavzIcRCoTbGCgpdPZ0l6XhnyxUd3/xTXzm2rYQztNZNxdf1z2L0EQae/peye65v2kjgnLvpGPVeOo6pvhVOivs7rOQ635GSkfDWn8SU+563WOBYBzveTcZdA6bxofvTjq1b+bcstERxN8ijiRUWuGUOqRiL76jWtrJOs4+j0tdXunyK3jSlfEAXB6VbE5VNtLzPMafBPvuv5H4kbShiMV+06nT6a0Nxnw/P/H6Tt+nov/Q+8RnsT7QfJLztzGoQ+LThrY/2j/zmt1DvrKGj/GD69AgsaYaR8s4fuugjmL3pOlRUwPKdvYDffROfSdfTp8eMdjmSHrio8S+gv2TrEXmG8U8Q65RPl/lrCTkcHMfeKIvQurXPAPom+nh8VQl0le2XQE4SfAeG1tblnoS1jznRe1+ItKZIrqQRPJ9mcSc2KHXgJlKH0PiyqckxmWFKKRB1JdXPRwXaGYhNRUDOBG8dJ6C34BMZaJyhCNctKaNT+rdDPrmbfP/h/v7D/Q/9BNBlngA9uSfsqC6a/fX19SLyOFMXfOJau7Mg3VwCXVWnaWsdaDhulXdsHk6T6N+vsb5zmN54HCrJ0vYFHHqpz6WthIuJAOjkjgqLs1XXKX6hcOsTi8fhsNKJPseqbeX4ZdCiwp2OVq+kV+YHNDbJf4PFWlfpcjOe1/fNp37afwv/+b68ScmgMCeK2umqkS9U+JX2p7XfLlo1TAyprzNOy5ICn7ldbQ0ZUcdJ+zD7efY8w7b9E8xxGuw=
+sidebar_class_name: "delete api-method"
+info_path: docs/api/reference/mailinator-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Delete all messages in a domain"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"delete"}
+  path={"/api/v2/domains/{domain}/inboxes"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Deletes every message in the specified private domain.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"domain","in":"path","required":true,"description":"Domain scope. Use `public`, `private`, or a specific private domain name assigned to the team.","schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Domain messages deleted","content":{"application/json":{"schema":{"type":"object","properties":{"status":{"type":"string"},"count":{"type":"integer"}},"required":["status"],"additionalProperties":true,"title":"DeleteResponse"}}}},"default":{"description":"Error response","content":{"application/json":{"schema":{"type":"object","properties":{"status":{"type":"string"},"message":{"type":"string"},"errors":{"type":"array","items":{"type":"string"}}},"additionalProperties":true,"title":"ErrorResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

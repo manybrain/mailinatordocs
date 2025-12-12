@@ -1,0 +1,71 @@
+---
+id: get-inbox-message
+title: "Fetch a message scoped to an inbox"
+description: "Fetch a message scoped to an inbox"
+sidebar_label: "Fetch a message scoped to an inbox"
+hide_title: true
+hide_table_of_contents: true
+api: eJzNV21v2zYQ/isHfkoG1W6ytcD0zUC7LRiCZk3yYQiCmhZPFhu+haScuIL++3CUZDuJEsQBCuxLXkjd3XN3z72wYZEvA8uv2CmGwJcY2HXGrEPPo7TmRLCcLTGemIW9779gGXPcc40RPUk2zHCNLGfCai4Ny5g0LGeOx4plzONtLT0KlkdfY8YEhsJLR8pZzj4lEQiFdTiBy4Awd/VCyWKewdx5ueIR5xlYDxyCw0KWsoD+HDp7QNaBhyCXBgVEC7FCiMj1hGUsFBVqzvKGxbUjkCF6aZasbbMNbknO7QU7hQOkQBNlKdFP4MzblRQIHDSXim4TLOs3aOD89BxcZQ2CqfUCPRyU1qdTj9FLXHF12Mfglzn5oXksKkjowHks5T0GuKvQI4TaOesjCliskwU0wllp4mt91l0uT8Refl8aeVsjnHKppOHReuj17MbilQgEKow4mL+t0a8f2C+5Ck8AnEojda1BoOJrWGBpPSb/S4xFhWKLJwCBELVCARTnZE5aAwc4WU4ymB8F4tgHTT+Pqvnhy7ivCVpw1gQMdH/8/j39eoSuN97nEym4hTURTaSPuXNKFqmupt8DSTQ7FrlSX8pUTr1tu/iORaRq81SPUXaWpRjBl7FQd5+P3ZXe6mcvylqp0ctox48lpW9zIU3EJXqWsdJ6zWN39PG3hAkLa0T4xpd2RII+kD/GdLWpw8Swc8W958QPGVGHsQS1GeNCSAouV2c7Eet4HGVUuE3Rea0192tGfHw53BVykfrc0w/H7Y1wnkW8H89MFfV48D2/+/ZSSnmMvKg0mldFaT8qdQU6ctFz+SKdj3Hw2XQKe2eU5eLSj7i7Q53aS/baVM42IUgiSpqbvRiTsaCj+6bscp8IPo+sbVOb2IOFnzByqYi8FCIsea3i067y2XvrYeg++7SUl7MfIo/1WGSyYTqM3iHB+Rmlmfz8OrjZDlHZDcUf1OVpxvaNNu0NaeZzA8MY1xgr2+8taVeJFcvZlDs5XR1Pu6UhTJvuj3aaxDBMm/RHO+11h2mzmZEtjQb0q2HfqYnFrIrRhXxKiid6MxEnhdXsMe4zb0VdpPHT6WHElIBF7WVcJ50zJy/sDZq/Ur9h+dU19abh9J80HulwR+6cEt3l8rH0NjlO/o3rYcp2zYwNJc5mdayslz8SgcZQp51ms8HMzk4gkhmQJp0+kIdO+wQ+33PtFOYwf3Cfw7+29hfI9ezsJKGdT4hQj3x8BvqwIPTIE4x9EPOQTufpvzkkdbDZYyepH0hTdoNqKNPtnjM7O3li7YtDQwZ+BYGlNIngadcgQw9lwWOJHk2BE7iocLPLdoEruIu1xw6hsEVNTW27zGRApRqyfuHNgBsBvlbbrS8A3jsbUEBtBHp4Sknaboi/HfLj98cf3h0dvTv6vW8nvBszfXC32Fn2iOx3d3ePNE9T6JwNUXOzo+RVtfogoJvM07icOkWPibYH0PR1fEW0IF+OSbqrZZaxfOftkcqZzrYNoX/ZZCzf7r3XGatsiKSyaRY84KVXbUvHt32xNUzIwBfquW202Xbin72YjgbmBte7e/SKq5o+Sr1lxb0k6Hu6cfC1378P4ac/zUZ9GmrfrHc92vjaZZk645t8+n+/294QkI7ib47Ha99zb0C2LbT2mhbdYaw1/f2sKNDFHcknqwzReDPL//x8wdr2P1jzycE=
+sidebar_class_name: "get api-method"
+info_path: docs/api/reference/mailinator-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Fetch a message scoped to an inbox"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/api/v2/domains/{domain}/inboxes/{inbox}/messages/{messageId}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Fetch a message scoped to an inbox
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"domain","in":"path","required":true,"description":"Domain scope. Use `public`, `private`, or a specific private domain name assigned to the team.","schema":{"type":"string"}},{"name":"inbox","in":"path","required":true,"description":"Inbox identifier. Provide a mailbox name or the team SMS phone number (for SMS retrieval). Use `*` to match inbox prefixes where supported by the endpoint.","schema":{"type":"string"}},{"name":"messageId","in":"path","required":true,"description":"Unique Mailinator message identifier.","schema":{"type":"string"}},{"name":"delete","in":"query","required":false,"description":"Minimum delay before the fetched message is scheduled for deletion (e.g., `1s`, `5m`, `1h`).","schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Message retrieved","content":{"application/json":{"schema":{"allOf":[{"type":"object","properties":{"id":{"type":"string"},"subject":{"type":"string"},"from":{"type":"string"},"fromfull":{"type":"string"},"to":{"type":"string"},"time":{"type":"integer","format":"int64"},"seconds_ago":{"type":"integer"},"size":{"type":"integer"},"parts":{"type":"array","items":{"type":"string"}}},"additionalProperties":true,"title":"MessageSummary"},{"type":"object","properties":{"headers":{"type":"object","additionalProperties":{"type":"string"}},"text":{"type":"string"},"html":{"type":"string"},"raw_subject":{"type":"string"},"attachments":{"type":"array","items":{"type":"object","properties":{"id":{"type":"string"},"name":{"type":"string"},"contentType":{"type":"string"},"size":{"type":"integer"},"downloadUrl":{"type":"string","format":"uri"}},"additionalProperties":true,"title":"Attachment"}},"links":{"type":"array","items":{"type":"string"}},"smtp_log":{"type":"array","items":{"type":"object","additionalProperties":true}}}}],"additionalProperties":true,"title":"MessageDetail"}}}},"default":{"description":"Error response","content":{"application/json":{"schema":{"type":"object","properties":{"status":{"type":"string"},"message":{"type":"string"},"errors":{"type":"array","items":{"type":"string"}}},"additionalProperties":true,"title":"ErrorResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

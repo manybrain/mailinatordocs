@@ -1,0 +1,71 @@
+---
+id: update-rule-state
+title: "Enable or disable a routing rule"
+description: "Enable or disable a routing rule"
+sidebar_label: "Enable or disable a routing rule"
+hide_title: true
+hide_table_of_contents: true
+api: eJy1Vk1vIzcM/SsCT11A60lc9NC5GWiADYqibj4ORWBslBEda3dGUiTKiTuY/15QM+P4a7vZAD3FkUTykXyPnBZIPUYo7+Aq1RhhIcF5DIqMs5caSkheK0K+vCZFCBK8CqpBwsBmLVjVIJSgXaMMm0gwFkrwilYgIeBTMgE1lBQSStAYq2A8u4cSfstGwmi0ZJYGg3BBsEMRkFKwqMXDRtAKRf8yitn8cgISYrXCRkHZAm08h48UjH2ErpNbRCHV+IN4bq15SijY8gBUPmLHb42uquxziP6UMGy+G56rLCKXWVBQNho+F+SE8r7e/FdkCWhTw21Eqx5qbpM2Mf9adN2CA0fvbMTIttOzM/7zzeB9z7l0lbOElvg1YzBVJkbxJbJJewzHPXzBipgkgWlEpg/IblM8WbCdktyN7xYSlNY5e1XPdzz1RSNDNTu5zq+vhsyg69idxqVKNR3ndxEC93F8/f/nJqHBGNUjnrxDhrNrpkJQTBFD2JwsVfe2quQ894rSHfLsInOEaT2QRCgRXCJjHzPRgaHTyrH+fcops3pKKJQ3xXpa9GKPRdv/+Myc7wo2jUXb665jtmJYj2MihRpKWBH5WBbsZ9IoUxuryIVJ5Ro4BDkPTqcsItH7AeZxxCoFQ5vsc+bNjfuK9hMqjQHKuwULcDz9K2uOD3fsrrmrfeMOrV874c3vuBmlu+qv5SjsWaKVC+YfNej7CPXaaMwzi1A1PLAEcRhhbD7dsxe994m4eFGNr7EU93v3pfjbpXCDqpnNLzPa+wmz5yDHb0Afp86APMP4EcQq5tP7/N+9yO7EdvxPsnyNXboMYKDfH9uusqOjaH96tBzgZ6FxaWw/4ZYu5ED7tiLgEgPaCifiZoUieqzMcpCpqJSnFLBHqF2VGrSEWgyak3mURSl6hkqhrO6HOFrtnbEUBb54F1GLZDUGcUxJHrjM3x759Gz6y8fz84/nvw6zQ1V5dgzFfcUO8oDsz8/PB56LXDrvIjXK7jh5gzD3yrntO+ELFb5WxjI7cvh2EO0dk4IzmbJ1L1yQUO5IlxdT3v4SymFrLiSsXCQ2b9sHFfE21F3Hx0+DrNpxw2gol6qOh9usfR2w8NPVMOQ/iO/vuJMpfcXN7lJdqzrxozwT1iqYvOreDerd3yEnsY5atJtdpGMO2w8lnlXvQvvGr5R3YBua3y06Oc49rml/Oasq9LRjdrQ1uRnbxTG/vYGu+xcuZJo0
+sidebar_class_name: "put api-method"
+info_path: docs/api/reference/mailinator-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Enable or disable a routing rule"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"put"}
+  path={"/api/v2/domains/{domain_name}/rules/{ruleId}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Enable or disable a routing rule
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"domainId","in":"path","required":true,"description":"Domain identifier or name returned by the Domains API.","schema":{"type":"string"}},{"name":"ruleId","in":"path","required":true,"description":"Unique rule identifier or rule name.","schema":{"type":"string"}},{"name":"action","in":"query","required":true,"description":"Rule state transition to apply.","schema":{"type":"string","enum":["enable","disable"]}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Rule state updated","content":{"application/json":{"schema":{"type":"object","properties":{"status":{"type":"string"}},"required":["status"],"additionalProperties":true,"title":"StatusResponse"}}}},"default":{"description":"Error response","content":{"application/json":{"schema":{"type":"object","properties":{"status":{"type":"string"},"message":{"type":"string"},"errors":{"type":"array","items":{"type":"string"}}},"additionalProperties":true,"title":"ErrorResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

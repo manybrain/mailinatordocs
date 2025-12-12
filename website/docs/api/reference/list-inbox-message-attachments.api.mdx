@@ -1,0 +1,71 @@
+---
+id: list-inbox-message-attachments
+title: "List attachments for a message within an inbox"
+description: "List attachments for a message within an inbox"
+sidebar_label: "List attachments for a message within an inbox"
+hide_title: true
+hide_table_of_contents: true
+api: eJzNVt9v4zYM/lcIPd0NvrjtsIf5LcCKLdiKZdf2YSgKRLGYWHe2pEp00pzh//1A2UmcH3driw3Yk23SJD9SHyk2guQyiOxBjIlkXlRoKIjHRFiHXpK2ZqJEJkodaGLm9vkGQ5BLHP6cCCe9rJDQs6NGGFmhyISyldRGJEIbkQknqRCJ8PhUa49KZORrTITCkHvtOJDIxC/RBEJuHY7gPiDMXD0vdT5LYOa8XknCWQLWg4TgMNcLnUMvhy4ecHSQIeilQQVkgQoEQlmNRCJCXmAlRdYI2jgGGchrsxRtm+xwa87zVbBjZUArNKQXGv0Ipt6utEKQUEldsjbCsn6HBm5vbsEV1iCYupqjh3cL66PUI3mNK1m+72vww4zzqCTlBUR04Dwu9DMGWBfoEULtnPWECuabGAGNclYbemnOVXesE/WqvO+NfqoRbqQutZFkPfR+hrX4LoJHDhGcNQED668uLvhxGGZANmAiIqPMrSE0xH9L50qdR7KmnwKbNKch7fwT5sRk9Uxt0l1AOSDy/mfpvdxwKQir8M9OtDqTW9LX9oyix34X5Wf0QX8ZKrQhXKJnjbJrU1qp7n15apmIhfWVJJGJ2ms+XyGV0lwXWU4HiLuzJE0lHpRXtK+3+UMH+tgfIdszSFzIuqTTg7z23nrYHvi/d4iBJNXhbCl7Qp7VIcN5ybHv6PrC6sQ8D4rSHrcOlw0G5INFHGrb/llrKrQBaWA7jSqkwvIoXmIsAPdnJlLpdLq6SrvZF9Kme2nTaIYhbeJLm/aOQ9rsWr1N5cEUD+hX2xFeM79EQeRClnKQUbVr8lFuK3Gcz9RbVef8AZ0fwb0dMK+9pk30OXb6zn5G8xtKhV5kD488gLbSv2r0mygc2N0yAbozPrbeH5rTv+NmO7eKTr1tPjGuqbBef4nEOoc6jundUB5PJ0AcBrSJ0gN76LyP4PpZVq7EDGYH+gz+trW/Q1mNp5OIdjZioh3l+A3oT1G7Qx5hvAaxDFE6i18ziO5gdzWP4jzQZmEjgJ6pg9E9nk5Oov3p0HCAH0HhQptI/MhUDnRoCx4X6NHkOIK7AnfXc1e4XDqqPXYIlc1rJh2qLd8T4BYOSX+HJyCNAl+X+4ssAD47G1BBbRR6OKUkXzTM3w751cXVTx8uLz9c/tyPGZnHMdMXd49dJEdkX6/XR57TWDpnA1XSDJy8uocPirtjAeEzpa7kXantwTR9fz8wRTivK7buelwkIhusVrHNWbYfFF2ns2x4rcvD/a6wgThA08xlwHtfti2Ln7ZtmIiV9FrOmSYPjVA68LsS2UKW4XgTaPaTXLz72O8M7+E/X+fOVnDbXIabaSXLmr9EIj7jZr+V8uh5U07/713vDQXpePPmerx0B3wDsj1728c22Y52ZmOnH+c5OhpYnuwQfJfsLs5fr+9E234FfLWFdQ==
+sidebar_class_name: "get api-method"
+info_path: docs/api/reference/mailinator-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"List attachments for a message within an inbox"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/api/v2/domains/{domain}/inboxes/{inbox}/messages/{messageId}/attachments"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+List attachments for a message within an inbox
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"domain","in":"path","required":true,"description":"Domain scope. Use `public`, `private`, or a specific private domain name assigned to the team.","schema":{"type":"string"}},{"name":"inbox","in":"path","required":true,"description":"Inbox identifier. Provide a mailbox name or the team SMS phone number (for SMS retrieval). Use `*` to match inbox prefixes where supported by the endpoint.","schema":{"type":"string"}},{"name":"messageId","in":"path","required":true,"description":"Unique Mailinator message identifier.","schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Attachments listed","content":{"application/json":{"schema":{"type":"object","properties":{"attachments":{"type":"array","items":{"type":"object","properties":{"id":{"type":"string"},"name":{"type":"string"},"contentType":{"type":"string"},"size":{"type":"integer"},"downloadUrl":{"type":"string","format":"uri"}},"additionalProperties":true,"title":"Attachment"}}},"additionalProperties":true,"title":"AttachmentListResponse"}}}},"default":{"description":"Error response","content":{"application/json":{"schema":{"type":"object","properties":{"status":{"type":"string"},"message":{"type":"string"},"errors":{"type":"array","items":{"type":"string"}}},"additionalProperties":true,"title":"ErrorResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

@@ -1,0 +1,71 @@
+---
+id: get-message-attachment
+title: "Download an attachment"
+description: "Download an attachment"
+sidebar_label: "Download an attachment"
+hide_title: true
+hide_table_of_contents: true
+api: eJy1Vk1v5DYM/SsETy3gjJMUPdS3ARq0QbFtus0eiiDAMBYno11bUiR6kqnh/76gPZ6vzBSboD3ZlkzykXyPUotCjwmLO5yKULmo2UnC+wx94Ehivbs2WOAjywdOiR55+xtmGChSzcJRPbToqGYs0PiarMMMrcMCA8kCM4z81NjIBguJDWdoOJXRBo2ABf7cm0AqfeAJfEoMs9A8VLacZTAL0S5JeJaBj0CQApd2bktYr8MQDzQ6UEr20bEB8SALBmGqJ5hhKhdcExYtyiooyCTRukfsumyDux4yvDZvgv7J2aeG4QPZyjoSH2HtB6xhJ3ZuOX4rAtoU93ddeAuMbV+GQvi4Gx9uFwzTm2ugKnmgsuQgCcjBNiJY8+8w7xVCCt4lTrp/eX6uj5MwIku0vGQtZ+mdKGWKFimEypY9tXJfCstZkshU696p4BnOfaxJsMAH6yiusOu6Tkswp6aS1zCuYvQRRrinAXxO+vuRwP7hM5c9xaMqQeyQcxKSJh2pTjay5+geK5xdM4qRVtpf4fqYO02OjLEKkqqbHQxD78VKxWOeH8c0u7Eq+9J6dpUns99tVMCy8Gtx91qWBRaYU7D58jIfRJXydnjp8nV+KW83OunyrcOUt/vs7ZRMHJfjcGhihQUuREIqco0yqTeSmZS+xkPgN9GbptQPGPygUjBx2UQrq97nNNhb/4Xdr0yGIxZ39yqmcfXPhuOqX9yx+0s7PTTz0HrbnWB/49Uov8WwnY0inTay8NH+0zPoGOqlNbwZPr3qRMOAdf3qnj0M3idw9UJ1qLiA2d5+AX/7Jt4y1dOb6x7tbKKMOsjxBPSnfneDvIfxFsSU+tVZ/zWD3h1shv5EZxdaN/c9gDUldwbh9Ob6VbQ/AjsN8AMYnlvXMxzmPvaB9m0h8pwju5KH+TUO/qFwJQVpIg8IjS8bJR6bcfpmoFpN2fp0yICcgdhUDOxM8NZJAn4JPrGBxhmO8JqSOg+VvwPyy/PLH88uLs4uflrPEyr7ebIu7hY7Zgdkf35+PvCc96ULPklNbsfJSbHuFXHTbeEXyUOlp223DtquhXynVFD8l2o9iBkzLDaH86hnXdw9+XYkrVsHR9J9hgufRP237QMl/hSrrtPlp1FtGS4pWnpQNty1aGzSd4PFnKp0eG6128mM331cn3Dfw/9+HzhawFFDTjWzpKrRL8zwC6+21xqdMO/K6VsvCu+Atu3fu9H9V/eHd6A/oFh332Xj0FUCDT9N+5g75ifvETrtN2fbL1e32HVfAQQUzJM=
+sidebar_class_name: "get api-method"
+info_path: docs/api/reference/mailinator-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Download an attachment"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/api/v2/domains/{domain}/messages/{messageId}/attachments/{attachmentName}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Download an attachment
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"domain","in":"path","required":true,"description":"Domain scope. Use `public`, `private`, or a specific private domain name assigned to the team.","schema":{"type":"string"}},{"name":"messageId","in":"path","required":true,"description":"Unique Mailinator message identifier.","schema":{"type":"string"}},{"name":"attachmentName","in":"path","required":true,"description":"Attachment name or identifier. The API also accepts an attachment id.","schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Attachment retrieved","content":{"application/octet-stream":{"schema":{"type":"string","format":"binary"}}}},"default":{"description":"Error response","content":{"application/json":{"schema":{"type":"object","properties":{"status":{"type":"string"},"message":{"type":"string"},"errors":{"type":"array","items":{"type":"string"}}},"additionalProperties":true,"title":"ErrorResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

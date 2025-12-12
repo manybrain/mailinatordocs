@@ -1,0 +1,71 @@
+---
+id: get-domain
+title: "Retrieve a private domain"
+description: "Retrieve a private domain"
+sidebar_label: "Retrieve a private domain"
+hide_title: true
+hide_table_of_contents: true
+api: eJy1Vtty2zYQ/RXMPrUzjGS704fyTU3U2pOkVmRnUo/HY8PEykRCAjCwlK1o+O+dBUmZkhg37uXFFyx39+Dg7GUNJO8CpJfwxpZSmwBXCViHXpK25kRBCndIjQ0ScNLLEgk9u6zByBIhBRXNJwoS0AZScJJySMDjfaU9KkjJV5iAwpB57TgwpG0+oRUa0guNXlgvOKDwSJU3qMTtSlCOokUmJrOTESQQshxLCekaaOU4fSCvzR3U9RXnDM6agIHtRwcH/Gswr0fyGpfIoDNrCA3xt9K5Qmfx8uPPgR3W+wnt7WfMiOnwTBXpJl3Dxh6snYsP2H1VNBFai/RerphMwjKey6I4XUTG/ycEaORtwS+1sd1aW6DkN1e4kFVBzSvWCZSSsnw/CgepSlbS5I8LSGDy7l38+WlycXb9fnL++hiuagasrde06gXQhvAOPePIrFGaUT5Lx/MkbNT7HMbph4+Td2eQwGw+/e3kzwhtobFQg/QsZVENEVv3RX7Zy9wF61yvEpCquZksZj24C1kETIA0FRx4XhX4uuMgxpfZv6SjCfAcF5+mvx6fnr6FBN7MT2eRisbpWkka1P3wXaI+dihps29HfAkbk6ylYidwlHpPTlvaeaLtRcR7lIRzvK8wENTJ3zF7rYfUEtvQtwnaThmfeImeG+BQ9bG5+75twnWkYlOUu+1t6r31omuD/11zCySpCoPVUWII8m648SDD+R71PtH3fezFe867a9YdK30q5m2LF1I4r5eSUKhukJVIuW2nW5xrlEMKY+n0eHk0bj4L43XzxzWLrebRg37Zzb7KF5BCTuRCOmbHUSl1oY0k60eZLWEXzsxbVUVZiiYOsFICZlXTDy/XMHH63H5Bc4xSoYf08opV2J1+qNCv4mHP74zfr3miXe8nzp1+i6tuOueNOemm96Si3Hr9tetce6iXWmEcxISy5CksiNMIbeLplr9ooo/E9FGWrsBU3GzZU3FhK3+OspzMTiLamxHrZOeO34B+H60b5BHGSxDLEE9v4n83IoYTm51mFMtNm4WNAFqhvd+8Kgfay3bq0HCCn4TChTZRt2JhfUy07Ss8LtCjyXAkznMUwWGmF21Bikw6qjw2CJXNqhINoRJtdSWCKzAkrYQTIY0SvDgINMpZbSgIfHQ2oBKVUejFviR5e2L9NsiPDo5+fnV4+Orwl7ZLyIyelojevSHZEfvDw8NO5HGkztlApTS9IM+V4PBOQvhIY1fETtfmXbfleclq4CscsXe7riaQ9oqU+31uA/HH6/WtDPjRF3XNx/dd9fBM9pr3nVhzSod292lHwg6uTf+EH+bt/PlR/OPldfCWndbNarMwpAAJfMFVf7uueTLnXWtYt+ZJlqGjnuNel+d2sel3v0/Poa7/AsL9JGw=
+sidebar_class_name: "get api-method"
+info_path: docs/api/reference/mailinator-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Retrieve a private domain"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/api/v2/domains/{domain_name}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Retrieve a private domain
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"domainId","in":"path","required":true,"description":"Domain identifier or name returned by the Domains API.","schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Domain retrieved","content":{"application/json":{"schema":{"type":"object","properties":{"name":{"type":"string"},"description":{"type":"string"},"rules":{"type":"array","items":{"allOf":[{"type":"object","properties":{"name":{"type":"string"},"description":{"type":"string"},"enabled":{"type":"boolean","default":true},"match":{"type":"string","enum":["ANY","ALL","ALWAYS_MATCH"]},"priority":{"type":"integer"},"conditions":{"type":"array","items":{"type":"object","properties":{"operation":{"type":"string","enum":["EQUALS","PREFIX"]},"field":{"type":"string"},"value":{"type":"string"}},"required":["operation","field","value"],"additionalProperties":false,"title":"RuleCondition"}},"actions":{"type":"array","items":{"type":"object","properties":{"action":{"type":"string","enum":["WEBHOOK","DROP"]},"action_data":{"type":"object","additionalProperties":true}},"required":["action","action_data"],"additionalProperties":false,"title":"RuleAction"}}},"required":["name","priority","conditions","actions"],"additionalProperties":false,"title":"RuleCreateRequest"},{"type":"object","properties":{"_id":{"type":"string"}}}],"additionalProperties":true,"title":"Rule"}},"verified":{"type":"boolean"}},"title":"Domain"}}}},"default":{"description":"Error response","content":{"application/json":{"schema":{"type":"object","properties":{"status":{"type":"string"},"message":{"type":"string"},"errors":{"type":"array","items":{"type":"string"}}},"additionalProperties":true,"title":"ErrorResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      
