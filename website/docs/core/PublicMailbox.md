@@ -17,6 +17,6 @@ In addition, all emails in the Public Mailbox:
 
 Simply go to the home page and enter an inbox name (i.e. anything you wish up to 50 characters) to check a [particular inbox](https://www.mailinator.com/v4/public/inboxes.jsp).
 
-When you need something more capable and private, or you want to gain access our [powerful API](docs/api), Mailinator offers [Private Mailboxes](https://www.mailinator.com/v4/public/inboxes.jsp?trialshow=true) starting $0/month.&#x20;
+When you need something more capable and private, or you want to gain access our [powerful API](), Mailinator offers [Private Mailboxes](https://www.mailinator.com/v4/public/inboxes.jsp?trialshow=true) starting $0/month.&#x20;
 
 Please see our [plans for additional usage](https://www.mailinator.com/pricing/) or [signup for a free account](https://www.mailinator.com/v4/public/inboxes.jsp?trialshow=true).&#x20;

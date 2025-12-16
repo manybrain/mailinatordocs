@@ -62,9 +62,9 @@ const config = {
         id: 'mailinator-api',
         docsPluginId: 'classic',
         config: {
-          mailinator: {
+          npxmailinator: {
             specPath: '../openapi/mailinator-api.yaml',
-            outputDir: 'docs/api/reference',
+            outputDir: 'docs/api/',
             sidebarOptions: {
               groupPathsBy: 'tag',
             },

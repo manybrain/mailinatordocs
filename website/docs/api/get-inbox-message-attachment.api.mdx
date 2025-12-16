@@ -1,0 +1,71 @@
+---
+id: get-inbox-message-attachment
+title: "Download an attachment scoped to an inbox"
+description: "Download an attachment scoped to an inbox"
+sidebar_label: "Download an attachment scoped to an inbox"
+hide_title: true
+hide_table_of_contents: true
+api: eJzNVk1v5DYM/SsET7uFM05S9FDfBmjQDoq06SY5FEGA4dicWLu2pEjyJFPD/72gbM9XkiIZtEBPtimLfKT4HtVioAeP2R1OQ6C8rFkHj/cJGsuOgjJ6VmCGDxxmemGeL9l7euDtv5igJUc1B3bipkVNNWOGhalJaUxQaczQUigxQcePjXJcYBZcwwkW7HOnrITBDH+KW8DnxvIEbj3D3DaLSuXzBObWqRUFnidgHBB4y7laqhwGO/TxQKIDea8eNBcQDISSITDVE0zQ5yXXhFmLYW0FpA9O6QfsumSDW0maH4IdCwOqYB3UUrGbwJUzK1UwENSkKlmNsIzboIHry2uwpdEMuqkX7ODT0rhodRyc4hVVn4cafDeXPGoKeQkRHVjHS/XMHp5Kdgy+sda4wAUs1jEC68IapcN7c677U50VH8r7VqvHhuGSVKU0BeNg8LNbi3cioE1D/SaGj8DY9uKmyrtncVMyTK9mQJU3QHnONnggDduIoIp/hnkvELw12rOX9fPTU3m8CWM4QZZy5kYHoUnWIllbqTxyKjV54HDig2OqZe2t4AkujaspYIYLpcmtseu6TkqwpKYKL2FcOGccjHDfBvDVy++vBDaLr5xHWjuRgKD6nH2g0PhXqpOM3fPqGguc3W3kHK3lfAPXr7mT5KgolICk6moHQ3/2QYWKxzy/jGl2Y1X25eRJV4aKg9OO8hKlgTSMbK85lGYQuihpocQMU7IqXZ2nvbb4tO1fujRuY5+28aVLhxL4tN1QqUu3MX3a7jd4J/3GbjVqZuMqzLAMwfoslaiTesOqSW5qPMztypmiyeUDej8oXeo5b5wK6+hzatWN+cb6F6aCHWZ398K30fpHw24djTv7rqUZ+vM+3L09QKt+5fXI0LJfTkYeT5tQGqf+ik32GuqoixsVFGIGCQNKR+vefui9T+DimWpbcQbzvfUM/jSNu2Gqp1eziHY+kaY7yPEN6I9xdYM8wvgIYvLROo9fc4juYDMLJyJvqPTSRABD1+5o5fRq9iLa75a1BPgeCl4qHUkAy2Fs7O8Fx0t2rHPuJW6ch33hcrKhcdwjLEzeSONxMQp0AkJnnwxDMwHSBbim2k4OD/xsjecCGl2wg5ctKZIp/dsjPz89/+Hk7Ozk7MdBciiPkjMUd4sdk4Nmf3p6OvCcxtJZ40NNesfJR/i8V9dNAwR+Dqmt5F7SDTjaget30h2S0rns7vmOCWY715hIebFtRaNnvdh2R+gO8WXpYLbdJ1gaHyRk2y7I862ruk7MjyMnE1yRU7SQnrlrsVBe3gvMllT5wwHYbiUeP30ZRuVn+M8vU6/WdGSaFmatqGrkCxP8xuvtnVB06Kic/t83rSMK0nfS0fV47w3sCGTbfj4a3b91MTsC/QHluvsuGUeVEKr/aRpj7mx/84ImM3JzQ/j54ga77m+Arpvg
+sidebar_class_name: "get api-method"
+info_path: docs/api/mailinator-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Download an attachment scoped to an inbox"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/api/v2/domains/{domain}/inboxes/{inbox}/messages/{messageId}/attachments/{attachmentName}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Download an attachment scoped to an inbox
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"domain","in":"path","required":true,"description":"Domain scope. Use `public`, `private`, or a specific private domain name assigned to the team.","schema":{"type":"string"}},{"name":"inbox","in":"path","required":true,"description":"Inbox identifier. Provide a mailbox name or the team SMS phone number (for SMS retrieval). Use `*` to match inbox prefixes where supported by the endpoint.","schema":{"type":"string"}},{"name":"messageId","in":"path","required":true,"description":"Unique Mailinator message identifier.","schema":{"type":"string"}},{"name":"attachmentName","in":"path","required":true,"description":"Attachment name or identifier. The API also accepts an attachment id.","schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Attachment retrieved","content":{"application/octet-stream":{"schema":{"type":"string","format":"binary"}}}},"default":{"description":"Error response","content":{"application/json":{"schema":{"type":"object","properties":{"status":{"type":"string"},"message":{"type":"string"},"errors":{"type":"array","items":{"type":"string"}}},"additionalProperties":true,"title":"ErrorResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

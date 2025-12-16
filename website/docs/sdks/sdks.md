@@ -1,6 +1,6 @@
 ---
 id: sdk
-title: SDK Overview
+title: SDK
 ---
 
 # SDKs
@@ -16,4 +16,4 @@ Mailinator provides [several official SDKs](https://github.com/manybrain):
 
 Code examples for each SDK are available in the [Mailinator Docs repo](https://github.com/manybrain/mailinatordocs/tree/main/api-examples).
 
-API Authentication details can be found within the [API reference](/broken/pages/jMjzB0mqLYh7f4JNtGdV).
+API Authentication details can be found within the [API reference]().

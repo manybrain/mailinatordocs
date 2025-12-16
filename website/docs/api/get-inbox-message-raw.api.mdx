@@ -1,0 +1,71 @@
+---
+id: get-inbox-message-raw
+title: "Get the raw RFC 822 payload scoped to an inbox"
+description: "Get the raw RFC 822 payload scoped to an inbox"
+sidebar_label: "Get the raw RFC 822 payload scoped to an inbox"
+hide_title: true
+hide_table_of_contents: true
+api: eJzNVk1v4zYQ/SuDOe0WWitxUaDVzWjTrVEs6ubjUAQGPBbHEXclkiEpO66g/16QkmzFcRebAAV6skR6Zt4M33tUg54eHGb3+Imdowd2uExQG7bkpVZzgRk+sJ+rtX7q/3FNO0zQkKWKPdsQ3KCiijFDoSuSChOUCjM05AtM0PJjLS0LzLytOUHBLrfShPyY4S8xBFyuDU/gzjGsTL0uZb5KYGWs3JLnVQLaAoEznMuNzKFfh64ehOpAzskHxQK8Bl8weKZqggm6vOCKMGvQ700A6byV6gHbNjnglqG/V8GOEwEpWHm5kWwnsLB6KwUDQUWyDLsRlrYHNHDz6QZMoRWDqqs1W3i30TauWvZW8pbK9/0MvluFPiryeQERHRjLG/nEDnYFWwZXG6OtZwHrfazAShgtlf/WnqvuOOfiVX3fKflYM3wiWUpFXlvo84xn8VUEy1DCGa0cu7A/vbgIP8/LXNPukNiyr63igDPXyrPyMS0/+dSUgW5Z85VybRta2FBd+pdlrqzVFgY4zwuQMaXMowzSz06fL6PXnzn3QQ82iMbLrifnydfuDJxkGPvZPQ5wxmFkLe3D+XiuzqULzZEQMoCkcjHC0J2dl77koc/roc12mMp4FB/ZRxpZ2sH1rz/Dj9MpGNqXmkQnzigsUjBopWJf6N4foiH4AjNMych0O007Zbq06R7aNIaxS5v40Kb9HFzaHIjYpjZ6i2O7HYyltiVmWHhvXJaG5JPqQL1Jris87WNhtajz8AJdHgyMc5zXVvp9zDkz8lZ/YfUbk2CL2f0yyGJY/bNmu4+Lo7ibcPDd2Z5GHw/LyN95P6ip6LaTQW6z2hfayr8joc6hjuZxsIrZYg4+lAGp4uqzeOiyT+DqiSpTcgarZ/sZ/KVre8tUzRbziHY1CQQ76fFfoD/G3QPyCOM1iMnF1VV8W0FMB4cLYxJcCKXa6AigZ+jIUGaL+YtqfxhWocD3IHgjVSQ8bHpvfR4LljdsWeU8gduCD5dGN7icjK8tdwiFzuuKVTDRnoQJBOm6pL9ZEiAlwNbl0V4d8JPRjgXUSrCFl5QM9hf42yGfXkx/+HB5+eHyp95eKI/20g/3iB2TE7LvdruTzGkcndHOV6RGSV6t3WfDPbBgZKltD6bpdX0fKBL6moboTtuYYDa68KO8w9rRIPovigSz8WUTRL5MsNDOh8RNsybHd7Zs27D8OMgvwS1ZSetAj/sGhXThWWC2odKd3kvN0bnx3XV/g72H//zj4uzkBlGpIKItlXV4wwS/8P74jRQs5009/b+/PN4wkI4vb57Ht36RvAHZkbXtsk0GSw9s7PZnec7GjyLHyZejK/Lj1S227T/sIvZk
+sidebar_class_name: "get api-method"
+info_path: docs/api/mailinator-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Get the raw RFC 822 payload scoped to an inbox"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/api/v2/domains/{domain}/inboxes/{inbox}/messages/{messageId}/raw"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Get the raw RFC 822 payload scoped to an inbox
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"domain","in":"path","required":true,"description":"Domain scope. Use `public`, `private`, or a specific private domain name assigned to the team.","schema":{"type":"string"}},{"name":"inbox","in":"path","required":true,"description":"Inbox identifier. Provide a mailbox name or the team SMS phone number (for SMS retrieval). Use `*` to match inbox prefixes where supported by the endpoint.","schema":{"type":"string"}},{"name":"messageId","in":"path","required":true,"description":"Unique Mailinator message identifier.","schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Raw message returned","content":{"text/plain":{"schema":{"type":"string"}}}},"default":{"description":"Error response","content":{"application/json":{"schema":{"type":"object","properties":{"status":{"type":"string"},"message":{"type":"string"},"errors":{"type":"array","items":{"type":"string"}}},"additionalProperties":true,"title":"ErrorResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

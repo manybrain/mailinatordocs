@@ -1,0 +1,71 @@
+---
+id: get-latest-inbox-messages
+title: "Get the latest messages for an inbox"
+description: "Returns the five most recent messages for the specified inbox. The documented wildcard endpoint (`messages/*`) is represented here as a `messages/latest` alias for OpenAPI compatibility."
+sidebar_label: "Get the latest messages for an inbox"
+hide_title: true
+hide_table_of_contents: true
+api: eJzVVt9vGzcM/lcIPbXF1U6zrcDuLcCKLtiKZU36MATBLJ9oW+2dpFI8J65x//tA6c6/u6XFCmxPPosS9ekj+ZFrxXoeVXmr3mCMeo5R3RXKByTN1rtLo0o1R/5VM0a+dFP/sNlXKIOxIhtkoyrVW+SWXAReIMzsEqHxkYGwQsfQ9Kdg5intiAErO7NowIrXEdwsEIyv2gYdo4F7W5tKkwF0JnjrGJ5MBifjZ5OnYCMQBsKY9y+QEHQEDdttdUI9AV1bnW/+LaC7uLqEyjdBs53a2vJqpAoVNOkGGUm4WCunG1SlMr7R1qlCWXlg0LxQhSL82FpCo0qmFg9Z+CkdgVj5gCN4FxEmoZ3WtpoUMAlkl5pxUoAn0AMHFfTrkO8DuR10jHbu0AD7RBijbgRprBbYaFWuFa+CgIxM1s1V1xUb3InSL4KdQgvWoGOJCo3givzSGgQNjba1WBOsPnyCBq7fXENYeIfg2maKBE+EY1klZLK41PXTnoNnE3lHo7la5IBDIJzZB4xwn0IX2xA8SSSnq3TDEPe/f/OdPCwG7yJGsZ+fncnP/uNy9m5zsEeHRhWq8o7RsRzSIdS2Snk/fh/l5Pr4Zj99jxVLxpBUCdt8b58pxwiLPhhHlkK5tq71tMYcka5QTZzHnY2aSK8kioxN/GcI1py8PrZ5+ynbjHzzWcOsreuTRvanl63k3sZgHeMcSRVq5qnRnJdefp8wYeWdiX/quT9xQjbYT6d8dalQ+TEkbTKkK5Q2xkpUdX21w1guA7YsERjk77ptGk0rqSZVtRQ9PSJyj7xiTz7f9lkrCDupxpluaz7O3VdEnmDI8X8vYSNrbk8RVqi+Tk7aUOB8C/7TO/dISUh44fsWlESaF6pUYx3seHk+zjUXx+v80Y1TpWEcr9NHNz5oBCIkSMtB41uqVakWzCGWY/E5EqGzTrOnUeWbowZ3Rd60lfyB7EeJ/ESsWrK8Sj4vgr3xH9D9jNogqfL2TlR5WP29RVqlxZ1z1xKwHJPD01uSg/0FV4OgL7K5GNT+ouWFJ/spJcIp1EnHN6ot/Y/lGrAure6dh+x9BK8edBNqLGGyZy/hD9/SDerm4uoyoZ2MJDEO3vgZ6B+TdYM8wfgSxDqPF5P0bwLJHWx69yiVrXWzrCpDZW+iKo6ObhtGgu/A4My6lKibKWX/LBDOkNBVmMeVoX9n4ioduCXMCHcmmT4LC5CSi0Xf5AvQzgC19bbTRcCH4CMaaJ1BguOUlF4o+ZuRn5+d//D8xYvnL37sZUFnme/J3WJXxUGy39/fH3geJ+qCj9xot+PkNXJ6T33QQoUg7WAYNPYoXW816v89FPYpzPjA41BLf+96Jte9Ft1KfktQzoWErEeqUOXO4JgkSdYGrprtAN3r0l2hFj6yuFuvpzriO6q7TpY/DopRqKUmm3vO7VoZG+XbqHKm63g4ze0G4Mnbfu57Ct98ND3J16ADTup+qetW/qlCfcDVdsIWlfyqN/2359avICRnSXfXFYPOS7yz7aKqMPDOqaMBQBrLpmm+fnWjuu4vWfnbyg==
+sidebar_class_name: "get api-method"
+info_path: docs/api/mailinator-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Get the latest messages for an inbox"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/api/v2/domains/{domain}/inboxes/{inbox}/messages/latest"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Returns the five most recent messages for the specified inbox. The documented wildcard endpoint (`messages/*`) is represented here as a `messages/latest` alias for OpenAPI compatibility.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"domain","in":"path","required":true,"description":"Domain scope. Use `public`, `private`, or a specific private domain name assigned to the team.","schema":{"type":"string"}},{"name":"inbox","in":"path","required":true,"description":"Inbox identifier. Provide a mailbox name or the team SMS phone number (for SMS retrieval). Use `*` to match inbox prefixes where supported by the endpoint.","schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Latest messages retrieved","content":{"application/json":{"schema":{"type":"object","properties":{"domain":{"type":"string"},"inbox":{"type":"string","nullable":true},"msgs":{"type":"array","items":{"type":"object","properties":{"id":{"type":"string"},"subject":{"type":"string"},"from":{"type":"string"},"fromfull":{"type":"string"},"to":{"type":"string"},"time":{"type":"integer","format":"int64"},"seconds_ago":{"type":"integer"},"size":{"type":"integer"},"parts":{"type":"array","items":{"type":"string"}}},"additionalProperties":true,"title":"MessageSummary"}},"cursor":{"type":"string","nullable":true}},"additionalProperties":true,"title":"InboxMessagesResponse"}}}},"default":{"description":"Error response","content":{"application/json":{"schema":{"type":"object","properties":{"status":{"type":"string"},"message":{"type":"string"},"errors":{"type":"array","items":{"type":"string"}}},"additionalProperties":true,"title":"ErrorResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      
