@@ -1,0 +1,63 @@
+---
+id: get-team
+title: "Retrieve team configuration"
+description: "Retrieve team configuration"
+sidebar_label: "Retrieve team configuration"
+hide_title: true
+hide_table_of_contents: true
+api: eJytVcFu20gM/ZUBz6qduOihuuUQtMFisWmbHoogcGgNbU0jzUw5lBPX0L8XHCmJ7bgFUuzJNjkkH8n36C0IrhKU1/BFUBLcFBAiMYoL/sJCCSuSK8IWCmBKMfhECcotzE5O9MNSqthFfQ0l6EPj/DJwmxMYJmFHa7JQQBW8kBeNwhgbV+Un0+9JQ7eQqppa1G+yiQQlhMV3qgQKiKyIxA2FI7s1Cs1taNH5tBOAzLiBApxQu2tPws6voO8LuKdFHcLdXMIdvTY2tWnuu3ZB/MrAlv4iKDbo5xblyET6Apw9EjUEHXUIYTv32NJRbxKU7hiOAvKgjiMUJw2NS/88UgP6Xl2Wltg18pIg58yBzSOR/j9S/KGDllLC1fHGSeG8ajF9AWitU5DYXO5gEO7oeSa5z72h5KnsjuLzKA2juzFV8Eu36gbdgaKWOozy025RaihhitFN17OpDIJMxOtMrOstdNxACbVITOVU301adI3zKIEnVdDn+/UvOdiuyiod8kB/oymrjp1scs6z6K50/x8JLTGU1zd98Wz91BFvsnEn7osubNjJYfTzkKP7h/KUFUc9uAsY6AlnndSB3c/HSbxAvXaWjNTj4M4uL0wmqXE+W/fizZB9Ys4fsI0NleZ2z1+ab6FjZfDZ5UVGeztRYhz0+BvoP7L3CfmglVcgxpStt/nXrcnpTETGloR4klWm1zQDGJn179NWNdGLav9F8lrgrbG0dD4T1SwD50L7sYZpSUy+oom5qsmkSJVbjgo0FUbpmAaENlRdS17ImlFOhVHJpcIMZ7gw6K3hriFD3sbgvCRDDzEksqbzlti8pOQEClD+DshnJ7N3b05P35y+H88CVvksjMN9xg7FAdnv7+8PMk+HExqStMNBHJP8WXN7k3xaudCDTGODzisxcuXtqMdr5YM2MYPhxOq/Zx2SqGu7XWCir9z0vZp/PKqlgDWyw4VuUwX1KAAV3B1tVAFVRVFVv8amG1h3cBlVcU8X4sP5FfT9L0NPtaA=
+sidebar_class_name: "get api-method"
+info_path: docs/api/mailinator-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Retrieve team configuration"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/api/v2/team"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Retrieve team configuration
+
+<ParamsDetails
+  parameters={undefined}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Team information retrieved","content":{"application/json":{"schema":{"type":"object","properties":{"private_domains":{"type":"array","items":{"type":"string"}},"webhook_tokens":{"type":"array","items":{"type":"string"}},"sms_numbers":{"type":"array","items":{"type":"string"}},"members":{"type":"array","items":{"type":"string"}},"plan_data":{"type":"object"},"id":{"type":"string"},"plan":{"type":"string"},"team_name":{"type":"string"},"status":{"type":"string"},"token":{"type":"string"}},"title":"TeamResponse"}}}},"default":{"description":"Error response","content":{"application/json":{"schema":{"type":"object","properties":{"status":{"type":"string"},"message":{"type":"string"},"errors":{"type":"array","items":{"type":"string"}}},"additionalProperties":true,"title":"ErrorResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

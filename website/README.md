@@ -5,24 +5,31 @@ This website is built using [Docusaurus](https://docusaurus.io/), a modern stati
 ## Installation
 
 ```bash
-yarn
+npm install
 ```
 
 ## Local Development
 
+Run the API generator whenever the OpenAPI spec changes, then start Docusaurus:
+
 ```bash
-yarn start
+npm run update-api-docs   # regenerates docs/api and sidebar
+npm run start             # launches http://localhost:3000
 ```
 
-This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
+The dev server hot-reloads most edits automatically.
 
 ## Build
 
+1. Regenerate API docs and sidebar.
+2. Build the static site.
+
 ```bash
-yarn build
+npm run update-api-docs
+npm run build
 ```
 
-This command generates static content into the `build` directory and can be served using any static contents hosting service.
+The build artifacts land in `build/` and can be deployed to any static host.
 
 ## Deployment
 

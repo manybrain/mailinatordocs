@@ -1,0 +1,71 @@
+---
+id: delete-inbox-messages
+title: "Delete all messages for a specific inbox"
+description: "Deletes every message for the targeted inbox. Only private domains are supported."
+sidebar_label: "Delete all messages for a specific inbox"
+hide_title: true
+hide_table_of_contents: true
+api: eJzNVt9v20YM/leIe2oH1U4y7GF6C9AAC7agWZM+DIYB0zraula6u/BOTjxB//vAk2Q7tjesBTrsSdL9ID+SHz+qVRHXQeUzdUch4JqCmmfKeWKMxtlbrXKlqaJIt3bpXnaHMqUpFGy8nFK5ep/OBKAN8Rbq/hisHEMsCSLymiJpMGJkAh9stQXPZoORQLsajQ2ATBAa7x1H0hOVKY+MNUViwdcqizUJmnRcZcqIX4+xVJliemoMk1Z55IZOwKUrEArnaQKfAsHCN8vKFIsMFgOMRQaOASF4KszKFEfwQLwDhmDWljRE18dFWAvSUJRUo8pbFbdeQIbIxq5V12U73Cn0r4KdMg5Gk41mZYgncM9uYzQBQo2mkt0Ea8wyYQ0Pdw/gS2cJbFMvieGNFEFWmSIb2mD1dsjBDwuJo8ZYlH1hwDOtzAsFeC7psBqw3CYPZLV3xsZ/jnkugQXvbKAg+1cXF/I4F1xREUr8mSqcjWSjHETvK1Mk/k0/Bzndnnpzy89URGEJC1uj6X2FiLEJZ1CJh6a3P+wYG2lNLEU6KMRsNDHPFGptBAVW9wdO+lJFEyvaEf/jEK/qOjGnaYVNFU+jvmF2DGN2/pOwh148u0cC5/AaMuNWSBqpPmdOgvs3WUlxvkpKQhJLtxeU1OGxVLmaojfTzdV0UIJp279008RKCtM2vXTCOuLNKAgNVypXZYw+5FOxMZGuMBaj40nh6hORumenm0I+oLejhKuBioZN3Cab1948ui9kfyHUxCqfzaWFx9XfG+JtWjy49yA16stwfHufV29+pe3Y/WW/nY3ScN3E0rH5M9X+HOrU9LsWv76/hShuwNi0+uo+9NYncPOCta8oh8Wr/Rz+cA0/EtbX97cJ7WIiXDiK8W+gP6XdHfIE42sQY0iri/S1gGQOdkI/Sc1o7MolAAOZ7nZVFUMn3j54suLgR9C0MjZxczd5Xt8FphUx2YIm8FjSTuz7xBXoY8PUI9SuaGqyIn5DB2UgXRayYSJkgFYDN9VeFgPQi3eBNDRWE8MpJUU4hb898quLq5/eXV6+u/x5UAIskhIMyd1jV9kR2Z+fn48sT1PqvAuxRntgpNcnwKoa4wgpOQeTbpxMr9La7qXpuwz3gV2RXuLUVzLRuyHIdpCFmVBP8nUl2Ho7KlP5wQ9AUgdZ60OYZ6p0IcrVtl1ioE9cdZ0sP42Nm6kNssGlEGvWKm2CvGuVr7AKxxP4MAdvPg4j4i1899+Js7kZ29FK+22wauRLZeoLbfd/RSJW3xTT//tf4xsS0jOim3fZKLdS737vuijIx4NbJ6NX9H03rt7f/HbzeKO67i8GsOd0
+sidebar_class_name: "delete api-method"
+info_path: docs/api/mailinator-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Delete all messages for a specific inbox"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"delete"}
+  path={"/api/v2/domains/{domain}/inboxes/{inbox}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Deletes every message for the targeted inbox. Only private domains are supported.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"domain","in":"path","required":true,"description":"Domain scope. Use `public`, `private`, or a specific private domain name assigned to the team.","schema":{"type":"string"}},{"name":"inbox","in":"path","required":true,"description":"Inbox identifier. Provide a mailbox name or the team SMS phone number (for SMS retrieval). Use `*` to match inbox prefixes where supported by the endpoint.","schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Inbox cleared","content":{"application/json":{"schema":{"type":"object","properties":{"status":{"type":"string"},"count":{"type":"integer"}},"required":["status"],"additionalProperties":true,"title":"DeleteResponse"}}}},"default":{"description":"Error response","content":{"application/json":{"schema":{"type":"object","properties":{"status":{"type":"string"},"message":{"type":"string"},"errors":{"type":"array","items":{"type":"string"}}},"additionalProperties":true,"title":"ErrorResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

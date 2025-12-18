@@ -35,7 +35,7 @@ paths:
       tags:
         - Messages
       operationId: listDomainMessages
-      summary: Fetch message summaries for a domain
+      summary: Get all message summaries for a domain
       description: >-
         Returns message summaries for the supplied domain. Use the optional query
         parameters to scope results to an inbox, control pagination, or request
@@ -65,8 +65,8 @@ paths:
       tags:
         - Messages
       operationId: deleteDomainMessages
-      summary: Delete all messages in a domain
-      description: Deletes every message in the specified private domain.
+      summary: Delete all messages for a domain
+      description: Deletes every message for the supplied domain.
       parameters:
         - $ref: '#/components/parameters/DomainParam'
       responses:
@@ -83,9 +83,9 @@ paths:
       tags:
         - Messages
       operationId: listInboxMessages
-      summary: Fetch message summaries for a specific inbox
+      summary: Get all message summaries for a specific inbox
       description: >-
-        Retrieves messages for a specific inbox. To fetch SMS messages, provide
+        Returns messages for a specific inbox. To fetch SMS messages, provide
         the team-assigned SMS phone number as the inbox value.
       parameters:
         - $ref: '#/components/parameters/DomainParam'
@@ -111,9 +111,9 @@ paths:
       tags:
         - Messages
       operationId: deleteInboxMessages
-      summary: Delete all messages from an inbox
+      summary: Delete all messages for a specific inbox
       description: >-
-        Permanently deletes every message in the targeted inbox. Only private
+        Deletes every message for the targeted inbox. Only private
         domains are supported.
       parameters:
         - $ref: '#/components/parameters/DomainParam'
@@ -132,7 +132,7 @@ paths:
       tags:
         - Messages
       operationId: getInboxMessage
-      summary: Fetch a message scoped to an inbox
+      summary: Get a message scoped to an inbox
       parameters:
         - $ref: '#/components/parameters/DomainParam'
         - $ref: '#/components/parameters/InboxParam'
@@ -170,7 +170,69 @@ paths:
       tags:
         - Messages
       operationId: getDomainMessage
-      summary: Fetch a message scoped to a domain
+      summary: Get a message scoped to a domain
+      parameters:
+        - $ref: '#/components/parameters/DomainParam'
+        - $ref: '#/components/parameters/MessageIdParam'
+        - $ref: '#/components/parameters/DeleteOnFetchParam'
+      responses:
+        "200":
+          description: Message retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MessageDetail'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+  /api/v2/domains/{domain}/inboxes/{inbox}/messages/latest:
+    get:
+      tags:
+        - Messages
+      operationId: getLatestInboxMessages
+      summary: Get the latest messages for an inbox
+      description: >-
+        Returns the five most recent messages for the specified inbox. The
+        documented wildcard endpoint (`messages/*`) is represented here as a
+        `messages/latest` alias for OpenAPI compatibility.
+      parameters:
+        - $ref: '#/components/parameters/DomainParam'
+        - $ref: '#/components/parameters/InboxParam'
+      responses:
+        "200":
+          description: Latest messages retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InboxMessagesResponse'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+  /api/v2/domains/{domain}/messages/latest:
+    get:
+      tags:
+        - Messages
+      operationId: getLatestDomainMessages
+      summary: Get the latest messages for a domain
+      description: >-
+        Returns the five most recent messages for the domain. The documented
+        wildcard endpoint (`messages/*`) is represented here as a
+        `messages/latest` alias for OpenAPI compatibility.
+      parameters:
+        - $ref: '#/components/parameters/DomainParam'
+      responses:
+        "200":
+          description: Latest messages retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InboxMessagesResponse'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+  /api/v2/domains/{domain}/inboxes/{inbox}/messages:
+    get:
+      tags:
+        - Messages
+      operationId: getDomainMessage
+      summary: Get a message scoped to a domain
       parameters:
         - $ref: '#/components/parameters/DomainParam'
         - $ref: '#/components/parameters/MessageIdParam'
@@ -322,7 +384,7 @@ paths:
       tags:
         - Messages
       operationId: getInboxMessageSmtpLog
-      summary: Fetch SMTP log entries for a message scoped to an inbox
+      summary: Get SMTP log entries for a message scoped to an inbox
       parameters:
         - $ref: '#/components/parameters/DomainParam'
         - $ref: '#/components/parameters/InboxParam'
@@ -341,7 +403,7 @@ paths:
       tags:
         - Messages
       operationId: getMessageSmtpLog
-      summary: Fetch SMTP log entries for a message
+      summary: Get SMTP log entries for a message
       parameters:
         - $ref: '#/components/parameters/DomainParam'
         - $ref: '#/components/parameters/MessageIdParam'
@@ -359,7 +421,7 @@ paths:
       tags:
         - Messages
       operationId: getInboxMessageRaw
-      summary: Fetch the raw RFC 822 payload scoped to an inbox
+      summary: Get the raw RFC 822 payload scoped to an inbox
       parameters:
         - $ref: '#/components/parameters/DomainParam'
         - $ref: '#/components/parameters/InboxParam'
@@ -378,7 +440,7 @@ paths:
       tags:
         - Messages
       operationId: getMessageRaw
-      summary: Fetch the raw RFC 822 payload for a message
+      summary: Get the raw RFC 822 payload for a message
       parameters:
         - $ref: '#/components/parameters/DomainParam'
         - $ref: '#/components/parameters/MessageIdParam'
@@ -391,50 +453,7 @@ paths:
                 type: string
         default:
           $ref: '#/components/responses/ErrorResponse'
-  /api/v2/domains/{domain}/inboxes/{inbox}/messages/latest:
-    get:
-      tags:
-        - Messages
-      operationId: getLatestInboxMessages
-      summary: Fetch the latest messages for an inbox
-      description: >-
-        Returns the five most recent messages for the specified inbox. The
-        documented wildcard endpoint (`messages/*`) is represented here as a
-        `messages/latest` alias for OpenAPI compatibility.
-      parameters:
-        - $ref: '#/components/parameters/DomainParam'
-        - $ref: '#/components/parameters/InboxParam'
-      responses:
-        "200":
-          description: Latest messages retrieved
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/InboxMessagesResponse'
-        default:
-          $ref: '#/components/responses/ErrorResponse'
-  /api/v2/domains/{domain}/messages/latest:
-    get:
-      tags:
-        - Messages
-      operationId: getLatestDomainMessages
-      summary: Fetch the latest messages for a domain
-      description: >-
-        Returns the five most recent messages for the domain. The documented
-        wildcard endpoint (`messages/*`) is represented here as a
-        `messages/latest` alias for OpenAPI compatibility.
-      parameters:
-        - $ref: '#/components/parameters/DomainParam'
-      responses:
-        "200":
-          description: Latest messages retrieved
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/InboxMessagesResponse'
-        default:
-          $ref: '#/components/responses/ErrorResponse'
-  /api/v2/domains/{domain}/inboxes/{inbox}/messages:
+
     post:
       tags:
         - Delivery

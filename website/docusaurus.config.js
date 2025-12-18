@@ -41,6 +41,7 @@ const config = {
       ({
         docs: {
           sidebarPath: './sidebars.js',
+          docItemComponent: '@theme/ApiItem',
           editUrl:
             'https://github.com/manybrain/mailinatordocs/tree/main/website/',
         },
@@ -49,6 +50,27 @@ const config = {
           customCss: './src/css/custom.css',
         },
       }),
+    ],
+  ],
+
+  themes: ['docusaurus-theme-openapi-docs'],
+
+  plugins: [
+    [
+      'docusaurus-plugin-openapi-docs',
+      {
+        id: 'mailinator-api',
+        docsPluginId: 'classic',
+        config: {
+          npxmailinator: {
+            specPath: '../openapi/mailinator-api.yaml',
+            outputDir: 'docs/api/',
+            sidebarOptions: {
+              groupPathsBy: 'tag',
+            },
+          },
+        },
+      },
     ],
   ],
 

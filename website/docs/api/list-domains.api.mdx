@@ -1,0 +1,63 @@
+---
+id: list-domains
+title: "List private domains"
+description: "List private domains"
+sidebar_label: "List private domains"
+hide_title: true
+hide_table_of_contents: true
+api: eJy1Vtty2zYQ/RXMPjOSrUwfyjc1UWNPnEqxlUk9Go8NkysRCQnAwFK2quG/dxYkJepiJ560L7oA2LMHB2cXWAPJhYd4Bu9NIZX2cBOBsegkKaPPU4ghV57ayQgcemu0Rw/xGgYnJ/yVok+cshwBcQskHJJTuMQUIkiMJtTEi6W1uUoCfP+b54g1+CTDQvIvWlmEGMz9N0wIIrCOyZCq86UNje1C6ZxcQQSKsPA/BtCywM4qT07pBVTR7haOzLsyxxfzyjwfzyGe/W8MUMv7HNPO3L0xOUoNHDuXZU4QkyuxiqCQlGSHKAxSFnzYw7+uIYLhxUX4/Dq8vrr9NJy+O4Obigkr4xStOgBKEy7QMY/E6FQxy184ho3BXuI4+vxleHEFEUwuR3+e/x2ozRXm6VF5ljIvjwnLZ4cPpXIs3ayTuQVrQ28ikGm9M5lPOnTnMvcYASnKGfiyzPFdq0HAl8kvylEDvKTF19EfZ+PxR4jg/eV4EqSog25TSUcL5/hegj/2JGmy7yK+Ro1h0kixBxys3rHTjne2sr1KeIeS8BIfSvQEVfQjZW/VMbdU1bM5WaDdlOGIl+jUXB2tPp5u19etr1Zid8xfNn2TJ6tOxe53z5Fzxom2y/53rdOTpNIfLZ0CvZeL410Jmc7PWHur7c9JG/a5I8p+D4QL5UlYp5aSUKSbG6hAygxfTAsM25SUQQx9aVV/Oehv13l0S2TuszWULocYMiLr4z4v7RVS5UpLMq6XmAL2c0+cSctgUFHjAHvGY1LWnXG2hqFVU/Md9RnKFB3Esxv2Yzv6uUS3CoOduCs+rPo89qO3Alv1EYPCzCOrp6Pm3oBhSZlx6p+2hx2wXqoUBWUoCGUhhpNzQZxGKB1Gd+JFjd4ToydZ2BxjcbczH4trU7opymI4OQ9s73psir09PkP9IcxumAcar2EsfRi9C//uRIATVjpZIKHrhcJTem4CgcZVnzanykAH2cYWNSd4K1KcKx1MKubGhUS7scLhHB3qBHtimqHwFhM1b6pPJNJS6bBmmJqkLFATpqIppUhwufmocW0kpE4FPyEE6tQapckLfLLGYypKnaITh5bsQWg7vmY+OBn89ub09M3p701LkAltnxOdfUO0Z/bHx8c95H6QzhpPhdQdkGfq7fjDhPCJ+jYP7a5JuW5qccZGYPYDjt4+KzPjiWfX63vp8YvLq4qHH9pK4ZvYKX7l1MXUmp+L7Tuu2P1JgpY2V3Z82BG52jYN4sNoClX1L+Roxig=
+sidebar_class_name: "get api-method"
+info_path: docs/api/mailinator-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"List private domains"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/api/v2/domains"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+List private domains
+
+<ParamsDetails
+  parameters={undefined}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Domains retrieved","content":{"application/json":{"schema":{"type":"object","properties":{"domains":{"type":"array","items":{"type":"object","properties":{"name":{"type":"string"},"description":{"type":"string"},"rules":{"type":"array","items":{"allOf":[{"type":"object","properties":{"name":{"type":"string"},"description":{"type":"string"},"enabled":{"type":"boolean","default":true},"match":{"type":"string","enum":["ANY","ALL","ALWAYS_MATCH"]},"priority":{"type":"integer"},"conditions":{"type":"array","items":{"type":"object","properties":{"operation":{"type":"string","enum":["EQUALS","PREFIX"]},"field":{"type":"string"},"value":{"type":"string"}},"required":["operation","field","value"],"additionalProperties":false,"title":"RuleCondition"}},"actions":{"type":"array","items":{"type":"object","properties":{"action":{"type":"string","enum":["WEBHOOK","DROP"]},"action_data":{"type":"object","additionalProperties":true}},"required":["action","action_data"],"additionalProperties":false,"title":"RuleAction"}}},"required":["name","priority","conditions","actions"],"additionalProperties":false,"title":"RuleCreateRequest"},{"type":"object","properties":{"_id":{"type":"string"}}}],"additionalProperties":true,"title":"Rule"}},"verified":{"type":"boolean"}},"title":"Domain"}}},"title":"DomainsResponse"}}}},"default":{"description":"Error response","content":{"application/json":{"schema":{"type":"object","properties":{"status":{"type":"string"},"message":{"type":"string"},"errors":{"type":"array","items":{"type":"string"}}},"additionalProperties":true,"title":"ErrorResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      
