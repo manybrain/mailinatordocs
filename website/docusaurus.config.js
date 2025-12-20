@@ -40,6 +40,7 @@ const config = {
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
+          routeBasePath: 'docs',
           sidebarPath: './sidebars.js',
           docItemComponent: '@theme/ApiItem',
           editUrl:
@@ -56,6 +57,17 @@ const config = {
   themes: ['docusaurus-theme-openapi-docs'],
 
   plugins: [
+    [
+      '@docusaurus/plugin-client-redirects',
+      {
+        redirects: [
+          {
+            from: '/',
+            to: '/docs/intro',
+          },
+        ],
+      },
+    ],
     [
       'docusaurus-plugin-openapi-docs',
       {
@@ -88,7 +100,7 @@ const config = {
         respectPrefersColorScheme: true,
       },
       navbar: {
-        title: 'Home',
+        // title: 'Home',
         logo: {
           alt: 'Mailinator Logo',
           src: 'img/mailinator.svg',
@@ -99,6 +111,7 @@ const config = {
             sidebarId: 'tutorialSidebar',
             position: 'left',
             label: 'Docs',
+            to: '/docs/intro',
           },
           {
             label: 'API',

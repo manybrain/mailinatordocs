@@ -1,6 +1,6 @@
 {
   "name": "mailinatordocs",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "docusaurus": "docusaurus",
@@ -12,10 +12,11 @@
     "serve": "docusaurus serve",
     "write-translations": "docusaurus write-translations",
     "write-heading-ids": "docusaurus write-heading-ids",
-    "update-api-docs": "npx docusaurus gen-api-docs npxmailinator && node scripts/convert-sidebar.js"
+    "update-api-docs": "node scripts/clean-openapi-docs.js && npx docusaurus gen-api-docs npxmailinator && node scripts/convert-sidebar.js"
   },
   "dependencies": {
     "@docusaurus/core": "3.9.2",
+    "@docusaurus/plugin-client-redirects": "^3.9.2",
     "@docusaurus/preset-classic": "3.9.2",
     "@mdx-js/react": "^3.0.0",
     "clsx": "^2.0.0",
