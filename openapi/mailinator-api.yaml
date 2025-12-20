@@ -83,7 +83,7 @@ paths:
       tags:
         - Messages
       operationId: listInboxMessages
-      summary: Get all message summaries for a specific inbox
+      summary: Get all message summaries for an inbox
       description: >-
         Returns messages for a specific inbox. To fetch SMS messages, provide
         the team-assigned SMS phone number as the inbox value.
@@ -132,7 +132,7 @@ paths:
       tags:
         - Messages
       operationId: getInboxMessage
-      summary: Get a message scoped to an inbox
+      summary: Get a message from an inbox
       parameters:
         - $ref: '#/components/parameters/DomainParam'
         - $ref: '#/components/parameters/InboxParam'
@@ -170,7 +170,7 @@ paths:
       tags:
         - Messages
       operationId: getDomainMessage
-      summary: Get a message scoped to a domain
+      summary: Get a message from a domain
       parameters:
         - $ref: '#/components/parameters/DomainParam'
         - $ref: '#/components/parameters/MessageIdParam'
@@ -189,7 +189,7 @@ paths:
       tags:
         - Messages
       operationId: getLatestInboxMessages
-      summary: Get the latest messages for an inbox
+      summary: Get the latest messages from an inbox
       description: >-
         Returns the five most recent messages for the specified inbox. The
         documented wildcard endpoint (`messages/*`) is represented here as a
@@ -211,7 +211,7 @@ paths:
       tags:
         - Messages
       operationId: getLatestDomainMessages
-      summary: Get the latest messages for a domain
+      summary: Get the latest messages from a domain
       description: >-
         Returns the five most recent messages for the domain. The documented
         wildcard endpoint (`messages/*`) is represented here as a
@@ -231,8 +231,8 @@ paths:
     get:
       tags:
         - Messages
-      operationId: getDomainMessage
-      summary: Get a message scoped to a domain
+      operationId: getDomainMessages
+      summary: Get all message from a domain
       parameters:
         - $ref: '#/components/parameters/DomainParam'
         - $ref: '#/components/parameters/MessageIdParam'
@@ -251,7 +251,7 @@ paths:
       tags:
         - Attachments
       operationId: listInboxMessageAttachments
-      summary: List attachments for a message within an inbox
+      summary: Get attachments for a message from an inbox
       parameters:
         - $ref: '#/components/parameters/DomainParam'
         - $ref: '#/components/parameters/InboxParam'
@@ -270,7 +270,7 @@ paths:
       tags:
         - Attachments
       operationId: listMessageAttachments
-      summary: List attachments for a message
+      summary: Get attachments for a message from a domain
       parameters:
         - $ref: '#/components/parameters/DomainParam'
         - $ref: '#/components/parameters/MessageIdParam'
@@ -288,7 +288,7 @@ paths:
       tags:
         - Attachments
       operationId: getInboxMessageAttachment
-      summary: Download an attachment scoped to an inbox
+      summary: Download an attachment from an inbox
       parameters:
         - $ref: '#/components/parameters/DomainParam'
         - $ref: '#/components/parameters/InboxParam'
@@ -309,7 +309,7 @@ paths:
       tags:
         - Attachments
       operationId: getMessageAttachment
-      summary: Download an attachment
+      summary: Download an attachment from a domain
       parameters:
         - $ref: '#/components/parameters/DomainParam'
         - $ref: '#/components/parameters/MessageIdParam'
@@ -329,7 +329,7 @@ paths:
       tags:
         - Attachments
       operationId: listInboxMessageLinks
-      summary: List links in a message scoped to an inbox
+      summary: Get links in a message from an inbox
       parameters:
         - $ref: '#/components/parameters/DomainParam'
         - $ref: '#/components/parameters/InboxParam'
@@ -348,7 +348,7 @@ paths:
       tags:
         - Attachments
       operationId: listMessageLinks
-      summary: List links in a message
+      summary: Get links in a message from a domain
       parameters:
         - $ref: '#/components/parameters/DomainParam'
         - $ref: '#/components/parameters/MessageIdParam'
@@ -366,7 +366,7 @@ paths:
       tags:
         - Attachments
       operationId: listMessageLinksFull
-      summary: Retrieve link metadata for a message
+      summary: Get link metadata for a message from a domain
       parameters:
         - $ref: '#/components/parameters/DomainParam'
         - $ref: '#/components/parameters/MessageIdParam'
@@ -384,7 +384,7 @@ paths:
       tags:
         - Messages
       operationId: getInboxMessageSmtpLog
-      summary: Get SMTP log entries for a message scoped to an inbox
+      summary: Get SMTP log entries for a message from an inbox
       parameters:
         - $ref: '#/components/parameters/DomainParam'
         - $ref: '#/components/parameters/InboxParam'
@@ -421,7 +421,7 @@ paths:
       tags:
         - Messages
       operationId: getInboxMessageRaw
-      summary: Get the raw RFC 822 payload scoped to an inbox
+      summary: Get the raw RFC 822 payload from an inbox
       parameters:
         - $ref: '#/components/parameters/DomainParam'
         - $ref: '#/components/parameters/InboxParam'
@@ -486,7 +486,7 @@ paths:
       tags:
         - Stats
       operationId: getTeamStats
-      summary: Retrieve team statistics
+      summary: Get team statistics
       responses:
         "200":
           description: Team statistics retrieved
@@ -501,7 +501,7 @@ paths:
       tags:
         - Stats
       operationId: getTeam
-      summary: Retrieve team configuration
+      summary: Get team configuration
       responses:
         "200":
           description: Team information retrieved
@@ -516,7 +516,7 @@ paths:
       tags:
         - Stats
       operationId: getTeamInfo
-      summary: Retrieve team info snapshot
+      summary: Get team info snapshot
       responses:
         "200":
           description: Team info retrieved
@@ -531,7 +531,7 @@ paths:
       tags:
         - Domains
       operationId: listDomains
-      summary: List private domains
+      summary: Get a list of private domains
       responses:
         "200":
           description: Domains retrieved
@@ -566,7 +566,7 @@ paths:
       tags:
         - Domains
       operationId: getDomain
-      summary: Retrieve a private domain
+      summary: Get a private domain
       parameters:
         - $ref: '#/components/parameters/DomainIdParam'
       responses:
@@ -599,7 +599,7 @@ paths:
       tags:
         - Rules
       operationId: listRules
-      summary: List rules for a domain
+      summary: Get a list of rules for a domain
       parameters:
         - $ref: '#/components/parameters/DomainIdParam'
       responses:
@@ -638,7 +638,7 @@ paths:
       tags:
         - Rules
       operationId: getRule
-      summary: Retrieve a routing rule
+      summary: Get a routing rule
       parameters:
         - $ref: '#/components/parameters/DomainIdParam'
         - $ref: '#/components/parameters/RuleIdParam'
@@ -723,7 +723,7 @@ paths:
       tags:
         - Authenticator
       operationId: getInstantTOTPCode
-      summary: Generate a TOTP code based on a secret key
+      summary: Get a TOTP code based on a secret key
       description: >-
         Generates a Time-based One-Time Password (TOTP) code using the provided
         secret key. The generated code can be used for two-factor authentication (2FA)
@@ -753,7 +753,7 @@ paths:
       tags:
         - Authenticator
       operationId: getStoredAuthenticatorCode
-      summary: Retrieves a TOTP code based on a stored authenticator ID found in Web Interface
+      summary: Get a TOTP code based on a stored authenticator ID found in Web Interface
       description: >-
         Generates a Time-based One-Time Password (TOTP) code using an already saved authenticator. The generated code can be used for two-factor authentication (2FA)
         during login or other secure operations. authenticator_id is case sensitive.
