@@ -4,6 +4,7 @@ const projectName = 'mailinatordocs'
 const repoUrl = `https://github.com/${organizationName}/${projectName}`
 const xUrl = `https://x.com/mailinator`
 const youtubeUrl = `https://youtube.com/@mailinator5371`
+const linkedInUrl = `https://www.linkedin.com/company/manybrain-llc/`
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
@@ -137,9 +138,16 @@ const config = {
           },
           {
             href: youtubeUrl,
+            target: '_blank',
             label: 'YouTube',
             position: 'right',
           },
+          {
+            href: linkedInUrl,
+            target: '_blank',
+            label: 'LinkedIn',
+            position: 'right',
+          }
           // {
           //   type: 'docsVersionDropdown'
           // }
