@@ -4,7 +4,7 @@ info:
   description: >-
     OpenAPI 3 definition for the Mailinator API reference. The specification captures the documented message,
     stats, domain, and rule endpoints exposed under api.mailinator.com.
-  version: "2025-11-19"
+  version: "2025-12-23"
   contact:
     name: Mailinator
     url: https://www.mailinator.com/
@@ -231,11 +231,11 @@ paths:
     get:
       tags:
         - Messages
-      operationId: getDomainMessages
-      summary: Get all message from a domain
+      operationId: getInboxMessages
+      summary: Get all messages from an inbox
       parameters:
         - $ref: '#/components/parameters/DomainParam'
-        - $ref: '#/components/parameters/MessageIdParam'
+        - $ref: '#/components/parameters/InboxParam'
         - $ref: '#/components/parameters/DeleteOnFetchParam'
       responses:
         "200":
@@ -458,14 +458,14 @@ paths:
       tags:
         - Delivery
       operationId: postMessage
-      summary: Inject a message into an inbox
+      summary: Create a message for an inbox
       description: >-
         Posts a JSON-formatted message into the specified private inbox. The
         payload should follow the documented email-like structure to render in
         the Mailinator web interface.
       parameters:
         - $ref: '#/components/parameters/DomainParam'
-        - $ref: '#/components/parameters/InboxParam'
+        - $ref: '#/components/parameters/MessageIdParam'
       requestBody:
         required: true
         content:
@@ -568,7 +568,7 @@ paths:
       operationId: getDomain
       summary: Get a private domain
       parameters:
-        - $ref: '#/components/parameters/DomainIdParam'
+        - $ref: '#/components/parameters/DomainNameParam'
       responses:
         "200":
           description: Domain retrieved
@@ -584,7 +584,7 @@ paths:
       operationId: deleteDomain
       summary: Delete a private domain
       parameters:
-        - $ref: '#/components/parameters/DomainIdParam'
+        - $ref: '#/components/parameters/DomainNameParam'
       responses:
         "200":
           description: Domain deleted
@@ -601,7 +601,7 @@ paths:
       operationId: listRules
       summary: Get a list of rules for a domain
       parameters:
-        - $ref: '#/components/parameters/DomainIdParam'
+        - $ref: '#/components/parameters/DomainNameParam'
       responses:
         "200":
           description: Rules retrieved
@@ -617,7 +617,7 @@ paths:
       operationId: createRule
       summary: Create a routing rule
       parameters:
-        - $ref: '#/components/parameters/DomainIdParam'
+        - $ref: '#/components/parameters/DomainNameParam'
       requestBody:
         required: true
         content:
@@ -640,7 +640,7 @@ paths:
       operationId: getRule
       summary: Get a routing rule
       parameters:
-        - $ref: '#/components/parameters/DomainIdParam'
+        - $ref: '#/components/parameters/DomainNameParam'
         - $ref: '#/components/parameters/RuleIdParam'
       responses:
         "200":
@@ -657,7 +657,7 @@ paths:
       operationId: updateRuleState
       summary: Enable or disable a routing rule
       parameters:
-        - $ref: '#/components/parameters/DomainIdParam'
+        - $ref: '#/components/parameters/DomainNameParam'
         - $ref: '#/components/parameters/RuleIdParam'
         - $ref: '#/components/parameters/RuleActionParam'
       responses:
@@ -674,7 +674,7 @@ paths:
       tags:
         - Messages
       operationId: streamDomainMessages
-      summary: Stream all messages for a domain
+      summary: Stream all messages from a domain
       description: >-
         Streams all messages near live for the supplied domain. Use the optional query
         parameters to control pagination, throttling, and message handling.
@@ -698,7 +698,7 @@ paths:
       tags:
         - Messages
       operationId: streamInboxMessages
-      summary: Stream all messages for a specific inbox
+      summary: Stream all messages from an inbox
       description: >-
         Streams all messages near live for a specific inbox. Use the optional query
         parameters to control pagination, throttling, and message handling.
@@ -915,11 +915,11 @@ components:
         `1s`, `5m`, `1h`).
       schema:
         type: string
-    DomainIdParam:
-      name: domainId
+    DomainNameParam:
+      name: domain_name
       in: path
       required: true
-      description: Domain identifier or name returned by the Domains API.
+      description: Private domain name assigned to the team.
       schema:
         type: string
     RuleIdParam:
