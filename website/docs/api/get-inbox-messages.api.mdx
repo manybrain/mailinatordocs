@@ -1,0 +1,71 @@
+---
+id: get-inbox-messages
+title: "Get all messages from an inbox"
+description: "Get all messages from an inbox"
+sidebar_label: "Get all messages from an inbox"
+hide_title: true
+hide_table_of_contents: true
+api: eJzNV99vGzcM/lcIPbXD1U6ydcD8FqBBFwxFsyZ9GIqglk88n1r9qsRz4hr3vw/U3dlOcsniAgX2ktikKH4kP1L0RpBcJjH7JN5hSnKJSVwXwgeMkrR350rMxBLp3C387fZEIYKM0iJhZNONcNKimAnlrdROFEI7MRNBUi0KEfFboyMqMaPYYCEUpjLqwLeLmXiTTSCVPuAEPiaEeWgWRpfzAuYh6pUknBfgI0hIAUtd6RJ6OXT+gL2DTEkvHSogD1QjEEo7EYVIZY1WitlG0DowyERRu6Vo22KLW3N0B8HO+QCt0JGuNMYJXES/0gpBgpXasDbD8nGLBi7fXUKovUNwjV1ghBeVj1kakaLGlTQv+xz8Muc4rKSyhowOQsRK32KCmxojQmpC8JFQwWKdPaBTwWtHz41ZoUHCIehvDcb1nagradKDsN9pp21jQaGRa1hg5SNm7xVSWaMC21EEdAIGoRqDCjjK7E57By9wspwUMD9OXOHXlv8e1/OXT+O+ZmgpeJcwsf7k6Ij/3UPXO++ziUoUovSO0BEfliEYXWZaT78kttjseZTGvK8ymXvffvEFS2KuR24H0p1nrUbwFSI13fExXRW9fVRRNcaMKsmPizWXb6vQjnCJURSi8tFK6kS//5YxYemdSp/l0o9Y8AH9feyuNvc3pT2VjFEyPzShTWMFagshldKcXGku9jLWdQ9pMrgr0WVjrYxrwXx8Ot01SpWnzMOD4/5GOC8Ib8crU5MdT36UN5+fKqkkkmVt0T0rS4dRqWvQEUXP5assH+Pgo+VU/sYZL9XHOBLuHnWaqMVzS3m6TUE2Mdp9PYgxhUiWwmfjl4dk8HFkbZvHxAEsfIMktWHycoqwko2hh1PlLEYfYZg+h4yUp6ufSFIzlplC9FN0VIcM52e0Zo7zwxBmO2RlPxVvkUAaM0z5BDzAQDoYHlCLVPt+ZchbAtViJqYy6OnqZNo912m66T6002yGabrJH9qp3S0YCeNq2C4aZq2oiUKaTfmyCT+x2knycVJ6K+7jvIheNWV+brp7BDMjYdlETet852nQV/4ruj/zfBGzT9c8iwbp3/k5ZOGe3SUXtqvdfetdMYL+C9fDq9oNLzG0tDhtqPZRf8+EGUOdN4jtvnB6cQ7EbkC7LL1jD93tEzi7lTYYnMH8jn4G//gmXqG0pxfnGe18wgS6F+Mj0IeFoEeeYRyCWKYsnedvc8jXwXZrnOT+167qHqahLbdV5YseeHsf0LGDX0FhpV0mdN4t2NFdW4hYYURX4gSuatxujl3iShmoidghVL5seIjtlpcCuDVT0a+XBUinIDZmt2MlwNvgEyponMIIDynJ2wzzt0N+cnTy+tXxyavjP/rxIbtnpU/uDrso7pH95ubm3s3TnLrgE1np9i75z968k8xt1flpnAbDa3vbO9/0ffuJKcFxnLB117uiELO9LT+3L8t2A2D3I6L2ifiWzWYhE36Mpm1Z/K3vrY1QOsmFeWzZ3OwG7c/eO0dz8RXX+2vySpqGD+VRspJRM/QDw3jxoV+vX8JP/90zGtPQ6m69H9E21q6wPAh/KKb/94+iH0hIx+r2mjfF4Z3Y9LrTssRAe1YPdgEmyvZBfHt2Jdr2X91tWzo=
+sidebar_class_name: "get api-method"
+info_path: docs/api/mailinator-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Get all messages from an inbox"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/api/v2/domains/{domain}/inboxes/{inbox}/messages"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Get all messages from an inbox
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"domain","in":"path","required":true,"description":"Domain scope. Use `public`, `private`, or a specific private domain name assigned to the team.","schema":{"type":"string"}},{"name":"inbox","in":"path","required":true,"description":"Inbox identifier. Provide a mailbox name or the team SMS phone number (for SMS retrieval). Use `*` to match inbox prefixes where supported by the endpoint.","schema":{"type":"string"}},{"name":"delete","in":"query","required":false,"description":"Minimum delay before the fetched message is scheduled for deletion (e.g., `1s`, `5m`, `1h`).","schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Message retrieved","content":{"application/json":{"schema":{"allOf":[{"type":"object","properties":{"id":{"type":"string"},"subject":{"type":"string"},"from":{"type":"string"},"fromfull":{"type":"string"},"to":{"type":"string"},"time":{"type":"integer","format":"int64"},"seconds_ago":{"type":"integer"},"size":{"type":"integer"},"parts":{"type":"array","items":{"type":"string"}}},"additionalProperties":true,"title":"MessageSummary"},{"type":"object","properties":{"headers":{"type":"object","additionalProperties":{"type":"string"}},"text":{"type":"string"},"html":{"type":"string"},"raw_subject":{"type":"string"},"attachments":{"type":"array","items":{"type":"object","properties":{"id":{"type":"string"},"name":{"type":"string"},"contentType":{"type":"string"},"size":{"type":"integer"},"downloadUrl":{"type":"string","format":"uri"}},"additionalProperties":true,"title":"Attachment"}},"links":{"type":"array","items":{"type":"string"}},"smtp_log":{"type":"array","items":{"type":"object","additionalProperties":true}}}}],"additionalProperties":true,"title":"MessageDetail"}}}},"default":{"description":"Error response","content":{"application/json":{"schema":{"type":"object","properties":{"status":{"type":"string"},"message":{"type":"string"},"errors":{"type":"array","items":{"type":"string"}}},"additionalProperties":true,"title":"ErrorResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      
