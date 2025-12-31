@@ -16,4 +16,4 @@ Mailinator provides [several official SDKs](https://github.com/manybrain):
 
 Code examples for each SDK are available in the [Mailinator Docs repo](https://github.com/manybrain/mailinatordocs/tree/main/api-examples).
 
-API Authentication details can be found within the [API reference]().
+API Authentication details can be found within the [API reference](/docs/api/).

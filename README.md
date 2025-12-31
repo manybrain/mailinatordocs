@@ -1,10 +1,43 @@
 # Mailinator Documentation 
 
-The new Mailinator documentation site is hosted on GitBook. The majority of the pages live on GitBook except for the API Reference, which is dynamically pulled from this directory. 
+The new Mailinator documentation site is self-hosted using Docusaurus. This directory contains all the things needed to update and maintain the documents going forward.
+
+## Directory Structure
+
+```text
+mailinatordocs/
+├── api-examples/
+│   └── ruby, python, js, etc.
+├── openapi/
+│   └── mailinator-api.yaml
+├── website/
+│   ├── blog/
+│   ├── docs/
+│   ├── scripts/
+│   ├── src/
+│   ├── static/
+│   ├── README
+│   ├── sidebars.js
+│   ├── package.json
+│   └── docusaurus.config.js
+└── README
+```
+
+## Documentation
+
+Our API and Product documentation are using Docusaurus. To find out more about how to configure, build and run the documentation, read its [README](/website/README.md).
+
 
 ## OpenAPI Specification
 
-In the [openapi directory](https://github.com/manybrain/mailinatordocs/tree/main/openapi) is the OpenAPI specification for Mailinator's API. Any changes (bugs, updates, etc.) need to be made directly to that file. GitBook will refresh that connection and automatically pull in changes to the website. 
+The OpenAPI (Swagger) specification is **THE** single source of truth for the API docs. Any changes (bugs, updates, etc.) should be made directly to the specification. Once that is done, new API docs can be generated. 
+
+### Test your updates
+
+After making an update to the specification, run the following linter to make sure you didn't introduce any errors. (Warnings are ok). Introducing errors might cause the API documentation to break.
+
+`npx @redocly/cli lint openapi/mailinator-api.yaml`
+
 
 ## Example API Library
 
@@ -12,13 +45,8 @@ In the [api examples directory](https://github.com/manybrain/mailinatordocs/tree
 
 Note: No guarantee these code examples are accurate.
 
-## Old Documentation Site
+### Old Documentation Site
 
 The [old documentation site](https://github.com/manybrain/m8rdocs) still lives here but is out of date.
 
 
-### Linting
-
-After making an update, run the following linter to make sure you didn't introduce any errors. (Warnings are ok). Introducing errors will cause the API documentation to break.
-
-`npx @redocly/cli lint openapi/mailinator-api.yaml`

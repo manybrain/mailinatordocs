@@ -4,6 +4,7 @@ const projectName = 'mailinatordocs'
 const repoUrl = `https://github.com/${organizationName}/${projectName}`
 const xUrl = `https://x.com/mailinator`
 const youtubeUrl = `https://youtube.com/@mailinator5371`
+const linkedInUrl = `https://www.linkedin.com/company/manybrain-llc/`
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
@@ -40,6 +41,7 @@ const config = {
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
+          routeBasePath: 'docs',
           sidebarPath: './sidebars.js',
           docItemComponent: '@theme/ApiItem',
           editUrl:
@@ -56,6 +58,17 @@ const config = {
   themes: ['docusaurus-theme-openapi-docs'],
 
   plugins: [
+    [
+      '@docusaurus/plugin-client-redirects',
+      {
+        redirects: [
+          {
+            from: '/',
+            to: '/docs/intro',
+          },
+        ],
+      },
+    ],
     [
       'docusaurus-plugin-openapi-docs',
       {
@@ -88,7 +101,7 @@ const config = {
         respectPrefersColorScheme: true,
       },
       navbar: {
-        title: 'Home',
+        // title: 'Home',
         logo: {
           alt: 'Mailinator Logo',
           src: 'img/mailinator.svg',
@@ -99,6 +112,7 @@ const config = {
             sidebarId: 'tutorialSidebar',
             position: 'left',
             label: 'Docs',
+            to: '/docs/intro',
           },
           {
             label: 'API',
@@ -124,9 +138,16 @@ const config = {
           },
           {
             href: youtubeUrl,
+            target: '_blank',
             label: 'YouTube',
             position: 'right',
           },
+          {
+            href: linkedInUrl,
+            target: '_blank',
+            label: 'LinkedIn',
+            position: 'right',
+          }
           // {
           //   type: 'docsVersionDropdown'
           // }
