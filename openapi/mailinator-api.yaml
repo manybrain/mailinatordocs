@@ -550,7 +550,7 @@ paths:
       tags:
         - Authenticator
       operationId: getInstantTOTPCode
-      summary: Get a TOTP code based on a secret key
+      summary: Get instant TOTP code based on a secret key
       description: >-
         Generates a Time-based One-Time Password (TOTP) code using the provided
         secret key. The generated code can be used for two-factor authentication (2FA)
@@ -580,8 +580,7 @@ paths:
       tags:
         - Authenticator
       operationId: getStoredAuthenticatorCode
-      summary: Get a TOTP code based on a stored authenticator ID found in Web Interface
-      description: >-
+      summary: Get instant TOTP code based on a stored authenticator ID
         Generates a Time-based One-Time Password (TOTP) code using an already saved authenticator. The generated code can be used for two-factor authentication (2FA)
         during login or other secure operations. authenticator_id is case sensitive.
       parameters:
