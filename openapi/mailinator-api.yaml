@@ -184,50 +184,7 @@ paths:
                 $ref: '#/components/schemas/MessageDetail'
         default:
           $ref: '#/components/responses/ErrorResponse'
-  /api/v2/domains/{domain}/inboxes/{inbox}/messages/latest:
-    get:
-      tags:
-        - Messages
-      operationId: getLatestInboxMessages
-      summary: Get the latest messages from an inbox
-      description: >-
-        Returns the five most recent messages for the specified inbox. The
-        documented wildcard endpoint (`messages/*`) is represented here as a
-        `messages/latest` alias for OpenAPI compatibility.
-      parameters:
-        - $ref: '#/components/parameters/DomainParam'
-        - $ref: '#/components/parameters/InboxParam'
-      responses:
-        "200":
-          description: Latest messages retrieved
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/InboxMessagesResponse'
-        default:
-          $ref: '#/components/responses/ErrorResponse'
-  /api/v2/domains/{domain}/messages/latest:
-    get:
-      tags:
-        - Messages
-      operationId: getLatestDomainMessages
-      summary: Get the latest messages from a domain
-      description: >-
-        Returns the five most recent messages for the domain. The documented
-        wildcard endpoint (`messages/*`) is represented here as a
-        `messages/latest` alias for OpenAPI compatibility.
-      parameters:
-        - $ref: '#/components/parameters/DomainParam'
-      responses:
-        "200":
-          description: Latest messages retrieved
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/InboxMessagesResponse'
-        default:
-          $ref: '#/components/responses/ErrorResponse'
-  /api/v2/domains/{domain}/inboxes/{inbox}/messages:
+  
     get:
       tags:
         - Messages

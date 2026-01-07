@@ -23,7 +23,7 @@ const config = {
   url: 'https://mailinator.com/',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/',
+  baseUrl: '/documentation/',
 
   onBrokenLinks: 'throw',
 
@@ -107,6 +107,13 @@ const config = {
           src: 'img/mailinator.svg',
         },
         items: [
+          {
+            type: 'docSidebar',
+            sidebarId: 'tutorialSidebar',
+            position: 'left',
+            label: 'Quickstart',
+            to: '/docs/quickstart',
+          },
           {
             type: 'docSidebar',
             sidebarId: 'tutorialSidebar',
