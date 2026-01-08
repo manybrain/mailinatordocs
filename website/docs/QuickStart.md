@@ -37,92 +37,32 @@ Once an email arrives to our inbox, we can use the API to get all it's details.
 
 ## ✅ Getting the Latest Message
 
-1. Since Mailinator is [receive-only](./core/MessageDelivery.md#mailinator-is-receive-only), you'll need to send an email from your personal account to one of your mailinator inboxes. Include a simple url in the body of the message. Such as:
+1. Since Mailinator is [receive-only](./core/MessageDelivery.md#mailinator-is-receive-only), you'll need to send an email from your personal account to one of your mailinator inboxes. Include a simple url in the body of the message by copying and pasting this:
 
 ```bash
-sendto: first@YOURINBOXNAME.testinator.com
+sendto: first@<YourPrivateDomain>.testinator.com
 subject: first email
-body: Check out https://www.example.com
+body: <a href="https://www.example.com">Example.com</a>
 ```
 
-:::note
-Replace YOURINBOXNAME@testinator.com with your Private Domain
-:::
 
-
-2. Now we will use the [Get Latest Message](./api/get-latest-inbox-messages.api.mdx) endpoint to grab that email. Replace YOUR_TOKEN with your API Key and run:
+2. Now we will use the INSERT ENDPOINT to grab that email. Replace `YourAPIKeyHere` with your API Key and run in your terminal:
 
 ```bash
-curl -L "https://api.mailinator.com/api/v2/domains/private/inboxes/first/messages/latest?token=e066bc4e4e8b41aca529d6134dd317d9"
+curl -L "https://api.mailinator.com/api/v2/domains/private/inboxes/first?limit=1&token=YourAPIKeyHere"
 ```
 
-3. If you sent an email to first@yourprivatedomain.testinator Check your response!
+3. If you sent an email to `first@<YourPrivateDomain>.testinator.com` Check your response!
 
-
-
-
-
-----
-
-:::tip 
-Mailinator Authenticator is specifically designed to test the functionality of 2FA codes.
-:::
-
-:::info
-This is information
-
-:::
-
-:::warning
-This is a warning
-:::
-
-:::danger
-Some content is more dangerous than others
-:::
 
 <details>
-  <summary>It is also possible to use [JSDoc type annotations](https://www.typescriptlang.org/docs/handbook/jsdoc-supported-types.html) within a `.js` file:</summary>
+  <summary>Troubleshooting</summary>
 
-By default, the Docusaurus TypeScript config does not type-check JavaScript files.
-
-The `// @ts-check` comment ensures the config file is properly type-checked when running `npx tsc`.
-
-```js title="docusaurus.config.js"
-// highlight-next-line
-// @ts-check
-
-// highlight-next-line
-/** @type {import('@docusaurus/types').Config} */
-const config = {
-  tagline: 'Dinosaurs are cool',
-  favicon: 'img/favicon.ico',
-
-  /* Your site config here */
-
-  presets: [
-    [
-      '@docusaurus/preset-classic',
-      // highlight-next-line
-      /** @type {import('@docusaurus/preset-classic').Options} */
-      (
-        {
-          /* Your preset config here */
-        }
-      ),
-    ],
-  ],
-  themeConfig:
-    // highlight-next-line
-    /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
-    (
-      {
-        /* Your theme config here */
-      }
-    ),
-};
-
-export default config;
-```
-
+  1. Make sure you replaced `YourPrivateDomain` with your actual Private Domain
+  2. If you changed the inbox in the sendto, make sure you update it in the curl request as well. For example we are using `first`, but if you used a different inbox like `fred` you'll need to update the url such as `/domains/private/inboxes/{changehere}`
+  3. Make sure you replace `YourAPIKeyHere` with your API Key
 </details>
+
+## ✅ Reading the Output
+
+## ✅ Getting Email links
