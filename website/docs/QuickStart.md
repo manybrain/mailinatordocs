@@ -20,7 +20,7 @@ We're using **curl** to demonstrate these requests. You can copy+paste it into y
 :::
 
 
-## ✅ Getting Your API Key
+## Getting Your API Key
 
 Before we begin, you'll need you API Key (or API token) from your account. To get it:
 
@@ -30,12 +30,12 @@ Before we begin, you'll need you API Key (or API token) from your account. To ge
 
 Don't have an account? [Signup for a free one](https://www.mailinator.com/v4/public/inboxes.jsp?trialshow=true).
 
-### Scenario:
+### Scenario
 
 Once an email arrives to our inbox, we can use the API to get all it's details.
 
 
-## ✅ Getting the Latest Message
+## Getting the Latest Message
 
 1. Since Mailinator is [receive-only](./core/MessageDelivery.md#mailinator-is-receive-only), you'll need to send an email from your personal account to one of your mailinator inboxes. Include a simple url in the body of the message by copying and pasting this:
 
@@ -63,6 +63,6 @@ curl -L "https://api.mailinator.com/api/v2/domains/private/inboxes/first?limit=1
   3. Make sure you replace `YourAPIKeyHere` with your API Key
 </details>
 
-## ✅ Reading the Output
+## Reading the Output
 
-## ✅ Getting Email links
+## Getting Email links

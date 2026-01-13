@@ -63,8 +63,8 @@ const config = {
       {
         redirects: [
           {
-            from: '/',
-            to: '/docs/intro',
+            from: '/docs',
+            to: '/documentation/docs/intro',
           },
         ],
       },
@@ -108,18 +108,16 @@ const config = {
         },
         items: [
           {
-            type: 'docSidebar',
-            sidebarId: 'tutorialSidebar',
+            type: 'doc',
             position: 'left',
             label: 'Quickstart',
-            to: '/docs/quickstart',
+            docId: 'quickstart',
           },
           {
-            type: 'docSidebar',
-            sidebarId: 'tutorialSidebar',
+            type: 'doc',
             position: 'left',
             label: 'Docs',
-            to: '/docs/intro',
+            docId: 'intro',
           },
           {
             label: 'API',
@@ -128,32 +126,36 @@ const config = {
             type: 'docSidebar',
           },
           {
-          href: xUrl,
-          position: 'right',
-          className: 'icon-link icon-link-mask icon-link-twitter',
-          'aria-label': 'X',
-          target: '_blank',
-          label: 'X',
+            label: 'Home',
+            position: 'left',
+            href: 'https://www.mailinator.com/',
           },
           {
-          href: repoUrl,
-          position: 'right',
-          className: 'icon-link icon-link-mask icon-link-github',
-          'aria-label': 'GitHub repository',
-          target: '_blank',
-          label: 'GitHub',
-          },
-          {
-            href: youtubeUrl,
-            target: '_blank',
-            label: 'YouTube',
+            type: 'dropdown',
+            label: 'Community',
             position: 'right',
-          },
-          {
-            href: linkedInUrl,
-            target: '_blank',
-            label: 'LinkedIn',
-            position: 'right',
+            items: [
+              {
+                label: 'X',
+                href: xUrl,
+                target: '_blank',
+              },
+              {
+                label: 'YouTube',
+                href: youtubeUrl,
+                target: '_blank',
+              },
+              {
+                label: 'LinkedIn',
+                href: linkedInUrl,
+                target: '_blank',
+              },
+              {
+                label: 'GitHub',
+                href: repoUrl,
+                target: '_blank',
+              }
+            ],
           }
           // {
           //   type: 'docsVersionDropdown'
