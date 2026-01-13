@@ -35,7 +35,7 @@ const sidebars = {
         type: 'generated-index',
         description: 'Start here to get up and running with Mailinator.',
       },
-      items: ['install','intro','gettingaround','sso']
+      items: ['intro','install','gettingaround','sso']
     },
     {
       type: 'category',
