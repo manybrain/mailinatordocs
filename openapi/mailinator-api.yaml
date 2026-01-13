@@ -1,13 +1,11 @@
 openapi: 3.0.3
 info:
   title: Mailinator API
+  x-sidebar-label: Authentication
   description: >-
     OpenAPI 3 definition for the Mailinator API reference. The specification captures the documented message,
     stats, domain, and rule endpoints exposed under api.mailinator.com.
   version: "2025-12-23"
-  contact:
-    name: Mailinator
-    url: https://www.mailinator.com/
 servers:
   - url: https://api.mailinator.com
     description: Production server
