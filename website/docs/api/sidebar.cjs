@@ -3,7 +3,13 @@ const sidebar = {
   apisidebar: [
     {
       type: "doc",
+      id: "api/intro",
+      label: "Introduction"
+    },
+    {
+      type: "doc",
       id: "api/mailinator-api",
+      label: "Authentication"
     },
     {
       type: "category",
