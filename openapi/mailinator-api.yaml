@@ -1,13 +1,11 @@
 openapi: 3.0.3
 info:
   title: Mailinator API
+  x-sidebar-label: Authentication
   description: >-
     OpenAPI 3 definition for the Mailinator API reference. The specification captures the documented message,
     stats, domain, and rule endpoints exposed under api.mailinator.com.
   version: "2025-12-23"
-  contact:
-    name: Mailinator
-    url: https://www.mailinator.com/
 servers:
   - url: https://api.mailinator.com
     description: Production server
@@ -111,7 +109,7 @@ paths:
       tags:
         - Messages
       operationId: deleteInboxMessages
-      summary: Delete all messages for a specific inbox
+      summary: Delete all messages for an inbox
       description: >-
         Deletes every message for the targeted inbox. Only private
         domains are supported.
@@ -125,6 +123,34 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DeleteResponse'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+  /api/v2/domains/{domain}/inboxes/{inbox}/messages:
+    post:
+      tags:
+        - Messages
+      operationId: postMessage
+      summary: Create a message for an inbox
+      description: >-
+        Posts a JSON-formatted message into the specified private inbox. The
+        payload should follow the documented email-like structure to render in
+        the Mailinator web interface.
+      parameters:
+        - $ref: '#/components/parameters/DomainParam'
+        - $ref: '#/components/parameters/InboxParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MessageToPost'
+      responses:
+        "200":
+          description: Message accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PostMessageResponse'
         default:
           $ref: '#/components/responses/ErrorResponse'
   /api/v2/domains/{domain}/inboxes/{inbox}/messages/{messageId}:
@@ -174,68 +200,6 @@ paths:
       parameters:
         - $ref: '#/components/parameters/DomainParam'
         - $ref: '#/components/parameters/MessageIdParam'
-        - $ref: '#/components/parameters/DeleteOnFetchParam'
-      responses:
-        "200":
-          description: Message retrieved
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/MessageDetail'
-        default:
-          $ref: '#/components/responses/ErrorResponse'
-  /api/v2/domains/{domain}/inboxes/{inbox}/messages/latest:
-    get:
-      tags:
-        - Messages
-      operationId: getLatestInboxMessages
-      summary: Get the latest messages from an inbox
-      description: >-
-        Returns the five most recent messages for the specified inbox. The
-        documented wildcard endpoint (`messages/*`) is represented here as a
-        `messages/latest` alias for OpenAPI compatibility.
-      parameters:
-        - $ref: '#/components/parameters/DomainParam'
-        - $ref: '#/components/parameters/InboxParam'
-      responses:
-        "200":
-          description: Latest messages retrieved
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/InboxMessagesResponse'
-        default:
-          $ref: '#/components/responses/ErrorResponse'
-  /api/v2/domains/{domain}/messages/latest:
-    get:
-      tags:
-        - Messages
-      operationId: getLatestDomainMessages
-      summary: Get the latest messages from a domain
-      description: >-
-        Returns the five most recent messages for the domain. The documented
-        wildcard endpoint (`messages/*`) is represented here as a
-        `messages/latest` alias for OpenAPI compatibility.
-      parameters:
-        - $ref: '#/components/parameters/DomainParam'
-      responses:
-        "200":
-          description: Latest messages retrieved
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/InboxMessagesResponse'
-        default:
-          $ref: '#/components/responses/ErrorResponse'
-  /api/v2/domains/{domain}/inboxes/{inbox}/messages:
-    get:
-      tags:
-        - Messages
-      operationId: getInboxMessages
-      summary: Get all messages from an inbox
-      parameters:
-        - $ref: '#/components/parameters/DomainParam'
-        - $ref: '#/components/parameters/InboxParam'
         - $ref: '#/components/parameters/DeleteOnFetchParam'
       responses:
         "200":
@@ -403,7 +367,7 @@ paths:
       tags:
         - Messages
       operationId: getMessageSmtpLog
-      summary: Get SMTP log entries for a message
+      summary: Get SMTP log entries for a message from a domain
       parameters:
         - $ref: '#/components/parameters/DomainParam'
         - $ref: '#/components/parameters/MessageIdParam'
@@ -421,7 +385,7 @@ paths:
       tags:
         - Messages
       operationId: getInboxMessageRaw
-      summary: Get the raw RFC 822 payload from an inbox
+      summary: Get raw RFC 822 payload for a message from an inbox
       parameters:
         - $ref: '#/components/parameters/DomainParam'
         - $ref: '#/components/parameters/InboxParam'
@@ -440,7 +404,7 @@ paths:
       tags:
         - Messages
       operationId: getMessageRaw
-      summary: Get the raw RFC 822 payload for a message
+      summary: Get raw RFC 822 payload for a message from a domain
       parameters:
         - $ref: '#/components/parameters/DomainParam'
         - $ref: '#/components/parameters/MessageIdParam'
@@ -451,34 +415,6 @@ paths:
             text/plain:
               schema:
                 type: string
-        default:
-          $ref: '#/components/responses/ErrorResponse'
-
-    post:
-      tags:
-        - Delivery
-      operationId: postMessage
-      summary: Create a message for an inbox
-      description: >-
-        Posts a JSON-formatted message into the specified private inbox. The
-        payload should follow the documented email-like structure to render in
-        the Mailinator web interface.
-      parameters:
-        - $ref: '#/components/parameters/DomainParam'
-        - $ref: '#/components/parameters/MessageIdParam'
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/MessageToPost'
-      responses:
-        "200":
-          description: Message accepted
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/PostMessageResponse'
         default:
           $ref: '#/components/responses/ErrorResponse'
   /api/v2/team/stats:
@@ -541,32 +477,12 @@ paths:
                 $ref: '#/components/schemas/DomainsResponse'
         default:
           $ref: '#/components/responses/ErrorResponse'
-    post:
-      tags:
-        - Domains
-      operationId: createDomain
-      summary: Create a private domain
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/CreateDomainRequest'
-      responses:
-        "200":
-          description: Domain created
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/StatusResponse'
-        default:
-          $ref: '#/components/responses/ErrorResponse'
   /api/v2/domains/{domain_name}:
     get:
       tags:
         - Domains
       operationId: getDomain
-      summary: Get a private domain
+      summary: Get private domain details
       parameters:
         - $ref: '#/components/parameters/DomainNameParam'
       responses:
@@ -576,97 +492,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Domain'
-        default:
-          $ref: '#/components/responses/ErrorResponse'
-    delete:
-      tags:
-        - Domains
-      operationId: deleteDomain
-      summary: Delete a private domain
-      parameters:
-        - $ref: '#/components/parameters/DomainNameParam'
-      responses:
-        "200":
-          description: Domain deleted
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/StatusResponse'
-        default:
-          $ref: '#/components/responses/ErrorResponse'
-  /api/v2/domains/{domain_name}/rules:
-    get:
-      tags:
-        - Rules
-      operationId: listRules
-      summary: Get a list of rules for a domain
-      parameters:
-        - $ref: '#/components/parameters/DomainNameParam'
-      responses:
-        "200":
-          description: Rules retrieved
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/RulesResponse'
-        default:
-          $ref: '#/components/responses/ErrorResponse'
-    post:
-      tags:
-        - Rules
-      operationId: createRule
-      summary: Create a routing rule
-      parameters:
-        - $ref: '#/components/parameters/DomainNameParam'
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/RuleCreateRequest'
-      responses:
-        "200":
-          description: Rule created
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Rule'
-        default:
-          $ref: '#/components/responses/ErrorResponse'
-  /api/v2/domains/{domain_name}/rules/{ruleId}:
-    get:
-      tags:
-        - Rules
-      operationId: getRule
-      summary: Get a routing rule
-      parameters:
-        - $ref: '#/components/parameters/DomainNameParam'
-        - $ref: '#/components/parameters/RuleIdParam'
-      responses:
-        "200":
-          description: Rule retrieved
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Rule'
-        default:
-          $ref: '#/components/responses/ErrorResponse'
-    put:
-      tags:
-        - Rules
-      operationId: updateRuleState
-      summary: Enable or disable a routing rule
-      parameters:
-        - $ref: '#/components/parameters/DomainNameParam'
-        - $ref: '#/components/parameters/RuleIdParam'
-        - $ref: '#/components/parameters/RuleActionParam'
-      responses:
-        "200":
-          description: Rule state updated
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/StatusResponse'
         default:
           $ref: '#/components/responses/ErrorResponse'
   /api/v2/domains/{domain}/stream:
@@ -723,7 +548,7 @@ paths:
       tags:
         - Authenticator
       operationId: getInstantTOTPCode
-      summary: Get a TOTP code based on a secret key
+      summary: Get instant TOTP code based on a secret key
       description: >-
         Generates a Time-based One-Time Password (TOTP) code using the provided
         secret key. The generated code can be used for two-factor authentication (2FA)
@@ -753,8 +578,7 @@ paths:
       tags:
         - Authenticator
       operationId: getStoredAuthenticatorCode
-      summary: Get a TOTP code based on a stored authenticator ID found in Web Interface
-      description: >-
+      summary: Get instant TOTP code based on a stored authenticator ID
         Generates a Time-based One-Time Password (TOTP) code using an already saved authenticator. The generated code can be used for two-factor authentication (2FA)
         during login or other secure operations. authenticator_id is case sensitive.
       parameters:
@@ -922,23 +746,6 @@ components:
       description: Private domain name assigned to the team.
       schema:
         type: string
-    RuleIdParam:
-      name: ruleId
-      in: path
-      required: true
-      description: Unique rule identifier or rule name.
-      schema:
-        type: string
-    RuleActionParam:
-      name: action
-      in: query
-      required: true
-      description: Rule state transition to apply.
-      schema:
-        type: string
-        enum:
-          - enable
-          - disable
     ThrottleIntervalParam:
       name: throttleInterval
       in: query
@@ -1216,31 +1023,6 @@ components:
             $ref: '#/components/schemas/Rule'
         verified:
           type: boolean
-    CreateDomainRequest:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Desired domain name or subdomain.
-      required:
-        - name
-      additionalProperties: false
-    StatusResponse:
-      type: object
-      properties:
-        status:
-          type: string
-      required:
-        - status
-      additionalProperties: true
-    RulesResponse:
-      type: object
-      properties:
-        rules:
-          type: array
-          items:
-            $ref: '#/components/schemas/Rule'
-      additionalProperties: true
     RuleCreateRequest:
       type: object
       properties:

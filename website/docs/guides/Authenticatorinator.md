@@ -15,4 +15,4 @@ Mailinator Authenticator (affectionately known as "Authenticatorinator") is desi
 
 ![Authenticatorinator](https://www.mailinator.com/wp-content/uploads/2023/06/Authenticator-Clip.png)
 
-Authenticator is also via our [API](/docs/api). In fact our API will return the next 5 codes generate by the authenticator.&#x20;
+Authenticator is also via our [API](../api/). In fact our API will return the next 5 codes generate by the authenticator.&#x20;

@@ -25,13 +25,17 @@ const sidebars = {
 
   tutorialSidebar: [
     {
+      type: 'doc',
+      id: 'quickstart'
+    },
+    {
       type: 'category',
       label: 'Getting Started',
       link: {
         type: 'generated-index',
         description: 'Start here to get up and running with Mailinator.',
       },
-      items: ['intro','gettingaround','sso']
+      items: ['intro','install','gettingaround','sso']
     },
     {
       type: 'category',
