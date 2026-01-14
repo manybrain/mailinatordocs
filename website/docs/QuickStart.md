@@ -16,7 +16,7 @@ This quick tutorial will guide you through:
 Let's begin 🚀
 
 :::info
-We're using **curl** to demonstrate these requests. You can copy+paste it into your Terminal (macOS/Linux) or Command Prompt (Windows) to follow along.
+We're using **curl** to demonstrate these requests. You can copy + paste it into your Terminal (macOS/Linux) or Command Prompt (Windows) to follow along.
 :::
 
 ### Scenario
@@ -81,7 +81,9 @@ Locate the `id` field. This is the unique identifier for that specific message. 
 
 ## 4. Getting Email links
 
-Now we will use the Get Links endpoint. This is the "magic" step for testers because it parses the email for you and extracts all URLs into a clean list.
+Now we will use the Get Links endpoint. This is the "magic" step because it parses the email for you and extracts all URLs into a list.
+
+**Step C: Get the links from the email**
 
 Replace `{MSG_ID}` with the ID you copied above.
 
@@ -100,14 +102,26 @@ curl -L "https://api.mailinator.com/api/v2/domains/private/inboxes/first/message
 ```
 
 
-Mailinator returns a simple array of links. (The formatting is valid JSON but the extra slahes can be removed using a JSON parser). You can now take that URL and pass it to your automation tool (like Selenium or Playwright) to complete your test!
+Mailinator returns a simple array of links. (Note: the formatting is valid JSON and the extra slahes can be removed using a JSON parser if needed). 
+
+### Endless possibilities
+
+In less than 5 minutes you've learned how to retreive an email with one API call and pull the links from it with a second API call. Together, these two calls took less than a second in response time.
+
+**Now imagine the possiblities** in automating email workflows! 
+
+- Need to confirm a purchase confirmation has the right order number, text, images, links, etc? Easy! 
+- Need to test the signup flow for a new user, but never did it because grabbing that confirmation email was too difficult? Not anymore.
+- Or you simply want to confirm that every email generated from your system is correctly sent? Done!
+
 
 
 <details>
   <summary>Questions + Troubleshooting</summary>
 
   1. Since Mailinator is [receive-only](./core/MessageDelivery.md#mailinator-is-receive-only) our demonstration has you sending the email.
-  1. Make sure you replaced `YourPrivateDomain` with your actual Private Domain
-  2. If you changed the inbox in the sendto, make sure you update it in the curl request as well. For example we are using `first`, but if you used a different inbox like `fred` you'll need to update the url such as `/domains/private/inboxes/{changehere}`
-  3. Make sure you replace `YourAPIKeyHere` with your API Key
+  2. Make sure you replaced `YourPrivateDomain` with your actual Private Domain
+  3. If you changed the inbox in the sendto, make sure you update it in the curl request as well. For example we are using `first`, but if you used a different inbox like `fred` you'll need to update the url such as `/domains/private/inboxes/{changehere}`
+  4. Make sure you replace `YourAPIKeyHere` with your API Key
+  5. Make sure you replace `{MSG_ID}` with the ID of the message. It looks like `first-1768340314-09630157217903`. No quotes necessary.
 </details>
