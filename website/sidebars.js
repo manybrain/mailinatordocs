@@ -53,7 +53,7 @@ const sidebars = {
         type: 'generated-index',
         description: 'Learn essential tips to make the most of Mailinator.',
       },
-      items: ['guides/authenticatorinator','guides/goodinboxnames']
+      items: ['guides/authenticatorinator','guides/goodinboxnames','guides/inject-message']
     },
     {
       type: 'category',
