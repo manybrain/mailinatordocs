@@ -6,7 +6,7 @@ title: Private Mailbox
 
 # Private Mailbox
 
-Most customers use a [Private Mailbox](https://www.mailinator.com/v4/public/inboxes.jsp?trialshow=true) due to it's combination of security and API access. In addition Private Mailboxes have several advantages over Public:&#x20;
+Most customers use a [Private Mailbox](https://www.mailinator.com/v4/public/inboxes.jsp?vfpshow=true) due to it's combination of security and API access. In addition Private Mailboxes have several advantages over Public:&#x20;
 
 1. **Private Domains**. Subscribers receive one or more Private Domains which provide a private version of Mailinator. That is, you control all inboxes for a given domain (i.e. you can use a Domain you provide or the system will provide one for you). You may view all such inboxes in one "super inbox" which lists every email coming into the domain in realtime.&#x20;
 2. **API Access**. Subscribers gain API access to messages within the Mailinator system. They may use the API to access all email in their **Private Domain(s)** and to the **Public Mailinator** system.

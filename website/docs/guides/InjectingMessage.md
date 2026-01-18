@@ -1,40 +1,46 @@
 ---
 id: inject-message
-title: How to Inject a Message into your Inbox
+title: Inject a Message
 ---
 
 # How to Inject a Message into your Inbox
 
-You can inject messages into your Private Mailinator inbox (any of them) programmatically using our API. 
+You can inject a message into any Private Mailinator inbox, programmatically using our API, in order to test it. 
 
-From Google:
 
-You can inject messages into Mailinator, especially private ones, programmatically using HTTP POST requests with its API or by setting up webhooks, allowing you to send JSON or email-like payloads directly to a specified inbox for testing email workflows, OTPs, or receipts, integrating with tools like Zapier or Postman. For basic public testing, you can often just send an email to anything@mailinator.com, but for automated testing, subscriptions offer private domains, API keys, and more control. 
+### Methods for Injecting Messages
 
-Methods for Injecting Messages
+In general, there are 3 ways to get a message into a Mailinator inbox: 
 
-1. HTTP POST (API): The most common method for automation.
-Private Domains: Use your API token and target a specific private inbox (e.g., your-inbox@your-private-domain.com).
-Payload: Send JSON data or format it like an email (From, Subject, Text) for UI display.
-Tools: Easily done with clients like mailinator-go-client or through Postman.
-2. Webhooks: Set up third-party services (like Twilio, Zapier) or your own systems to send HTTP POSTs to Mailinator.
-3. Email (Standard/SMTP): Send emails to any address on a Mailinator domain (e.g., testuser@mailinator.com). 
+1. SMTP: Send an email to your Mailinator address! (You probably already guessed this one!)
+2. [Webhooks](../webhooks/Webhooks.md): If your application can send a webhook or you use a third-party service like Twilio or Zapier. Mailinator can receive it. 
+3. HTTP POST: Also known as "injecting" a message. You can take any JSON payload and simply load it into your Mailinator account using our API and an HTTP POST request. 
 
-Steps to Inject via HTTP POST (Example using API)
-1. Get Your API Token: Find it in your Mailinator Team settings.
-2. Identify Your Target: Choose a private domain (e.g., mytest.com) and an inbox (e.g., signup-test).
-3. Construct the Request:
-Body (JSON):
-```json
-{
-  "to": "your-inbox@your-private-domain.com",
-  "from": "sender@example.com",
-  "subject": "API Test Email",
-  "text": "This is the body of the injected message."
-}
+## How to Inject a message (HTTP POST)
+
+Follow these steps to create a message using the Mailinator API.
+
+1. Get [Your API Token](../GettingAround.md)
+
+First, locate your API token in your account settings. Then, identify your target domain and inbox to construct your request.
+
+2. Construct the Request:
+
+Second, use the following curl command. Include your API token, domain (like private) and inbox in the URL:
+
+```bash
+curl -L -X POST "https://api.mailinator.com/api/v2/domains/{{domain}}/inboxes/{{inbox}}/messages?token=YourAPIKeyHere" \
+     -H "Content-Type: application/json" \
+     -d '{
+          "from": "sender@example.com",
+          "subject": "API Test Email",
+          "text": "This is the body of the injected message."
+        }'
 ```
+3. Send!
 
-Common Use Cases
-1. Testing email verification in signup flows.
-2. Validating one-time password (OTP) delivery.
-3. Verifying automated email receipts. 
+Once you execute the command, the message will appear in your inbox instantly.
+
+## Tutorial Video
+
+<iframe width="100%" height="315" src="https://www.youtube.com/embed/0FBIxcewodY" title="Inject a Message into your Inbox" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
