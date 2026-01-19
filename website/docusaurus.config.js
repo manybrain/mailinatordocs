@@ -66,12 +66,8 @@ const config = {
       {
         redirects: [
           {
-            to: '/documentation/docs/intro',
+            to: '/docs/intro',
             from: '/docs',
-          },
-          {
-            to: '/documentation/docs/intro',
-            from: '/docs/index.html',
           },
         ],
       },
