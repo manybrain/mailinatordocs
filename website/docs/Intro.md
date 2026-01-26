@@ -1,7 +1,6 @@
 ---
 id: intro
 title: Why Mailinator?
-sidebar_position: 1
 ---
 
 # Why Mailinator?

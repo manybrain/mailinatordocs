@@ -1,15 +1,26 @@
 ---
-id: inject-webhook
-title: When to inject a message vs use a Webhook
+id: injectVSwebhook
+title: Injection vs Webhook
 ---
 
-# When to inject a message vs use a Webhook
+## When to Inject a Message vs use a Webhook
 
-From Google:
+Mailinator offers a lot of solutions for automated testing, but choosing between [Injecting a Message](InjectingMessage.md) and Webhooks (Incoming) usually boils down to whether you are simulating an external sender or controlling the data flow yourself.
 
-Injecting a message (often via a dedicated API call like Slack's chat.postMessage) offers more control, functionality, and security (e.g., updating messages, specific channels, complex interactions) than a standard webhook, which is simpler, event-driven, and resource-efficient for just "firing and forgetting" notifications (e.g., alerts) but lacks complex features and has security considerations due to publicly exposed URLs. Use APIs (injection) for complex, stateful integrations; use webhooks for simple, real-time event notifications
+### Webhooks:
+Webhooks are the "open door" of Mailinator. You use these when you want to receive data from a third-party service (like Stripe, GitHub, or your own app’s outbound mailer).
 
-Me:
+* **Public Access**: Anyone with the URL can send data to it. No authentication is required to send the message. (Note: You do need a [Webhook token](../webhooks/Webhooks.md))
+* **The "Real World" Test**: This is the best way to test how your system interacts with external services in a production-like environment.
+* Format: Typically receives standard HTTP POST requests.
 
-1. Typically you inject a message using a private system. Where you can hide your API Key.
-2. Webhooks are more public and don't risk any security problems.
+### Injecting a Message:
+You use the Mailinator API to manually push a message into an inbox. [Learn more](InjectingMessage.md).
+
+* **Secure & Private**: Requires your API Key. This should only be done from your backend code or secure CI/CD environment—never from a client-side script where the key could be leaked.
+* **Granular Control**: Unlike a webhook, which just takes what it’s given, Injection allows you to define the sender, the subject, and the body (HTML or Text) exactly as you need it for a specific test case.
+* **Speed**: Since you aren't waiting on a third-party mail server to "eventually" send the email, injection is near-instantaneous for high-speed testing.
+
+:::tip
+We recommend using Webhooks to test if your application is correctly sending notifications. If you want to test inbox logic and don't want to wait for a real email to travel from your system to ours, inject it. 
+:::

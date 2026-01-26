@@ -5,7 +5,7 @@ title: Inject a Message
 
 # How to Inject a Message into your Inbox
 
-You can inject a message into any Private Mailinator inbox, programmatically using our API, in order to test it. 
+You can inject a message into any Private Mailinator inbox, programmatically, using our API. 
 
 
 ### Methods for Injecting Messages
