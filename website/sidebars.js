@@ -53,7 +53,8 @@ const sidebars = {
         type: 'generated-index',
         description: 'Learn essential tips to make the most of Mailinator.',
       },
-      items: ['guides/authenticatorinator','guides/goodinboxnames','guides/inject-message']
+      items: ['guides/authenticatorinator','guides/goodinboxnames','guides/inject-message', 'guides/injectVSwebhook'
+      ]
     },
     {
       type: 'category',
@@ -71,7 +72,16 @@ const sidebars = {
         type: 'generated-index',
         description: 'Learn how to use webhooks to automate your email testing workflows.',
       },
-      items: ['webhooks/webhooks','webhooks/twiliowebhooks']
+      items: ['webhooks/webhooks','webhooks/twiliowebhooks','webhooks/webhook4sms']
+    },
+    {
+      type: 'category',
+      label: 'Troubleshooting',
+      link: {
+        type: 'generated-index',
+        description: 'Find solutions to common issues and get help with Mailinator.',
+      },
+      items: ['troubleshooting/commonissues']
     }
   ],
   apiSidebar: [],
