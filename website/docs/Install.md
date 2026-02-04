@@ -5,7 +5,7 @@ title: Install Mailinator
 
 # Installing Mailinator
 
-Mailinator has a powerful [API](./api/), that you can use with your choice of language and tool. Having said this, we provide several official [SDKs](./sdks/sdks.md) which you can install.
+Mailinator has a powerful [API](./api/), that you can use with your choice of language and tool. Having said this, we provide several official [SDKs](./sdks/Overview.md) which you can install.
 
 ## SDK install commands
 
@@ -53,4 +53,4 @@ Add the dependency to your build file (replace `VERSION` with the latest release
 </dependency>
 ```
 
-Learn more about our official [SDKs](./sdks/sdks.md).
+Learn more about our official [SDKs](./sdks/Overview.md).
