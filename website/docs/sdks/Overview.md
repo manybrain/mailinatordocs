@@ -1,6 +1,6 @@
 ---
-id: sdk
-title: SDK
+id: overview
+title: Overview
 ---
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

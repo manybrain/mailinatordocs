@@ -1,4 +1,4 @@
-import {themes as prismThemes} from 'prism-react-renderer';
+import { themes as prismThemes } from 'prism-react-renderer';
 const organizationName = 'manybrain'
 const projectName = 'mailinatordocs'
 const repoUrl = `https://github.com/${organizationName}/${projectName}`
@@ -34,6 +34,7 @@ const config = {
     defaultLocale: 'en',
     locales: ['en'],
   },
+  trailingSlash: true, // creates folder structure like /docs/quickstart/index.html so cloudflare won't 403.
 
   presets: [
     [
@@ -98,8 +99,8 @@ const config = {
       docs: {
         sidebar: {
           hideable: true,
+        },
       },
-    },
       colorMode: {
         respectPrefersColorScheme: true,
       },
