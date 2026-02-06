@@ -32,6 +32,8 @@ Our API and Product documentation are using Docusaurus. To find out more about h
 
 The OpenAPI (Swagger) specification is **THE** single source of truth for the API docs. Any changes (bugs, updates, etc.) should be made directly to the specification. Once that is done, new API docs can be generated. 
 
+See [AI_INSTRUCTIONS.md](AI_INSTRUCTIONS.md) for guidance on how documentation should relate to the OpenAPI spec.
+
 ### Test your updates
 
 After making an update to the specification, run the following linter to make sure you didn't introduce any errors. (Warnings are ok). Introducing errors might cause the API documentation to break.
