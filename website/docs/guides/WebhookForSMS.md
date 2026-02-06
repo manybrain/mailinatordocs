@@ -1,9 +1,9 @@
 ---
 id: webhook4sms
-title: Webhooks for SMS Testing
+title: SMS Testing with Webhooks
 ---
 
-# Using Webhooks for SMS Testing
+# Testing SMS with Webhooks
 
 Mailinator’s SMS testing platform lets your team receive, store, and analyze text messages in real time — all within a single dashboard. This is essential for testing "human-in-the-loop" workflows like One-Time Passwords (OTP) and Two-Factor Authentication (2FA).
 
@@ -21,7 +21,7 @@ However, as your testing scales, two challenges often arise:
 
 If you need to test your system’s logic (like code generation, expiration, or database matching) without the overhead of a carrier, you can simulate the SMS using a Webhook.
 
-* **How it works**: Instead of your system sending a request to a telecom provider (like [Twilio](./TwilioWebhooks.md) or Vonage), you divert that request directly to a Mailinator Webhook.
+* **How it works**: Instead of your system sending a request to a telecom provider (like [Twilio](/documentation/docs/features/twiliowebhooks) or Vonage), you divert that request directly to a Mailinator Webhook.
 
 * **The Result**: The message appears in your Mailinator Inbox instantly, exactly as if it were an SMS, but it never touches a telecom network.
 

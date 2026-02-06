@@ -6,18 +6,18 @@ title: Why Mailinator?
 # Why Mailinator?
 
 :::tip
-Explore our product guides and [API documentation](./api/) to learn how to quickly test email with Mailinator.
+Explore our product guides and [API documentation](/documentation/docs/api/) to learn how to quickly test email with Mailinator.
 :::
 
 ## Mailinator
 
 Whereas most email systems are built around the concept of "account/inbox ownership", Mailinator is an email system built around "entire domain-inbox ownership". This allows companies to have instant access to millions of email addresses for system and automation testing of their software.
 
-Learn more about [Private Mailbox](./core/privatemailbox).
+Learn more about [Private Mailbox](/documentation/docs/core/privatemailbox/).
 
 Mailinator also provides a "public" domain for personal use where all email addresses (@mailinator.com) are completely public and usable by anyone.
 
-Learn more about [Public Mailbox](./core/publicmailbox).
+Learn more about [Public Mailbox](/documentation/docs/core/publicmailbox/).
 
 ## Email and SMS Workflow Testing
 
@@ -25,4 +25,4 @@ Developers and Testing teams can automatically test their Email and SMS workflow
 
 Whether you do test using an API tool like Postman, or a write code in a framework like Selenium, Cypress, Playwright, or Puppeteer - Mailinator closes the loop on email and SMS workflow testing.
 
-Learn more about [our API](./api) or start a free trial. 
+Learn more about [our API](/documentation/docs/api/) or start a free trial. 

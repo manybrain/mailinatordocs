@@ -48,4 +48,4 @@ Mailinator provides [several official SDKs](https://github.com/manybrain). Pick 
 
 <br></br>
 
-API Authentication details can be found within the [API reference](../api/).
+API Authentication details can be found within the [API reference](/documentation/docs/api/).

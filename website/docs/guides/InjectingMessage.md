@@ -13,14 +13,14 @@ You can inject a message into any Private Mailinator inbox, programmatically, us
 In general, there are 3 ways to get a message into a Mailinator inbox: 
 
 1. SMTP: Send an email to your Mailinator address! (You probably already guessed this one!)
-2. [Webhooks](../webhooks/Webhooks.md): If your application can send a webhook or you use a third-party service like Twilio or Zapier. Mailinator can receive it. 
+2. [Webhooks](/documentation/docs/features/webhooks/): If your application can send a webhook or you use a third-party service like Twilio or Zapier. Mailinator can receive it. 
 3. HTTP POST: Also known as "injecting" a message. You can take any JSON payload and simply load it into your Mailinator account using our API and an HTTP POST request. 
 
 ## How to Inject a message (HTTP POST)
 
 Follow these steps to create a message using the Mailinator API.
 
-1. Get [Your API Token](../GettingAround.md)
+1. Get [Your API Token](/documentation/docs/gettingaround)
 
 First, locate your API token in your account settings. Then, identify your target domain and inbox to construct your request.
 

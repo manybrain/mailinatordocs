@@ -25,17 +25,13 @@ const sidebars = {
 
   tutorialSidebar: [
     {
-      type: 'doc',
-      id: 'quickstart'
-    },
-    {
       type: 'category',
       label: 'Getting Started',
       link: {
         type: 'generated-index',
         description: 'Start here to get up and running with Mailinator.',
       },
-      items: ['intro','install','gettingaround','sso']
+      items: ['intro','quickstart','install','gettingaround']
     },
     {
       type: 'category',
@@ -48,31 +44,30 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'Guides',
+      label: 'Features',
       link: {
         type: 'generated-index',
-        description: 'Learn essential tips to make the most of Mailinator.',
+        description: 'Learn about how Mailinator can help automate your email testing workflows.',
       },
-      items: ['guides/authenticatorinator','guides/goodinboxnames','guides/inject-message', 'guides/injectVSwebhook'
-      ]
+      items: ['features/authenticatorinator','features/sso','features/webhooks','features/twiliowebhooks']
     },
     {
       type: 'category',
-      label: 'SDKs',
+      label: 'Guides',
+      link: {
+        type: 'generated-index',
+        description: 'Learn the essentials to make the most of Mailinator.',
+      },
+      items: ['guides/goodinboxnames','guides/inject-message', 'guides/injectVSwebhook','guides/webhook4sms']
+    },
+    {
+      type: 'category',
+      label: 'Working with SDKs',
       link: {
         type: 'generated-index',
         description: 'Use our SDKs to integrate Mailinator into your applications quickly.',
       },
       items: ['sdks/overview']
-    },
-    {
-      type: 'category',
-      label: 'Webhooks',
-      link: {
-        type: 'generated-index',
-        description: 'Learn how to use webhooks to automate your email testing workflows.',
-      },
-      items: ['webhooks/webhooks','webhooks/twiliowebhooks','webhooks/webhook4sms']
     },
     {
       type: 'category',
