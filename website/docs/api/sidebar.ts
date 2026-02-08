@@ -5,12 +5,17 @@ const sidebar: SidebarsConfig = {
     {
       type: "doc",
       id: "api/intro",
-      label: "Introduction"
+      label: "Overview"
     },
     {
       type: "doc",
       id: "api/mailinator-api",
       label: "Authentication"
+    },
+    {
+      type: "doc",
+      id: "api/tools",
+      label: "Developer Tools"
     },
     {
       type: "category",
