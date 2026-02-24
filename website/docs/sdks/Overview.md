@@ -26,6 +26,8 @@ Mailinator provides [several official SDKs](https://github.com/manybrain). Pick 
   </TabItem>
   <TabItem value="javascript">
     [Mailinator JavaScript SDK](https://github.com/manybrain/mailinator-javascript-client)  
+    Docs: [JavaScript SDK usage](./JavaScript.md)  
+    Docs: [TypeScript SDK usage](./TypeScript.md)  
     Code example: [api-examples/javascript.ts](https://github.com/manybrain/mailinatordocs/blob/main/api-examples/javascript.ts)
   </TabItem>
   <TabItem value="csharp">

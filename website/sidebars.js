@@ -67,7 +67,7 @@ const sidebars = {
         type: 'generated-index',
         description: 'Use our SDKs to integrate Mailinator into your applications quickly.',
       },
-      items: ['sdks/overview']
+      items: ['sdks/overview', 'sdks/javascript-sdk', 'sdks/typescript-sdk']
     },
     {
       type: 'category',

@@ -70,6 +70,36 @@ const sidebar = {
         },
         {
           type: "doc",
+          id: "api/get-message-summary",
+          label: "Get a summary for a message from a domain",
+          className: "api-method get",
+        },
+        {
+          type: "doc",
+          id: "api/get-message-text",
+          label: "Get text content for a message from a domain",
+          className: "api-method get",
+        },
+        {
+          type: "doc",
+          id: "api/get-message-text-plain",
+          label: "Get text/plain content for a message from a domain",
+          className: "api-method get",
+        },
+        {
+          type: "doc",
+          id: "api/get-message-text-html",
+          label: "Get text/html content for a message from a domain",
+          className: "api-method get",
+        },
+        {
+          type: "doc",
+          id: "api/get-message-headers",
+          label: "Get SMTP headers for a message from a domain",
+          className: "api-method get",
+        },
+        {
+          type: "doc",
           id: "api/get-inbox-message-smtp-log",
           label: "Get SMTP log entries for a message from an inbox",
           className: "api-method get",

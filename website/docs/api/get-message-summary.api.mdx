@@ -1,0 +1,72 @@
+---
+id: get-message-summary
+title: "Get a summary for a message from a domain"
+description: "Returns a summary of the message without body content."
+sidebar_label: "Get a summary for a message from a domain"
+hide_title: true
+hide_table_of_contents: true
+api: eJy1Vt1v2zYQ/1eIe1oBxs7cbQ96M7CgC4ZiWZo8DEEw0+LJYiuRDHny4gr634ejPuwkarEG65OtO97xd1+/YwukdhGyO3iPMaodRriX4DwGRcbZSw0Z7JAG5YemrlU4gASNMQ/G8xnI4BqpCTYKJWJ/QrhCUImi7u3EP4ZK15DYOn0QubOElhYgwaugaiQMDKEFq2qEDLSrlbEgwbBzr6gECQEfGhNQQ0ahwecIfk0mIubO40LcRhQb32wrk2+k2Phg9opwI4ULjNFjbgqTi0Eu+vsE3y5UjGZnUQtyKQJCVTPSmJdYK8haoINnkJGCsTvoOjnhHqK91N8E/daahwbFe2UqYxW5MGXNaLRkCoPh6wju+YronY0YWb86P+efp9cMJZwqFJCCwT0y2KEibKS8r0yeir/8GNmyfXmz237EnLh+gVuFTH+v0TPoJMSmPz6nK4Krv6gomqqaVZKbFxsuw6QwlnCHASQULtSKetEvPyVMmDur499q52Ys+ID5POerSz1L8USlQlA8EoawjnPl6SQorQ2nVFVXJxnru4EMVXgs0DhjXTLUWKimopflvAjBBTGW/f+rYSRFzVwYcmzvWR0ynO+RlRTn9Rhm12elRirdQE2JRaiEDJbKm+V+tezHOS7b/k+3HIDHZTtNaLeME5dFDPuRgZpQQQYlkY/Zkh0u6mkuF7mrX1DfVXC6yflD9H6AxzFi3gRDh+Rz7c2N+4T2N1QaA2R398wZo/TPBsMhCU/sPnC1+oI8tz5m2Jvf8TBSTdmr5chF64ZKF8zn1AVzqPdG48RwYn11KYivEcYm6RN70XtfiItHVfsKM7F5os/EX64JN6jq9dVlQrtZcFc8i/EL0B+SdkKeYHwLYhWTdJO+NiK5E9NmWTBFg7FFP+jjsB3Zdn11CRIez6LRuFXhrFJbrIYMMv/m8yn8w6NlDG+FxsLY1MiicCFheepeBCwwoM1xIW5KnBZQn9tceWoC9kFolzc1WkI9bgEpeCSjHLaUFMpqEZoKBVrtnbEUBT56F1GLxmoM4mXX8vrgFu+Rr85XP5/9uDpbvU105iLVKnHEUIB3SCebvEg7c1xJTMtCiWlDP8lJeySh1z8JhhYhfKSlr/iWTvZj2Q6Dfsf9wxGtGEA/7CAhm0CN887C0508jvy9hNJFYk9tu1URb0PVdSx+GIdRwl4Fo7bcLHctaBP5v4asUFV8vsJP4/7helj2b8R3f5PMpmocMcsjtVdVw18g4RMejk8rJqBXxfRfHyuvgHasVHffyZHQOPu9fp3n6OnE8sWaYwadVsO7ixvoun8BtTHKXA==
+sidebar_class_name: "get api-method"
+info_path: docs/api/mailinator-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Get a summary for a message from a domain"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/api/v2/domains/{domain}/messages/{messageId}/summary"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Returns a summary of the message without body content.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"domain","in":"path","required":true,"description":"Domain scope. Use `public`, `private`, or a specific private domain name assigned to the team.","schema":{"type":"string"}},{"name":"messageId","in":"path","required":true,"description":"Unique Mailinator message identifier.","schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Message summary retrieved","content":{"application/json":{"schema":{"type":"object","properties":{"id":{"type":"string"},"subject":{"type":"string"},"from":{"type":"string"},"fromfull":{"type":"string"},"to":{"type":"string"},"time":{"type":"integer","format":"int64"},"seconds_ago":{"type":"integer"},"size":{"type":"integer"},"parts":{"type":"array","items":{"type":"string"}}},"additionalProperties":true,"title":"MessageSummary"}}}},"default":{"description":"Error response","content":{"application/json":{"schema":{"type":"object","properties":{"status":{"type":"string"},"message":{"type":"string"},"errors":{"type":"array","items":{"type":"string"}}},"additionalProperties":true,"title":"ErrorResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      
