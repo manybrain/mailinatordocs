@@ -210,6 +210,102 @@ paths:
                 $ref: '#/components/schemas/MessageDetail'
         default:
           $ref: '#/components/responses/ErrorResponse'
+  /api/v2/domains/{domain}/messages/{messageId}/summary:
+    get:
+      tags:
+        - Messages
+      operationId: getMessageSummary
+      summary: Get a message summary from a domain
+      description: Returns message metadata without message body content.
+      parameters:
+        - $ref: '#/components/parameters/DomainParam'
+        - $ref: '#/components/parameters/MessageIdParam'
+      responses:
+        "200":
+          description: Message summary retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MessageSummary'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+  /api/v2/domains/{domain}/messages/{messageId}/text:
+    get:
+      tags:
+        - Messages
+      operationId: getMessageText
+      summary: Get only the text from a message
+      description: >-
+        Returns the extracted “real text” content of the message without HTML,
+        formatting, or images.
+      parameters:
+        - $ref: '#/components/parameters/DomainParam'
+        - $ref: '#/components/parameters/MessageIdParam'
+      responses:
+        "200":
+          description: Message text retrieved
+          content:
+            text/plain:
+              schema:
+                type: string
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+  /api/v2/domains/{domain}/messages/{messageId}/textplain:
+    get:
+      tags:
+        - Messages
+      operationId: getMessageTextPlain
+      summary: Get the extracted plain text part from a message
+      parameters:
+        - $ref: '#/components/parameters/DomainParam'
+        - $ref: '#/components/parameters/MessageIdParam'
+      responses:
+        "200":
+          description: text/plain content retrieved
+          content:
+            text/plain:
+              schema:
+                type: string
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+  /api/v2/domains/{domain}/messages/{messageId}/texthtml:
+    get:
+      tags:
+        - Messages
+      operationId: getMessageTextHtml
+      summary: Get the text/html part of a message
+      parameters:
+        - $ref: '#/components/parameters/DomainParam'
+        - $ref: '#/components/parameters/MessageIdParam'
+      responses:
+        "200":
+          description: text/html content retrieved
+          content:
+            text/html:
+              schema:
+                type: string
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+  /api/v2/domains/{domain}/messages/{messageId}/headers:
+    get:
+      tags:
+        - Messages
+      operationId: getMessageHeaders
+      summary: Get SMTP headers for a message
+      parameters:
+        - $ref: '#/components/parameters/DomainParam'
+        - $ref: '#/components/parameters/MessageIdParam'
+      responses:
+        "200":
+          description: Message headers retrieved
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: string
+        default:
+          $ref: '#/components/responses/ErrorResponse'
   /api/v2/domains/{domain}/inboxes/{inbox}/messages/{messageId}/attachments:
     get:
       tags:
