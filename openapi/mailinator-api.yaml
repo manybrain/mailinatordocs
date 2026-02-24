@@ -215,8 +215,8 @@ paths:
       tags:
         - Messages
       operationId: getMessageSummary
-      summary: Get a message summary from a domain
-      description: Returns message metadata without message body content.
+      summary: Get a summary for a message from a domain
+      description: Returns a summary of the message without body content.
       parameters:
         - $ref: '#/components/parameters/DomainParam'
         - $ref: '#/components/parameters/MessageIdParam'
@@ -234,7 +234,7 @@ paths:
       tags:
         - Messages
       operationId: getMessageText
-      summary: Get only the text from a message
+      summary: Get text content for a message from a domain
       description: >-
         Returns the extracted “real text” content of the message without HTML,
         formatting, or images.
@@ -255,7 +255,7 @@ paths:
       tags:
         - Messages
       operationId: getMessageTextPlain
-      summary: Get the extracted plain text part from a message
+      summary: Get text/plain content for a message from a domain
       parameters:
         - $ref: '#/components/parameters/DomainParam'
         - $ref: '#/components/parameters/MessageIdParam'
@@ -273,7 +273,7 @@ paths:
       tags:
         - Messages
       operationId: getMessageTextHtml
-      summary: Get the text/html part of a message
+      summary: Get text/html content for a message from a domain
       parameters:
         - $ref: '#/components/parameters/DomainParam'
         - $ref: '#/components/parameters/MessageIdParam'
@@ -291,7 +291,7 @@ paths:
       tags:
         - Messages
       operationId: getMessageHeaders
-      summary: Get SMTP headers for a message
+      summary: Get SMTP headers for a message from a domain
       parameters:
         - $ref: '#/components/parameters/DomainParam'
         - $ref: '#/components/parameters/MessageIdParam'
