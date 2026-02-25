@@ -1,0 +1,72 @@
+---
+id: get-message-text-plain
+title: "Get text/plain content for a message from a domain"
+description: "Get text/plain content for a message from a domain"
+sidebar_label: "Get text/plain content for a message from a domain"
+hide_title: true
+hide_table_of_contents: true
+api: eJy1Vk2P20YM/SsETy0wa20d9KKbgS5SowjqpruHYmHAYw1tTyLNzM5Qhl1D/72gPmx54xTJAjlZGorkI/kexydkvU2YP+MHSklvKeFSoQ8UNVvv5gZz3BL3xkc68KLU1qHCoKOuiCmK9wmdrghzNL7qzNZhjkHzDhVGeqltJIM5x5oUGkpFtEESYI6/tS6QCh9oAk+JYBXqdWmLlYJViHavmVYKfAQNKVBhN7aA/hy6fCDZQadkt44MsAfeETDpaoIKU7GjSmN+Qj4GAZk4WrfFplFn3FVX4Nx8F/QnZ19qgg/altZp9hH6OGANObYbS/H/ESwlRQreJUpin97fy891GqYDZ0H6DoV3TI4hEkdLexK8/Vkb/vylvH09bdNIKRtdl/xluocYfYQB1nUCHUJpi5Yb2afkb6fx609UsHAkCpPYdrUl1lynG3DU0P6bNhI4Yzcdoz7KnJiqW+GkOG2MFZC6XIwwdDNkyyUNdX4cymyGroxb8Z4YbnR/05JxmPUm+go0nKlfEe98L5xWKLzDHDMdbLafZt1nKTt1D03Wh0nZ6UzCJpOkoVdaorgfZFbHEnPcMYeUZxJyUp3JNyl8ha8rWERv6kJeoIuDwrlERR0tH9uYs2Af/Wdyv5M2FDF/XoowhtO/aorH9nDk97eMvJvqa+/LmIL9g46DnnadWQ2Cm9W889H+21LpFuq9NXSWMcwWc2BJA9a1p1f+0EWfwMNBV6GkHFZX9hz+8XV8JF3NFvMW7Woi1HpV41egv7TWM/IWxvcg1qk9XbVvK2jDwXl9TmQPoXUb3wLouTlaKbPFHBUe7pI1tNbxrtRrKvsOypIpbrfwz0BOMLwDQxvrWjW0xBUs1+Eh0oYiuYIm8Lij85btelvowHWkrgjji7oix2QG+isQXSfV81+BdgZiXRKQM8FbxwnoEHwiA7UzFOFL1sqOFIp3yKf301/vfpneTd/JjIJPXOl20fQDeJMor5pzHvRoXzaqE9epF+yzsEBwTcW7Ey0qzEcy7y9Mhfn4+rhId6lw5xNLrNNprRM9xbJp5PhlEJXCvY5Wr2Xozyc0NsmzwXyjy/T6vjldNjH+9LG/mX6GH36B3mzWIBUn0tjrspY3VPiZjpf/AbJI3lTTt96sb4B2mVWzbNSwmKT7nX1WFBR45DkOvhyt9/cPj9g0/wFImjoU
+sidebar_class_name: "get api-method"
+info_path: docs/api/mailinator-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Get text/plain content for a message from a domain"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/api/v2/domains/{domain}/messages/{messageId}/textplain"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Get text/plain content for a message from a domain
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"domain","in":"path","required":true,"description":"Domain scope. Use `public`, `private`, or a specific private domain name assigned to the team.","schema":{"type":"string"}},{"name":"messageId","in":"path","required":true,"description":"Unique Mailinator message identifier.","schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"text/plain content retrieved","content":{"text/plain":{"schema":{"type":"string"}}}},"default":{"description":"Error response","content":{"application/json":{"schema":{"type":"object","properties":{"status":{"type":"string"},"message":{"type":"string"},"errors":{"type":"array","items":{"type":"string"}}},"additionalProperties":true,"title":"ErrorResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

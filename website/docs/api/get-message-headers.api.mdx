@@ -1,0 +1,72 @@
+---
+id: get-message-headers
+title: "Get SMTP headers for a message from a domain"
+description: "Get SMTP headers for a message from a domain"
+sidebar_label: "Get SMTP headers for a message from a domain"
+hide_title: true
+hide_table_of_contents: true
+api: eJy1Vk1vIzcM/SsETy2g2KkXvczNQIOtUQR1d51DEQSwPKIz2p2RFIljxB3Mfy84X7ETb9Fs0ZNHH6Qe+fhIN8j6MWF2j7eUkn6khA8KfaCo2Xq3MpjhI/Fw+CtpQzGhwqCjrohlkd036HRFmKHxlbYOFVqHGQbNBSqM9FTbSAYzjjUpNJTyaIO4xwx/6Uwg5T7QDO4SwTbUu9LmWwXbEO1BM20V+AgaUqDc7m0Owz7074G8Djol++jIAHvggoBJVzNUmPKCKo1Zg3wMAjJxtO4R21ZNuKs+vJV5F/Q7Z59qglttS+s0+wiDH7CGHNu9pfjPCB7kiRS8S5TkfHF9LT/nzwy5h6JPPkTiaOlAAjb3jsmxGOkQSpt3rM2/JLFs3r7sd18oZ1SojbFyVZfrKGyz7RG8Rti2rYS913XJb6HdxOgjjCH8FzzhDEVizfUlPGqk6uIZCZxTMx2jPgqnTNXl8L6ViZ5vtlzSGOenMcwpK6ep+EgMn28364mmfVeyY0Xso69AwySQirjwg7g6OXGBGc51sPPDYt5fS/Om/2jng5s0b6ZSbefFpMZE8TBKsY4lZlgwh5TNxeGsmgp0lvsKXyNfR2/qXBbQ+0Gpy0R5HS0fO5/LYDf+K7le/5jdP4h4xt0/aorHbvPE7rNQ3bP52vqFnmB/o+OouT4cVKMolzUXPtq/uhK6hPpgDU1Sh+V6BSzPgHXd7pn9QMsMbp51FUrKYHt2nsGfvo4b0tVyverQbmdSUq9i/Ab0p+50Qt7BeA9inbrdbbfaQucOphY7k16F1u19B2CoyZO2s1yvUOHzVbKGdjpelXpH5ZBBaUT55RT+HsgJhg9gaG9dp4KubAXLuXuItKdILqcZbAqaOnGf21wHriP1QRif1xU5JjMWvwLRc1JD9SvQzkCsSwJyJnjrOAE9B5/IQO0MRXhbtdJHpcR75Ivrxc9XPy2uFh+Eo+ATV7prMAMB7xTjWVomipmeeR5KudKqXlbNINR74V8QLcS6FysqzE7kPQxThdnpcBkl+6Cw8InFU9PsdKK7WLatbD+NYlJ40NHqnZB936CxSb4NZntdptezqHnpvPjDp2Fq/Qj/+3C9mKpRIk4kcdBlLStU+JWOL/8RpIF8V0z/dup+B7QXptqHdiSry35/vsxzCnxi+WbGSQecWvvHmw227d8aWUPi
+sidebar_class_name: "get api-method"
+info_path: docs/api/mailinator-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Get SMTP headers for a message from a domain"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/api/v2/domains/{domain}/messages/{messageId}/headers"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Get SMTP headers for a message from a domain
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"domain","in":"path","required":true,"description":"Domain scope. Use `public`, `private`, or a specific private domain name assigned to the team.","schema":{"type":"string"}},{"name":"messageId","in":"path","required":true,"description":"Unique Mailinator message identifier.","schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Message headers retrieved","content":{"application/json":{"schema":{"type":"object","additionalProperties":{"type":"string"}}}}},"default":{"description":"Error response","content":{"application/json":{"schema":{"type":"object","properties":{"status":{"type":"string"},"message":{"type":"string"},"errors":{"type":"array","items":{"type":"string"}}},"additionalProperties":true,"title":"ErrorResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      
