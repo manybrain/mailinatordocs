@@ -1,9 +1,9 @@
 ---
 id: featureUpdateSmtpLogsForEveryEmail
-title: Feature Update: SMTP Logs for Every Email
+title: SMTP Logs for Every Email
 ---
 
-# Feature Update: SMTP Logs for Every Email
+# SMTP Logs for Every Email
 
 
 The Mailinator system is quite useful for this as the custom SMTP server is built to store emails (in both the Public and Private systems) the moment that the email fully arrives.
