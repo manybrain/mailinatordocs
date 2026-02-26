@@ -5,7 +5,7 @@ info:
   description: >-
     OpenAPI 3 definition for the Mailinator API reference. The specification captures the documented message,
     stats, domain, and rule endpoints exposed under api.mailinator.com.
-  version: "2026-02-24"
+  version: "2026-02-26"
 servers:
   - url: https://api.mailinator.com
     description: Production server
@@ -237,7 +237,9 @@ paths:
       summary: Get text content for a message from a domain
       description: >-
         Returns the extracted “real text” content of the message without HTML,
-        formatting, or images.
+        formatting, or images. The response is a JSON object with a `text`
+        field, and the value may include quoted-printable encoded sequences
+        (for example `=C2=A0`) depending on source message encoding.
       parameters:
         - $ref: '#/components/parameters/DomainParam'
         - $ref: '#/components/parameters/MessageIdParam'
@@ -245,9 +247,14 @@ paths:
         "200":
           description: Message text retrieved
           content:
-            text/plain:
+            application/json:
               schema:
-                type: string
+                $ref: '#/components/schemas/MessageTextResponse'
+              examples:
+                encodedText:
+                  summary: Message text with preserved transfer-encoding artifacts
+                  value:
+                    text: "*|MC_PREVIEW_TEXT|* =C2=A0 ..."
         default:
           $ref: '#/components/responses/ErrorResponse'
   /api/v2/domains/{domain}/messages/{messageId}/textplain:
@@ -301,9 +308,30 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                additionalProperties:
-                  type: string
+                $ref: '#/components/schemas/MessageHeadersResponse'
+              examples:
+                smtpHeaders:
+                  summary: Message headers including authentication and routing fields
+                  value:
+                    mime-version: "1.0 (Mac OS X Mail 16.0 \\(3864.400.21\\))"
+                    date: "Thu, 26 Feb 2026 12:51:44 -0800"
+                    return-path: "<ckenst@gmail.com>"
+                    subject: "Another"
+                    from: "Chris Kenst <ckenst@gmail.com>"
+                    to: "smartbear@kenst.testinator.com"
+                    message-id: "<B20F63A3-9729-4732-83B1-5BB1BF1CF67E@gmail.com>"
+                    content-type: "text/plain; charset=us-ascii"
+                    content-transfer-encoding: "7bit"
+                    x-mailer: "Apple Mail (2.3864.400.21)"
+                    received:
+                      - "from mail-dl1-f48.google.com([74.125.82.48]) by mail.mailinator.com with SMTP"
+                      - "by mail-dl1-f48.google.com with SMTP id ..."
+                      - "from smtpclient.apple (...) by smtp.gmail.com with ESMTPSA"
+                    dkim-signature: "v=1; a=rsa-sha256; c=relaxed/relaxed; ..."
+                    x-google-dkim-signature: "v=1; a=rsa-sha256; c=relaxed/relaxed; ..."
+                    x-gm-gg: "ATEYQ..."
+                    x-gm-message-state: "AOJu0..."
+                    x-received: "by 2002:a05:7022:4581:b0:11d:c22e:a131 with SMTP id ..."
         default:
           $ref: '#/components/responses/ErrorResponse'
   /api/v2/domains/{domain}/inboxes/{inbox}/messages/{messageId}/attachments:
@@ -611,7 +639,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/InboxMessagesResponse'
+                $ref: '#/components/schemas/MessageSummary'
         default:
           $ref: '#/components/responses/ErrorResponse'
   /api/v2/domains/{domain}/stream/{inbox}:
@@ -636,7 +664,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/InboxMessagesResponse'
+                $ref: '#/components/schemas/MessageSummary'
         "500":
           $ref: '#/components/responses/ErrorResponse'
   /api/v2/totp/{totp_secret_key}:
@@ -675,6 +703,7 @@ paths:
         - Authenticator
       operationId: getStoredAuthenticatorCode
       summary: Get instant TOTP code based on a stored authenticator ID
+      description: >-
         Generates a Time-based One-Time Password (TOTP) code using an already saved authenticator. The generated code can be used for two-factor authentication (2FA)
         during login or other secure operations. authenticator_id is case sensitive.
       parameters:
@@ -864,7 +893,7 @@ components:
       properties:
         domain:
           type: string
-        inbox:
+        to:
           type: string
           nullable: true
         msgs:
@@ -884,7 +913,7 @@ components:
           type: string
         from:
           type: string
-        fromfull:
+        origfrom:
           type: string
         to:
           type: string
@@ -893,12 +922,8 @@ components:
           format: int64
         seconds_ago:
           type: integer
-        size:
-          type: integer
-        parts:
-          type: array
-          items:
-            type: string
+        source:
+          type: string
       additionalProperties: true
     MessageDetail:
       allOf:
@@ -906,28 +931,74 @@ components:
         - type: object
           properties:
             headers:
-              type: object
-              additionalProperties:
-                type: string
-            text:
+              $ref: '#/components/schemas/MessageHeadersResponse'
+            fromfull:
               type: string
-            html:
-              type: string
-            raw_subject:
-              type: string
-            attachments:
-              type: array
-              items:
-                $ref: '#/components/schemas/Attachment'
-            links:
-              type: array
-              items:
-                type: string
-            smtp_log:
+            parts:
               type: array
               items:
                 type: object
                 additionalProperties: true
+            ip:
+              type: string
+            ttl:
+              type: integer
+      additionalProperties: true
+    MessageHeadersResponse:
+      type: object
+      description: SMTP and transport headers for a message.
+      properties:
+        mime-version:
+          type: string
+        date:
+          type: string
+        x-gm-gg:
+          type: string
+        return-path:
+          type: string
+        subject:
+          type: string
+        x-google-dkim-signature:
+          type: string
+        received:
+          type: array
+          items:
+            type: string
+          description: Received chain entries in transport order.
+        content-transfer-encoding:
+          type: string
+        x-mailer:
+          type: string
+        x-received:
+          type: string
+        message-id:
+          type: string
+        from:
+          type: string
+        content-type:
+          type: string
+        x-gm-message-state:
+          type: string
+        to:
+          type: string
+        dkim-signature:
+          type: string
+      additionalProperties:
+        oneOf:
+          - type: string
+          - type: array
+            items:
+              type: string
+    MessageTextResponse:
+      type: object
+      properties:
+        text:
+          type: string
+          description: >-
+            Extracted message text. Depending on message encoding, this value
+            can contain quoted-printable artifacts such as `=C2=A0`.
+      required:
+        - text
       additionalProperties: true
     AttachmentListResponse:
       type: object

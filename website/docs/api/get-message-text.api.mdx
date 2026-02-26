@@ -1,11 +1,11 @@
 ---
 id: get-message-text
 title: "Get text content for a message from a domain"
-description: "Returns the extracted “real text” content of the message without HTML, formatting, or images."
+description: "Returns the extracted “real text” content of the message without HTML, formatting, or images. The response is a JSON object with a `text` field, and the value may include quoted-printable encoded sequences (for example `=C2=A0`) depending on source message encoding."
 sidebar_label: "Get text content for a message from a domain"
 hide_title: true
 hide_table_of_contents: true
-api: eJy9VsFu4zYQ/ZUBTy3A2KkXvehmoMFu0AZ1U+dQBAZMiyOLuxLJkCPXriBgP6T9uf2SYijJsRN30V2gPVniiDNvZt68cStIbaPIHsUdxqi2GMVKCucxKDLO3mqRiS3SYFzinoQUGmMejOcPRCbukZpgI1CJgHsKKifU8OnjnwFVBYR7+vTxL8idJbQErkgf1r1D+N1Q6RqCd8u7nyQULtSKyNitBBfA1AxoIqTwKqgaCQNDbYVVNYpMaFcrY4UUhnF4RaWQIuBTYwJqkVFo8CXYH9IViLnzOIGHiLD2zaYy+VrC2gezU4TrFFxB9JibwuQwnEMfDzg6qBjN1qIGcikhQlUz0piXWCuRtYIOnkFGCsZuRdfJI+4h+Vv9RdAfrHlqEO6UqYxV5MKxiEajJVMYDJ9HsOIQ0TsbMbJ9dn3NP+dhhlanxkFACgZ3yEiHDibHuKepr7j4WfuZgF3HSRSqqeh1oJsQXIAR0HkA5X1l8kTB6fvoLodxm/eYMx99YMKS6bOKpKiJF+DIsfAXbchwTq+pENSBO0RYX3LHySmtDYNU1eIEQ989MlThmOf9mGbXV6VGKt0wXInfVIpMTJU3091s2hMtTtv+oZsOwOO0PXKnm1I/jRHDbhyMJlQiEyWRj9mUvU3qI10muatfDe8iON3k/AK9H8EsiZg3wdAh+Zx7s3Qf0L5DpTGI7HHFVB5Pf2kwHNLhyb1fuVV9N17efi6vNz/iYZyAsjfLcUTmDZUumD8SBS6h3hmNx8GD+eIWiMOAsen07D703idws1e1rzCD9Zk9g99cE5ao6vniNqFdT5gSL3L8B+hPyXpEnmB8CWLVS+c6va0huYOj4E1YOYSxhUsABk6diMB8cSuk2F9Fo3GjwlWlNlgNFWRZyC+X8GePljG8AY2FsYnFrL8Jy7l7CFhgQJvjBJYlHnWxr22uPDUB+yS0y5saLS+AgagSeB6jHMRTgrIaQlMhoNXeGUsRcO9dRA2N1RjgNWtZ1ZjiPfLZ9ez7q+9mV7M33CPvItUqCcTQgLdIvXiNK6dIaj6KZRFcDQqOu+OsLO2zCP0ve20g1ImedrIf4nbQhEdmG+c/Y6y9LggpsiP+URr48HSxJHVYSVG6SOymbTcq4kOouo6Pn8a5lWKnglEb5tVjK7SJ/KxFVqgqvlxCp/X55n5YV9/Cf75VL9ZpnEbL07dTVcNvQooPeHj+c8Ba9VU5/dt1+xXQntvUrTo5ah9Xv7fP8xw9ndw8db46WR5vb5ai6/4GJ49rkg==
+api: eJztVttuGzcQ/ZUBn5JgLRkqkIcF8iAkQuK2blxH7gWGEdHLWS2TXZImZ12rioB8SPtz+ZJiyN2VLLlFErRv9YslUhyeOXPmDNeC5DKI/FKcYghyiUFcZcI69JK0NSdK5GKJ1G3O8Y5EJhSGwmvHPxC5OEdqvQlAFQLekZcFoYJPH//wKGsgvKNPH/+EwhpCQ2DL+MMmBYTfNFW2JXg1P/0+g9L6RhJps8zAetANAxrBvELwGJw1AUEHkPDtm9c/gL1+hwXFECBhwTctoNRYqwykUfGeW1m3CI1cgTZF3SqEm9YSqiPntSF5XSOgKaxCBQFvWjQFBnhUWg94JxtXIyyePZ88mx4vHoNCh0ZpswRrINjWF9s8YhBtliORCSe9bJDQM69rYWSDIhfKNlIbkQnNpDlJlciEx5tWe1QiJ9/iPrMv4hEIhXU4gouAsHDtda2LRQYL5/WtJFxEpiQEh4UudQHdOqT7gG8HGYJeGlRANrJCKBtGGooKGynytaCVY5CBvDZLsdlkA+4uwxP1RdAvjL5pEU6lrrWRZP3AlFZoSJca/T8juOIrUs0D70+Oj/nf/Ws6XUaVgUfyGm+RkXZy4xPSuVoXUc7jd4GPrQ+vTVri4nkWP+l0Kcc9BLef7GxQfbODZwQvdgWzr5QMqNKhE2ghTewQrtiBQKUnXcqCAoS2qECGQZMjrtROJS4T4KtMSKU0o5P12U5CqVKkqcYtedzU5x3TYpOJTvgx/6435h0NoW0a6Vf7xMcOdB4D+lsWmZcmlOiP+lS3GYhMxIS33IonH06fvz07n/10Mvv57Xz2y/zDE0jpwWjECfIfM17KtqZDCcy8t36wh3+v9IEkteEBZWZ9Szy4hwxn95j0Xq64dwibh8Jxcp9TrZjntk6JlQapsp1HR+ehSuRiLJ0e307GyQLCeJ0+bMYd8DBeD129GVMy9Vi8zrJaX4tcVEQu5GOONmqGRh4VtjnogDNvVVvwF0hxBPdvwKL1mlYx5tTpuX2P5hVKhV7kl1dsMv3qjy2yri6vds+94VKlauyf3tLr9He46r2pSttZb17Tlirr9e9RAg+hvtUKB0uE6dkJEF8D2sTVe+chRR/BLHVIDot7+zn8als/R9lMz04iWm7QbD/Hv4F+E3cH5BHGlyCWaQIv4rcFxHAwjKLkFNqUNgLoHWBrz9OzE5GJu6OgFV5Lf1TLa6w7Btmwi4cpfO3QMIZvQGGpTVQxj/GI5X548Fii5wmbJno/sRK3hXTUekxJKFu0DZodR82A+zFk3VhLA963cXwrZ7WhAHjnbEAFrVHo4VC1PG9Y4gn55Hjy9Oh4cjR5yjVyNlAjo0F0BXiJlNytf7mUcc72Nl5624CEYarfo2W9NaH/n0f7z6NO/Yxn7Gpmb5Mlx1l3BnbJrcHFmjCxycREJvKB7N7HeHH3fdJPv8oG4jDr9bUMeOHrzYaXb3qT4SnkNacXrUnpwJ+VyEtZh/23zG4xH513s/Yx/OePswd56q3DrLajVIhMvMfV9o3JxvpVOX3uq+0roG3LtLnaZL1RM/tpf1oU6Gjn5MHs5skwzLuXs7nYbP4CJbV6OQ==
 sidebar_class_name: "get api-method"
 info_path: docs/api/mailinator-api
 custom_edit_url: null
@@ -37,7 +37,7 @@ import Translate from "@docusaurus/Translate";
 
 
 
-Returns the extracted “real text” content of the message without HTML, formatting, or images.
+Returns the extracted “real text” content of the message without HTML, formatting, or images. The response is a JSON object with a `text` field, and the value may include quoted-printable encoded sequences (for example `=C2=A0`) depending on source message encoding.
 
 <Heading
   id={"request"}
@@ -63,7 +63,7 @@ Returns the extracted “real text” content of the message without HTML, forma
 <StatusCodes
   id={undefined}
   label={undefined}
-  responses={{"200":{"description":"Message text retrieved","content":{"text/plain":{"schema":{"type":"string"}}}},"default":{"description":"Error response","content":{"application/json":{"schema":{"type":"object","properties":{"status":{"type":"string"},"message":{"type":"string"},"errors":{"type":"array","items":{"type":"string"}}},"additionalProperties":true,"title":"ErrorResponse"}}}}}}
+  responses={{"200":{"description":"Message text retrieved","content":{"application/json":{"schema":{"type":"object","properties":{"text":{"type":"string","description":"Extracted message text. Depending on message encoding, this value can contain quoted-printable artifacts such as `=C2=A0`."}},"required":["text"],"additionalProperties":true,"title":"MessageTextResponse"},"examples":{"encodedText":{"summary":"Message text with preserved transfer-encoding artifacts","value":{"text":"*|MC_PREVIEW_TEXT|* =C2=A0 ..."}}}}}},"default":{"description":"Error response","content":{"application/json":{"schema":{"type":"object","properties":{"status":{"type":"string"},"message":{"type":"string"},"errors":{"type":"array","items":{"type":"string"}}},"additionalProperties":true,"title":"ErrorResponse"}}}}}}
 >
   
 </StatusCodes>
