@@ -270,9 +270,9 @@ paths:
         "200":
           description: text/plain content retrieved
           content:
-            text/plain:
+            application/json:
               schema:
-                type: string
+                $ref: '#/components/schemas/MessageTextPlainResponse'
         default:
           $ref: '#/components/responses/ErrorResponse'
   /api/v2/domains/{domain}/messages/{messageId}/texthtml:
@@ -315,10 +315,7 @@ paths:
                   value:
                     mime-version: "1.0 (Mac OS X Mail 16.0 \\(3864.400.21\\))"
                     date: "Thu, 26 Feb 2026 12:51:44 -0800"
-                    return-path: "<ckenst@gmail.com>"
                     subject: "Another"
-                    from: "Chris Kenst <ckenst@gmail.com>"
-                    to: "smartbear@kenst.testinator.com"
                     message-id: "<B20F63A3-9729-4732-83B1-5BB1BF1CF67E@gmail.com>"
                     content-type: "text/plain; charset=us-ascii"
                     content-transfer-encoding: "7bit"
@@ -518,7 +515,7 @@ paths:
         "200":
           description: Raw message returned
           content:
-            text/plain:
+            data:
               schema:
                 type: string
         default:
@@ -536,7 +533,7 @@ paths:
         "200":
           description: Raw message returned
           content:
-            text/plain:
+            data:
               schema:
                 type: string
         default:
@@ -999,6 +996,14 @@ components:
             can contain quoted-printable artifacts such as `=C2=A0`.
       required:
         - text
+      additionalProperties: true
+    MessageTextPlainResponse:
+      type: object
+      properties:
+        text/plain:
+          type: string
+      required:
+        - text/plain
       additionalProperties: true
     AttachmentListResponse:
       type: object
