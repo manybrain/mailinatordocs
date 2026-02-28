@@ -5,7 +5,7 @@ info:
   description: >-
     OpenAPI 3 definition for the Mailinator API reference. The specification captures the documented message,
     stats, domain, and rule endpoints exposed under api.mailinator.com.
-  version: "2026-02-27"
+  version: "2026-02-28"
 servers:
   - url: https://api.mailinator.com
     description: Production server
@@ -17,12 +17,8 @@ tags:
     description: Message retrieval and mailbox management
   - name: Attachments
     description: Attachment and link retrieval
-  - name: Delivery
-    description: Message injection endpoints
   - name: Domains
     description: Private domain management
-  - name: Rules
-    description: Routing rule management
   - name: Authenticator
     description: 2FA and TOTP 
   - name: Stats
