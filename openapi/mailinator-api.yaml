@@ -5,7 +5,7 @@ info:
   description: >-
     OpenAPI 3 definition for the Mailinator API reference. The specification captures the documented message,
     stats, domain, and rule endpoints exposed under api.mailinator.com.
-  version: "2026-02-27"
+  version: "2026-03-04"
 servers:
   - url: https://api.mailinator.com
     description: Production server
@@ -19,10 +19,10 @@ tags:
     description: Attachment and link retrieval
   - name: Delivery
     description: Message injection endpoints
+  - name: Webhook
+    description: Webhook message injection endpoints
   - name: Domains
     description: Private domain management
-  - name: Rules
-    description: Routing rule management
   - name: Authenticator
     description: 2FA and TOTP 
   - name: Stats
@@ -147,6 +147,71 @@ paths:
       responses:
         "200":
           description: Message accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PostMessageResponse'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+  /api/v2/domains/{domain}/webhook:
+    post:
+      tags:
+        - Webhook
+      operationId: postWebhookMessage
+      summary: Inject a message using a webhook token
+      description: >-
+        Injects a message into a private domain using webhook authentication only.
+        This endpoint supports these forms:
+        - `https://api.mailinator.com/api/v2/domains/{webhook_token}/webhook/`
+      security: []
+      servers:
+        - url: https://api.mailinator.com
+          description: API server
+      parameters:
+        - $ref: '#/components/parameters/WebhookDomainOrTokenParam'
+        - $ref: '#/components/parameters/WebhookTokenQueryParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebhookMessageRequest'
+      responses:
+        "200":
+          description: Webhook message accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PostMessageResponse'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+  /api/v2/domains/{domain}/webhook/{inbox}:
+    post:
+      tags:
+        - Webhook
+      operationId: postWebhookInboxMessage
+      summary: Inject a message for an inbox using a webhook token
+      description: >-
+        Injects a message into a specific inbox using webhook authentication only.
+        This endpoint also supports using:
+        `https://api.mailinator.com/api/v2/domains/{webhook_token}/webhook/{inbox}`.
+      security: []
+      servers:
+        - url: https://api.mailinator.com
+          description: API server (webhook token in path)
+      parameters:
+        - $ref: '#/components/parameters/WebhookDomainOrTokenParam'
+        - $ref: '#/components/parameters/InboxParam'
+        - $ref: '#/components/parameters/WebhookTokenQueryParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebhookMessageRequest'
+      responses:
+        "200":
+          description: Webhook message accepted
           content:
             application/json:
               schema:
@@ -868,6 +933,25 @@ components:
       description: Private domain name assigned to the team.
       schema:
         type: string
+    WebhookDomainOrTokenParam:
+      name: domain
+      in: path
+      required: true
+      description: >-
+        Webhook domain segment. Provide either the `webhook_token` in this path
+        position, or a private domain name when passing the webhook token in
+        `whtoken`.
+      schema:
+        type: string
+    WebhookTokenQueryParam:
+      name: whtoken
+      in: query
+      required: false
+      description: >-
+        Webhook token used with the `api.mailinator.com` form:
+        `/api/v2/domains/{domain}/webhook/?whtoken={webhook_token}`.
+      schema:
+        type: string
     ThrottleIntervalParam:
       name: throttleInterval
       in: query
@@ -1109,6 +1193,27 @@ components:
       required:
         - subject
         - from
+      additionalProperties: true
+    WebhookMessageRequest:
+      type: object
+      description: Message payload accepted by webhook injection endpoints.
+      properties:
+        from:
+          type: string
+        subject:
+          type: string
+        to:
+          type: string
+        text:
+          type: string
+        html:
+          type: string
+        headers:
+          type: object
+          additionalProperties:
+            type: string
+      required:
+        - to
       additionalProperties: true
     PostMessageResponse:
       type: object
