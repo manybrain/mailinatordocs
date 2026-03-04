@@ -10,9 +10,10 @@ Mailinator allows you to HTTP Post or Webhook messages into your Private Domain.
 ```json
 //This command will deliver the message to the "bob" inbox
 
-curl -v -d '{"from":"someplace@xyz.com", "subject":"testing", "text" : "helloworld", "to" : "jack" }'      
--H "Content-Type: application/json"      
--X POST "https://api.mailinator.com/api/v2/domains/<your_webhook_token>/webhook/bob/"
+curl -v -H "Content-Type: application/json" 
+-d '{"from":"someplace@xyz.com","subject":"testing","text":"helloworld","to":"oto"}' 
+"https://www.mailinator.com/api/v2/domains/private/webhook/?whtoken={{token}}"
+
 ```
 
 ### Webhook Token
@@ -26,15 +27,16 @@ Webhooks into your Private System do **NOT** use your regular API Token.
 
 There are several permutations of the Webhook URLS. Say your Private Domain is mypd.com then all of the following urls are identical:
 
-```
-https://www.mailinator.com/api/v2/domains/mypd.com/webhook/?whtoken=<wh-token>
-https://www.mailinator.com/api/v2/domains/private/webhook/?whtoken=<wh-token>
+```html
+https://api.mailinator.com/api/v2/domains/mypd.com/webhook/?whtoken=<wh-token>
+https://api.mailinator.com/api/v2/domains/private/webhook/?whtoken=<wh-token>
+https://api.mailinator.com/api/v2/domains/<wh-token>/webhook/
 ```
 
 The incoming Webhook will arrive in the inbox designated by the "to" field in the incoming JSON payload. If the incoming payload does not contain a "to" field, or you wish to override the incoming destination, you may specify the designation inbox in the url:
 
-```
-https://www.mailinator.com/api/v2/domains/private/webhook/bob?whtoken=<wh-token>
+```html
+https://api.mailinator.com/api/v2/domains/private/webhook/bob?whtoken=<wh-token>
 ```
 
 Incoming Webhooks are delivered to Mailinator inboxes and from that point onward are not notably different than other messages in the system (i.e. emails). You may retrieve such messages via the Web Interface, the API, or the Rule System. See the following documentation on the Message API for more information.

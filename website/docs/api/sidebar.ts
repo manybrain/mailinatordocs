@@ -245,6 +245,24 @@ const sidebar: SidebarsConfig = {
         },
       ],
     },
+        {
+      type: "category",
+      label: "Webhooks",
+      items: [
+        {
+          type: "doc",
+          id: "api/post-webhook-inbox-message",
+          label: "Inject a message into a specific inbox using a webhook token",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "api/post-webhook-message",
+          label: "Inject a message using a webhook token",
+          className: "api-method post",
+        },
+      ],
+    },
   ],
 };
 
