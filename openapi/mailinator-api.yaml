@@ -17,8 +17,6 @@ tags:
     description: Message retrieval and mailbox management
   - name: Attachments
     description: Attachment and link retrieval
-  - name: Delivery
-    description: Message injection endpoints
   - name: Webhook
     description: Webhook message injection endpoints
   - name: Domains
