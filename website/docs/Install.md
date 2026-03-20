@@ -14,7 +14,7 @@ Pick the package manager that matches your stack and run the corresponding insta
 ### JavaScript (Node.js)
 
 ```bash
-npm install mailinator-api
+npm install mailinator-client
 ```
 
 ### Python

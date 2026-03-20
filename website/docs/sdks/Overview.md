@@ -8,43 +8,44 @@ import TabItem from '@theme/TabItem';
 
 # SDKs
 
-Mailinator provides [several official SDKs](https://github.com/manybrain). Pick your preferred language below to jump to the SDK repository and a ready-to-run example:
+Mailinator provides [several official SDKs](https://github.com/manybrain). You can find [installation instructions](/documentation/docs/install/) under Getting Started.
+
+Below is a quick overview. Pick your preferred language below to jump to the SDK repository:
 
 <Tabs
-  defaultValue="java"
+  defaultValue="javascript"
   values={[
-    {label: 'Java', value: 'java'},
     {label: 'JavaScript', value: 'javascript'},
+    {label: 'Java', value: 'java'},
     {label: 'C#', value: 'csharp'},
     {label: 'Go', value: 'go'},
     {label: 'Ruby', value: 'ruby'},
     {label: 'Python', value: 'python'},
   ]}>
-  <TabItem value="java">
-    [Mailinator Java SDK](https://github.com/manybrain/mailinator-java-client)  
-    Code example: [api-examples/java.java](https://github.com/manybrain/mailinatordocs/blob/main/api-examples/java.java)
-  </TabItem>
   <TabItem value="javascript">
-    [Mailinator JavaScript SDK](https://github.com/manybrain/mailinator-javascript-client)  
-    Docs: [JavaScript SDK usage](./JavaScript.md)  
-    Docs: [TypeScript SDK usage](./TypeScript.md)  
-    Code example: [api-examples/javascript.ts](https://github.com/manybrain/mailinatordocs/blob/main/api-examples/javascript.ts)
+    1. [Mailinator JavaScript SDK is installable via npm](https://www.npmjs.com/package/mailinator-client)
+    2. [Github Code](https://github.com/manybrain/mailinator-javascript-client)  
+    3. Read our How to Guide: [How to use the Mailinator JavaScript SDK](/documentation/docs/sdks/javascript-sdk)
+  </TabItem>
+  <TabItem value="java">
+    1. [Mailinator Java SDK is installable via POM](/documentation/docs/install/#java-maven-central)
+    2. [Github Code](https://github.com/manybrain/mailinator-java-client)  
   </TabItem>
   <TabItem value="csharp">
-    [Mailinator C# SDK](https://github.com/manybrain/mailinator-csharp-client)  
-    Code example: [api-examples/csharp.cs](https://github.com/manybrain/mailinatordocs/blob/main/api-examples/csharp.cs)
+    1. [Mailinator C# SDK is installable via NuGet](https://www.nuget.org/packages/MailinatorApiClient)
+    2. [Github Code](https://github.com/manybrain/mailinator-csharp-client)  
   </TabItem>
   <TabItem value="go">
-    [Mailinator Go SDK](https://github.com/manybrain/mailinator-go-client)  
-    Code example: [api-examples/go.go](https://github.com/manybrain/mailinatordocs/blob/main/api-examples/go.go)
+    1. [Mailinator Go SDK is installable via Go Modules](https://pkg.go.dev/github.com/manybrain/mailinator-go-client)
+    2. [Github Code](https://github.com/manybrain/mailinator-go-client)  
   </TabItem>
   <TabItem value="ruby">
-    [Mailinator Ruby SDK](https://github.com/manybrain/mailinator-ruby-client)  
-    Code example: [api-examples/ruby.rb](https://github.com/manybrain/mailinatordocs/blob/main/api-examples/ruby.rb)
+    1. [Mailinator Ruby SDK is installable via gem](https://rubygems.org/gems/mailinator_client)
+    2. [Github Code](https://github.com/manybrain/mailinator-ruby-client)  
   </TabItem>
   <TabItem value="python">
-    [Mailinator Python SDK](https://github.com/manybrain/mailinator-python-client)  
-    Code example: [api-examples/python.py](https://github.com/manybrain/mailinatordocs/blob/main/api-examples/python.py)
+    1. [Mailinator Python SDK is installable via pip](https://pypi.org/project/mailinator-python-client-2)
+    2. [Github Code](https://github.com/manybrain/mailinator-python-client)  
   </TabItem>
 </Tabs>
 

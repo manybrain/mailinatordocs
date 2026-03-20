@@ -49,7 +49,7 @@ const sidebars = {
         type: 'generated-index',
         description: 'Learn about how Mailinator can help automate your email testing workflows.',
       },
-      items: ['features/authenticatorinator','features/sso','features/webhooks','features/twiliowebhooks']
+      items: ['features/authenticatorinator','features/smtp-logs','features/streaming','features/sso','features/webhooks','features/twiliowebhooks']
     },
     {
       type: 'category',
@@ -67,7 +67,7 @@ const sidebars = {
         type: 'generated-index',
         description: 'Use our SDKs to integrate Mailinator into your applications quickly.',
       },
-      items: ['sdks/overview', 'sdks/javascript-sdk', 'sdks/typescript-sdk']
+      items: ['sdks/overview', 'sdks/javascript-sdk', 'sdks/typescript-sdk','sdks/ruby-and-javascript-1.1.0']
     },
     {
       type: 'category',
