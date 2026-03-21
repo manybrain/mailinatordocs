@@ -5,7 +5,7 @@ info:
   description: >-
     OpenAPI 3 definition for the Mailinator API reference. The specification captures the documented message,
     stats, domain, and rule endpoints exposed under api.mailinator.com.
-  version: "2026-03-04"
+  version: "2026-03-20"
 servers:
   - url: https://api.mailinator.com
     description: Production server
@@ -289,7 +289,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/MessageSummary'
+                $ref: '#/components/schemas/MessageSummaryOnly'
         default:
           $ref: '#/components/responses/ErrorResponse'
   /api/v2/domains/{domain}/messages/{messageId}/text:
@@ -312,12 +312,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/MessageTextResponse'
-              examples:
-                encodedText:
-                  summary: Message text with preserved transfer-encoding artifacts
-                  value:
-                    text: "*|MC_PREVIEW_TEXT|* =C2=A0 ..."
+                $ref: '#/components/schemas/MessageTextOnly'
         default:
           $ref: '#/components/responses/ErrorResponse'
   /api/v2/domains/{domain}/messages/{messageId}/textplain:
@@ -335,7 +330,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/MessageTextPlainResponse'
+                $ref: '#/components/schemas/MessageTextPlainOnly'
         default:
           $ref: '#/components/responses/ErrorResponse'
   /api/v2/domains/{domain}/messages/{messageId}/texthtml:
@@ -351,9 +346,9 @@ paths:
         "200":
           description: text/html content retrieved
           content:
-            text/html:
+            application/json:
               schema:
-                type: string
+                $ref: '#/components/schemas/MessageTextHtmlOnly'
         default:
           $ref: '#/components/responses/ErrorResponse'
   /api/v2/domains/{domain}/messages/{messageId}/headers:
@@ -371,27 +366,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/MessageHeadersResponse'
-              examples:
-                smtpHeaders:
-                  summary: Message headers including authentication and routing fields
-                  value:
-                    mime-version: "1.0 (Mac OS X Mail 16.0 \\(3864.400.21\\))"
-                    date: "Thu, 26 Feb 2026 12:51:44 -0800"
-                    subject: "Another"
-                    message-id: "<B20F63A3-9729-4732-83B1-5BB1BF1CF67E@gmail.com>"
-                    content-type: "text/plain; charset=us-ascii"
-                    content-transfer-encoding: "7bit"
-                    x-mailer: "Apple Mail (2.3864.400.21)"
-                    received:
-                      - "from mail-dl1-f48.google.com([74.125.82.48]) by mail.mailinator.com with SMTP"
-                      - "by mail-dl1-f48.google.com with SMTP id ..."
-                      - "from smtpclient.apple (...) by smtp.gmail.com with ESMTPSA"
-                    dkim-signature: "v=1; a=rsa-sha256; c=relaxed/relaxed; ..."
-                    x-google-dkim-signature: "v=1; a=rsa-sha256; c=relaxed/relaxed; ..."
-                    x-gm-gg: "ATEYQ..."
-                    x-gm-message-state: "AOJu0..."
-                    x-received: "by 2002:a05:7022:4581:b0:11d:c22e:a131 with SMTP id ..."
+                $ref: '#/components/schemas/MessageHeadersOnly'
         default:
           $ref: '#/components/responses/ErrorResponse'
   /api/v2/domains/{domain}/inboxes/{inbox}/messages/{messageId}/attachments:
@@ -488,7 +463,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/LinksResponse'
+                $ref: '#/components/schemas/MessageLinksOnly'
         default:
           $ref: '#/components/responses/ErrorResponse'
   /api/v2/domains/{domain}/messages/{messageId}/links:
@@ -506,7 +481,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/LinksResponse'
+                $ref: '#/components/schemas/MessageLinksOnly'
         default:
           $ref: '#/components/responses/ErrorResponse'
   /api/v2/domains/{domain}/messages/{messageId}/linksfull:
@@ -524,7 +499,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/LinksFullResponse'
+                $ref: '#/components/schemas/MessageLinksFullOnly'
         default:
           $ref: '#/components/responses/ErrorResponse'
   /api/v2/domains/{domain}/inboxes/{inbox}/messages/{messageId}/smtplog:
@@ -543,7 +518,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SmtpLogResponse'
+                $ref: '#/components/schemas/MessageSmtpLogOnly'
         default:
           $ref: '#/components/responses/ErrorResponse'
   /api/v2/domains/{domain}/messages/{messageId}/smtplog:
@@ -561,7 +536,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SmtpLogResponse'
+                $ref: '#/components/schemas/MessageSmtpLogOnly'
         default:
           $ref: '#/components/responses/ErrorResponse'
   /api/v2/domains/{domain}/inboxes/{inbox}/messages/{messageId}/raw:
@@ -578,9 +553,9 @@ paths:
         "200":
           description: Raw message returned
           content:
-            data:
+            application/json:
               schema:
-                type: string
+                $ref: '#/components/schemas/MessageRawOnly'
         default:
           $ref: '#/components/responses/ErrorResponse'
   /api/v2/domains/{domain}/messages/{messageId}/raw:
@@ -596,9 +571,9 @@ paths:
         "200":
           description: Raw message returned
           content:
-            data:
+            application/json:
               schema:
-                type: string
+                $ref: '#/components/schemas/MessageRawOnly'
         default:
           $ref: '#/components/responses/ErrorResponse'
   /api/v2/team/stats:
@@ -1004,6 +979,35 @@ components:
         source:
           type: string
       additionalProperties: true
+    MessageSummaryOnly:
+      type: object
+      description: Simplified message summary response wrapper.
+      properties:
+        summary:
+          type: object
+          properties:
+            subject:
+              type: string
+            domain:
+              type: string
+            from:
+              type: string
+            id:
+              type: string
+            to:
+              type: string
+            time:
+              type: integer
+              format: int64
+          required:
+            - subject
+            - domain
+            - from
+            - id
+            - to
+            - time
+      required:
+        - summary
     MessageDetail:
       allOf:
         - $ref: '#/components/schemas/MessageSummary'
@@ -1068,8 +1072,17 @@ components:
           - type: array
             items:
               type: string
-    MessageTextResponse:
+    MessageHeadersOnly:
       type: object
+      description: Simplified message headers response wrapper.
+      properties:
+        headers:
+          $ref: '#/components/schemas/MessageHeadersResponse'
+      required:
+        - headers
+    MessageTextOnly:
+      type: object
+      description: Simplified message text response.
       properties:
         text:
           type: string
@@ -1078,15 +1091,22 @@ components:
             can contain quoted-printable artifacts such as `=C2=A0`.
       required:
         - text
-      additionalProperties: true
-    MessageTextPlainResponse:
+    MessageTextPlainOnly:
       type: object
+      description: Simplified text/plain response.
       properties:
         text/plain:
           type: string
       required:
         - text/plain
-      additionalProperties: true
+    MessageTextHtmlOnly:
+      type: object
+      description: Simplified text/html response.
+      properties:
+        text/html:
+          type: string
+      required:
+        - text/html
     AttachmentListResponse:
       type: object
       properties:
@@ -1110,51 +1130,75 @@ components:
           type: string
           format: uri
       additionalProperties: true
-    LinksResponse:
+    MessageLinksOnly:
       type: object
+      description: Simplified extracted links response.
       properties:
         links:
           type: array
           items:
             type: string
-      additionalProperties: true
-    LinksFullResponse:
+      required:
+        - links
+    MessageLinksFullOnly:
       type: object
+      description: Simplified extracted links metadata response.
       properties:
         links:
           type: array
           items:
-            $ref: '#/components/schemas/LinkDetail'
-      additionalProperties: true
-    LinkDetail:
+            $ref: '#/components/schemas/MessageLinkDetail'
+      required:
+        - links
+    LinksResponse:
+      $ref: '#/components/schemas/MessageLinksOnly'
+    LinksFullResponse:
+      $ref: '#/components/schemas/MessageLinksFullOnly'
+    MessageLinkDetail:
       type: object
       properties:
-        url:
+        link:
           type: string
           format: uri
         text:
           type: string
-        rel:
-          type: string
-        contentType:
-          type: string
+      required:
+        - link
       additionalProperties: true
-    SmtpLogResponse:
+    MessageSmtpLogOnly:
       type: object
+      description: Simplified SMTP log response.
       properties:
         log:
           type: array
           items:
-            type: object
-            properties:
-              timestamp:
-                type: string
-              event:
-                type: string
-              details:
-                type: string
-            additionalProperties: true
+            $ref: '#/components/schemas/MessageSmtpLogEntry'
+      required:
+        - log
+    SmtpLogResponse:
+      $ref: '#/components/schemas/MessageSmtpLogOnly'
+    MessageSmtpLogEntry:
+      type: object
+      properties:
+        log:
+          type: string
+        time:
+          type: string
+        event:
+          type: string
+      required:
+        - log
+        - time
+        - event
       additionalProperties: true
+    MessageRawOnly:
+      type: object
+      description: Simplified raw message response.
+      properties:
+        data:
+          type: string
+      required:
+        - data
     DeleteResponse:
       type: object
       properties:
