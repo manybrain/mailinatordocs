@@ -10,7 +10,9 @@ import TabItem from '@theme/TabItem';
 
 Mailinator provides [several official SDKs](https://github.com/manybrain). You can find [installation instructions](/documentation/docs/install/) under Getting Started.
 
-Use SDKs when you want to integrate Mailinator into automated tests, CI/CD pipelines, developer workflows, or private-domain message checks. For framework-specific examples, see [Test Automation](/documentation/docs/category/test-automation/). For command-line or AI-agent workflows, see [Mailinator CLI](/documentation/docs/ai-agents/mailinator-cli/) and [Mailinator MCP](/documentation/docs/ai-agents/mailinator-mcp/).
+Use SDKs when you want to integrate Mailinator into automated QA, CI/CD pipelines, developer workflows, or private-domain message checks without writing raw HTTP requests. SDKs are useful for retrieving messages, extracting links, reading OTP codes, validating transactional email, cleaning up test inboxes, and building repeatable assertions into your test suite.
+
+For framework-specific examples, see [Test Automation](/documentation/docs/category/test-automation/). For command-line or AI-agent workflows, see [Mailinator CLI](/documentation/docs/ai-agents/mailinator-cli/) and [Mailinator MCP](/documentation/docs/ai-agents/mailinator-mcp/).
 
 Below is a quick overview. Pick your preferred language below to jump to the SDK repository:
 
