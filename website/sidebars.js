@@ -53,6 +53,22 @@ const sidebars = {
     },
     {
       type: 'category',
+      label: 'Test Automation',
+      link: {
+        type: 'generated-index',
+        description: "You can integrate Mailinator into any testing framework or project, regardless of the programming language it's written in.",
+      },
+      items: [
+        'test-automation/cypress',
+        'test-automation/playwright',
+        'test-automation/postman',
+        'test-automation/selenium',
+        'test-automation/vibium',
+        'test-automation/webdriverio',
+      ]
+    },
+    {
+      type: 'category',
       label: 'Guides',
       link: {
         type: 'generated-index',
