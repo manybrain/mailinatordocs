@@ -13,6 +13,8 @@ Mailinator Authenticator is specifically designed to test the functionality of 2
 
 Mailinator Authenticator (affectionately known as "Authenticatorinator") is designed to assist in testing 2FA functionality in applications. It uses the standard TOTP algorithm (just like Authy and Google Authenticator), which generate 2FA codes for personal accounts. Developers and testers can use these codes to simulate the 2FA process in their applications, ensuring that the system works as intended.
 
+Authenticator fits naturally with [test automation](/documentation/docs/category/test-automation/), [AI-agent workflows](/documentation/docs/category/ai-agents/), and [Mailinator Universal IDP](/documentation/docs/features/universal-idp/) when you need to test authentication flows end to end.
+
 ![Authenticatorinator](https://www.mailinator.com/wp-content/uploads/2023/06/Authenticator-Clip.png)
 
 Authenticator is also via our [API](/documentation/docs/api/). In fact our API will return the next 5 codes generate by the authenticator.&#x20;

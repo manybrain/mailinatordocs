@@ -20,6 +20,6 @@ In addition, all emails in the Public Mailbox:
 
 Simply go to the home page and enter an inbox name (i.e. anything you wish up to 50 characters) to check a [particular inbox](https://www.mailinator.com/v4/public/inboxes.jsp).
 
-When you need something more capable and private, or you want to gain access to our [powerful API](/documentation/docs/api/), SDKs, webhooks, SMS testing, Universal IDP public/private modes, CLI, or MCP tooling, Mailinator offers [Private Mailboxes](https://www.mailinator.com/v4/public/inboxes.jsp?trialshow=true) starting $0/month.&#x20;
+When you need something more capable and private, or you want to gain access to our [powerful API](/documentation/docs/api/), [SDKs](/documentation/docs/sdks/overview/), [webhooks](/documentation/docs/features/webhooks/), SMS testing, [Universal IDP](/documentation/docs/features/universal-idp/) public/private modes, [CLI](/documentation/docs/ai-agents/mailinator-cli/), or [MCP](/documentation/docs/ai-agents/mailinator-mcp/) tooling, Mailinator offers [Private Mailboxes](https://www.mailinator.com/v4/public/inboxes.jsp?trialshow=true) starting $0/month.&#x20;
 
 Please see our [plans for additional usage](https://www.mailinator.com/pricing/) or [signup for a free account](https://www.mailinator.com/v4/public/inboxes.jsp?trialshow=true).&#x20;

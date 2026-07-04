@@ -7,7 +7,7 @@ title: Webhooks
 
 Mailinator allows you to HTTP Post or Webhook messages into your Private Domain. This is extremely convenient for testing as now all your test emails, SMS messages, and Webhooks will reside in the same place and are accessible via the same Web Interface, API, and Rule System.
 
-Webhooks are also useful for event-driven automation. Tests, CI/CD jobs, and AI agents can react to incoming email, SMS, or webhook payloads, validate message content, extract links or OTP codes, and continue workflow testing without manually checking an inbox.
+Webhooks are also useful for event-driven automation. Tests, CI/CD jobs, and [AI agents](/documentation/docs/category/ai-agents/) can react to incoming email, SMS, or webhook payloads, validate message content, extract links or OTP codes, and continue workflow testing without manually checking an inbox.
 
 ```json
 //This command will deliver the message to the "bob" inbox
@@ -45,4 +45,4 @@ Incoming Webhooks are delivered to Mailinator inboxes and from that point onward
 
 As normal, Mailinator will list all messages in the Inbox page and via the Inbox API calls. If the incoming JSON payload does not contain a "from" or "subject", then dummy values will be inserted in these fields.
 
-For sensitive or repeatable automation workflows, use webhooks with a Private Domain rather than relying on Public Mailinator inboxes.
+For sensitive or repeatable automation workflows, use webhooks with a [Private Domain](/documentation/docs/core/privatemailbox/) rather than relying on [Public Mailinator inboxes](/documentation/docs/core/publicmailbox/).

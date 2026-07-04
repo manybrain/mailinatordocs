@@ -7,6 +7,8 @@ title: Single Sign On
 
 [Mailinator Enterprise](https://www.mailinator.com/pricing/) subscriptions support Single Sign-On (SSO) using SAML.&#x20;
 
+This page is about using SSO to sign in to your Mailinator team. If you want to use Mailinator as a test OIDC identity provider for your own application, see [Mailinator Universal IDP](/documentation/docs/features/universal-idp/).
+
 
 ## Configuration Overview
 

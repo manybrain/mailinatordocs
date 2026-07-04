@@ -11,9 +11,9 @@ Mailinator can be used through several integration paths depending on what you a
 
 1. **API** - Use the Mailinator API to retrieve messages, inspect content, extract links, read OTP codes, and automate assertions in your tests.
 2. **SDKs** - Use an official SDK when you want typed helpers for common API workflows in your application or test suite.
-3. **CLI** - Use the Mailinator CLI from a terminal, script, CI job, or local development workflow. (link coming soon)
-4. **MCP Server** - Connect AI agents to Mailinator so they can inspect inboxes and complete email-driven workflows. (link coming soon)
-5. **Universal IDP** - Use Mailinator's OIDC identity provider to test SSO login flows in development, staging, and QA environments. (link coming soon)
+3. **[CLI](/documentation/docs/ai-agents/mailinator-cli/)** - Use the Mailinator CLI from a terminal, script, CI job, or local development workflow.
+4. **[MCP Server](/documentation/docs/ai-agents/mailinator-mcp/)** - Connect AI agents to Mailinator so they can inspect inboxes and complete email-driven workflows.
+5. **[Universal IDP](/documentation/docs/features/universal-idp/)** - Use Mailinator's OIDC identity provider to test SSO login flows in development, staging, and QA environments.
 
 ## SDK install commands
 
