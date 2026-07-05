@@ -48,22 +48,19 @@ Get a message from an inbox
 </Heading>
 
 <ParamsDetails
-  parameters={[{"name":"domain","in":"path","required":true,"description":"Domain scope. Use `public`, `private`, or a specific private domain name assigned to the team.","schema":{"type":"string"}},{"name":"inbox","in":"path","required":true,"description":"Inbox identifier. Provide a mailbox name or the team SMS phone number (for SMS retrieval). Use `*` to match inbox prefixes where supported by the endpoint.","schema":{"type":"string"}},{"name":"messageId","in":"path","required":true,"description":"Unique Mailinator message identifier.","schema":{"type":"string"}},{"name":"delete","in":"query","required":false,"description":"Minimum delay before the fetched message is scheduled for deletion (e.g., `1s`, `5m`, `1h`).","schema":{"type":"string"}}]}
+  {...require("./get-inbox-message.ParamsDetails.json")}
 >
   
 </ParamsDetails>
 
 <RequestSchema
-  title={"Body"}
-  body={undefined}
+  {...require("./get-inbox-message.RequestSchema.json")}
 >
   
 </RequestSchema>
 
 <StatusCodes
-  id={undefined}
-  label={undefined}
-  responses={{"200":{"description":"Message retrieved","content":{"application/json":{"schema":{"allOf":[{"type":"object","properties":{"id":{"type":"string"},"subject":{"type":"string"},"from":{"type":"string"},"origfrom":{"type":"string"},"to":{"type":"string"},"time":{"type":"integer","format":"int64"},"seconds_ago":{"type":"integer"},"source":{"type":"string"}},"additionalProperties":true,"title":"MessageSummary"},{"type":"object","properties":{"headers":{"type":"object","description":"SMTP and transport headers for a message.","properties":{"mime-version":{"type":"string"},"date":{"type":"string"},"x-gm-gg":{"type":"string"},"return-path":{"type":"string"},"subject":{"type":"string"},"x-google-dkim-signature":{"type":"string"},"received":{"type":"array","items":{"type":"string"},"description":"Received chain entries in transport order."},"content-transfer-encoding":{"type":"string"},"x-mailer":{"type":"string"},"x-received":{"type":"string"},"message-id":{"type":"string"},"from":{"type":"string"},"content-type":{"type":"string"},"x-gm-message-state":{"type":"string"},"to":{"type":"string"},"dkim-signature":{"type":"string"}},"additionalProperties":{"oneOf":[{"type":"string"},{"type":"array","items":{"type":"string"}}]},"title":"MessageHeadersResponse"},"fromfull":{"type":"string"},"parts":{"type":"array","items":{"type":"object","additionalProperties":true}},"ip":{"type":"string"},"ttl":{"type":"integer"}}}],"additionalProperties":true,"title":"MessageDetail"}}}},"default":{"description":"Error response","content":{"application/json":{"schema":{"type":"object","properties":{"status":{"type":"string"},"message":{"type":"string"},"errors":{"type":"array","items":{"type":"string"}}},"additionalProperties":true,"title":"ErrorResponse"}}}}}}
+  {...require("./get-inbox-message.StatusCodes.json")}
 >
   
 </StatusCodes>

@@ -1,0 +1,1 @@
+{"parameters":[{"name":"authenticator_id","in":"path","required":true,"description":"The unique identifier of the authenticator as found in Web Interface.","schema":{"type":"string"}}]}

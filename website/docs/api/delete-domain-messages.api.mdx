@@ -48,22 +48,19 @@ Deletes every message for the supplied domain.
 </Heading>
 
 <ParamsDetails
-  parameters={[{"name":"domain","in":"path","required":true,"description":"Domain scope. Use `public`, `private`, or a specific private domain name assigned to the team.","schema":{"type":"string"}}]}
+  {...require("./delete-domain-messages.ParamsDetails.json")}
 >
   
 </ParamsDetails>
 
 <RequestSchema
-  title={"Body"}
-  body={undefined}
+  {...require("./delete-domain-messages.RequestSchema.json")}
 >
   
 </RequestSchema>
 
 <StatusCodes
-  id={undefined}
-  label={undefined}
-  responses={{"200":{"description":"Domain messages deleted","content":{"application/json":{"schema":{"type":"object","properties":{"status":{"type":"string"},"count":{"type":"integer"}},"required":["status"],"additionalProperties":true,"title":"DeleteResponse"}}}},"default":{"description":"Error response","content":{"application/json":{"schema":{"type":"object","properties":{"status":{"type":"string"},"message":{"type":"string"},"errors":{"type":"array","items":{"type":"string"}}},"additionalProperties":true,"title":"ErrorResponse"}}}}}}
+  {...require("./delete-domain-messages.StatusCodes.json")}
 >
   
 </StatusCodes>

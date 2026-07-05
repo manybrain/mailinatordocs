@@ -48,22 +48,19 @@ Generates a Time-based One-Time Password (TOTP) code using an already saved auth
 </Heading>
 
 <ParamsDetails
-  parameters={[{"name":"authenticator_id","in":"path","required":true,"description":"The unique identifier of the authenticator as found in Web Interface.","schema":{"type":"string"}}]}
+  {...require("./get-stored-authenticator-code.ParamsDetails.json")}
 >
   
 </ParamsDetails>
 
 <RequestSchema
-  title={"Body"}
-  body={undefined}
+  {...require("./get-stored-authenticator-code.RequestSchema.json")}
 >
   
 </RequestSchema>
 
 <StatusCodes
-  id={undefined}
-  label={undefined}
-  responses={{"200":{"description":"Authenticator status retrieved","content":{"application/json":{"schema":{"type":"object","properties":{"passcode":{"type":"string","description":"The current TOTP code."},"time_step":{"type":"integer","description":"The time step in seconds for the TOTP code."},"id":{"type":"string","description":"The authenticator ID."},"futurecodes":{"type":"array","items":{"type":"string"},"description":"The next 5 \"future\" TOTP codes."},"next_reset_secs":{"type":"integer","description":"Seconds until the current TOTP code resets."}},"title":"AuthenticatorIDResponse"}}}},"400":{"description":"Bad request","content":{"application/json":{"schema":{"type":"object","properties":{"status":{"type":"string"},"message":{"type":"string"},"errors":{"type":"array","items":{"type":"string"}}},"additionalProperties":true,"title":"ErrorResponse"}}}}}}
+  {...require("./get-stored-authenticator-code.StatusCodes.json")}
 >
   
 </StatusCodes>

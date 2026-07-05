@@ -48,22 +48,19 @@ Get attachments for a message from a domain
 </Heading>
 
 <ParamsDetails
-  parameters={[{"name":"domain","in":"path","required":true,"description":"Domain scope. Use `public`, `private`, or a specific private domain name assigned to the team.","schema":{"type":"string"}},{"name":"messageId","in":"path","required":true,"description":"Unique Mailinator message identifier.","schema":{"type":"string"}}]}
+  {...require("./list-message-attachments.ParamsDetails.json")}
 >
   
 </ParamsDetails>
 
 <RequestSchema
-  title={"Body"}
-  body={undefined}
+  {...require("./list-message-attachments.RequestSchema.json")}
 >
   
 </RequestSchema>
 
 <StatusCodes
-  id={undefined}
-  label={undefined}
-  responses={{"200":{"description":"Attachments listed","content":{"application/json":{"schema":{"type":"object","properties":{"attachments":{"type":"array","items":{"type":"object","properties":{"id":{"type":"string"},"name":{"type":"string"},"contentType":{"type":"string"},"size":{"type":"integer"},"downloadUrl":{"type":"string","format":"uri"}},"additionalProperties":true,"title":"Attachment"}}},"additionalProperties":true,"title":"AttachmentListResponse"}}}},"default":{"description":"Error response","content":{"application/json":{"schema":{"type":"object","properties":{"status":{"type":"string"},"message":{"type":"string"},"errors":{"type":"array","items":{"type":"string"}}},"additionalProperties":true,"title":"ErrorResponse"}}}}}}
+  {...require("./list-message-attachments.StatusCodes.json")}
 >
   
 </StatusCodes>

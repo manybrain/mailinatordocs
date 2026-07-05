@@ -48,22 +48,19 @@ Download an attachment from a domain
 </Heading>
 
 <ParamsDetails
-  parameters={[{"name":"domain","in":"path","required":true,"description":"Domain scope. Use `public`, `private`, or a specific private domain name assigned to the team.","schema":{"type":"string"}},{"name":"messageId","in":"path","required":true,"description":"Unique Mailinator message identifier.","schema":{"type":"string"}},{"name":"attachmentName","in":"path","required":true,"description":"Attachment name or identifier. The API also accepts an attachment id.","schema":{"type":"string"}}]}
+  {...require("./get-message-attachment.ParamsDetails.json")}
 >
   
 </ParamsDetails>
 
 <RequestSchema
-  title={"Body"}
-  body={undefined}
+  {...require("./get-message-attachment.RequestSchema.json")}
 >
   
 </RequestSchema>
 
 <StatusCodes
-  id={undefined}
-  label={undefined}
-  responses={{"200":{"description":"Attachment retrieved","content":{"application/octet-stream":{"schema":{"type":"string","format":"binary"}}}},"default":{"description":"Error response","content":{"application/json":{"schema":{"type":"object","properties":{"status":{"type":"string"},"message":{"type":"string"},"errors":{"type":"array","items":{"type":"string"}}},"additionalProperties":true,"title":"ErrorResponse"}}}}}}
+  {...require("./get-message-attachment.StatusCodes.json")}
 >
   
 </StatusCodes>

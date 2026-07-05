@@ -1,0 +1,1 @@
+{"parameters":[{"name":"totp_secret_key","in":"path","required":true,"description":"The secret key used to generate the TOTP code.","schema":{"type":"string"}}]}

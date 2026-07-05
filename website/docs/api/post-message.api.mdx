@@ -48,22 +48,19 @@ Posts a JSON-formatted message into the specified private inbox. The payload sho
 </Heading>
 
 <ParamsDetails
-  parameters={[{"name":"domain","in":"path","required":true,"description":"Domain scope. Use `public`, `private`, or a specific private domain name assigned to the team.","schema":{"type":"string"}},{"name":"inbox","in":"path","required":true,"description":"Inbox identifier. Provide a mailbox name or the team SMS phone number (for SMS retrieval). Use `*` to match inbox prefixes where supported by the endpoint.","schema":{"type":"string"}}]}
+  {...require("./post-message.ParamsDetails.json")}
 >
   
 </ParamsDetails>
 
 <RequestSchema
-  title={"Body"}
-  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"subject":{"type":"string"},"from":{"type":"string"},"to":{"type":"string"},"text":{"type":"string"},"html":{"type":"string"},"headers":{"type":"object","additionalProperties":{"type":"string"}},"parts":{"type":"array","description":"Multipart payload segments. Each part follows RFC 822 conventions.","items":{"type":"object","additionalProperties":true}}},"required":["subject","from"],"additionalProperties":true,"title":"MessageToPost"}}}}}
+  {...require("./post-message.RequestSchema.json")}
 >
   
 </RequestSchema>
 
 <StatusCodes
-  id={undefined}
-  label={undefined}
-  responses={{"200":{"description":"Message accepted","content":{"application/json":{"schema":{"type":"object","properties":{"status":{"type":"string"},"id":{"type":"string"}},"required":["status","id"],"additionalProperties":true,"title":"PostMessageResponse"}}}},"default":{"description":"Error response","content":{"application/json":{"schema":{"type":"object","properties":{"status":{"type":"string"},"message":{"type":"string"},"errors":{"type":"array","items":{"type":"string"}}},"additionalProperties":true,"title":"ErrorResponse"}}}}}}
+  {...require("./post-message.StatusCodes.json")}
 >
   
 </StatusCodes>

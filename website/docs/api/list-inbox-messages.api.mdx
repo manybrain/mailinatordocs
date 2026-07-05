@@ -48,22 +48,19 @@ Returns messages for a specific inbox. To fetch SMS messages, provide the team-a
 </Heading>
 
 <ParamsDetails
-  parameters={[{"name":"domain","in":"path","required":true,"description":"Domain scope. Use `public`, `private`, or a specific private domain name assigned to the team.","schema":{"type":"string"}},{"name":"inbox","in":"path","required":true,"description":"Inbox identifier. Provide a mailbox name or the team SMS phone number (for SMS retrieval). Use `*` to match inbox prefixes where supported by the endpoint.","schema":{"type":"string"}},{"name":"skip","in":"query","required":false,"description":"Number of messages to skip from the start of the result set.","schema":{"type":"integer","minimum":0}},{"name":"limit","in":"query","required":false,"description":"Number of messages to return (1-99 unless `full=true`).","schema":{"type":"integer","minimum":1,"maximum":99,"default":50}},{"name":"sort","in":"query","required":false,"description":"Sort order for returned messages.","schema":{"type":"string","enum":["ascending","descending"],"default":"descending"}},{"name":"decode_subject","in":"query","required":false,"description":"Decode MIME-encoded subjects when true.","schema":{"type":"boolean","default":false}},{"name":"cursor","in":"query","required":false,"description":"Cursor token to continue a prior paged request.","schema":{"type":"string"}},{"name":"full","in":"query","required":false,"description":"When true, returns the full message entity instead of the summary. The Mailinator API enforces a limit of 1 when `full=true`.","schema":{"type":"boolean","default":false}},{"name":"wait","in":"query","required":false,"description":"Optional long-polling interval. The API waits up to the provided duration (e.g., `1s`, `2m`) for new messages before returning.","schema":{"type":"string"}},{"name":"delete","in":"query","required":false,"description":"Minimum delay before the fetched message is scheduled for deletion (e.g., `1s`, `5m`, `1h`).","schema":{"type":"string"}}]}
+  {...require("./list-inbox-messages.ParamsDetails.json")}
 >
   
 </ParamsDetails>
 
 <RequestSchema
-  title={"Body"}
-  body={undefined}
+  {...require("./list-inbox-messages.RequestSchema.json")}
 >
   
 </RequestSchema>
 
 <StatusCodes
-  id={undefined}
-  label={undefined}
-  responses={{"200":{"description":"Message summaries retrieved","content":{"application/json":{"schema":{"type":"object","properties":{"domain":{"type":"string"},"to":{"type":"string","nullable":true},"msgs":{"type":"array","items":{"type":"object","properties":{"id":{"type":"string"},"subject":{"type":"string"},"from":{"type":"string"},"origfrom":{"type":"string"},"to":{"type":"string"},"time":{"type":"integer","format":"int64"},"seconds_ago":{"type":"integer"},"source":{"type":"string"}},"additionalProperties":true,"title":"MessageSummary"}},"cursor":{"type":"string","nullable":true}},"additionalProperties":true,"title":"InboxMessagesResponse"}}}},"default":{"description":"Error response","content":{"application/json":{"schema":{"type":"object","properties":{"status":{"type":"string"},"message":{"type":"string"},"errors":{"type":"array","items":{"type":"string"}}},"additionalProperties":true,"title":"ErrorResponse"}}}}}}
+  {...require("./list-inbox-messages.StatusCodes.json")}
 >
   
 </StatusCodes>

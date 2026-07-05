@@ -48,22 +48,19 @@ Injects a message into a private domain using webhook authentication only. This 
 </Heading>
 
 <ParamsDetails
-  parameters={[{"name":"domain","in":"path","required":true,"description":"Webhook domain segment. Provide either the `webhook_token` in this path position, or a private domain name when passing the webhook token in `whtoken`.","schema":{"type":"string"}},{"name":"whtoken","in":"query","required":false,"description":"Webhook token used with the `api.mailinator.com` form: `/api/v2/domains/{domain}/webhook/?whtoken={webhook_token}`.","schema":{"type":"string"}}]}
+  {...require("./post-webhook-message.ParamsDetails.json")}
 >
   
 </ParamsDetails>
 
 <RequestSchema
-  title={"Body"}
-  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","description":"Message payload accepted by webhook injection endpoints.","properties":{"from":{"type":"string"},"subject":{"type":"string"},"to":{"type":"string"},"text":{"type":"string"},"html":{"type":"string"},"headers":{"type":"object","additionalProperties":{"type":"string"}}},"required":["to"],"additionalProperties":true,"title":"WebhookMessageRequest"}}}}}
+  {...require("./post-webhook-message.RequestSchema.json")}
 >
   
 </RequestSchema>
 
 <StatusCodes
-  id={undefined}
-  label={undefined}
-  responses={{"200":{"description":"Webhook message accepted","content":{"application/json":{"schema":{"type":"object","properties":{"status":{"type":"string"},"id":{"type":"string"}},"required":["status","id"],"additionalProperties":true,"title":"PostMessageResponse"}}}},"default":{"description":"Error response","content":{"application/json":{"schema":{"type":"object","properties":{"status":{"type":"string"},"message":{"type":"string"},"errors":{"type":"array","items":{"type":"string"}}},"additionalProperties":true,"title":"ErrorResponse"}}}}}}
+  {...require("./post-webhook-message.StatusCodes.json")}
 >
   
 </StatusCodes>

@@ -48,22 +48,19 @@ Get link metadata for a message from a domain
 </Heading>
 
 <ParamsDetails
-  parameters={[{"name":"domain","in":"path","required":true,"description":"Domain scope. Use `public`, `private`, or a specific private domain name assigned to the team.","schema":{"type":"string"}},{"name":"messageId","in":"path","required":true,"description":"Unique Mailinator message identifier.","schema":{"type":"string"}}]}
+  {...require("./list-message-links-full.ParamsDetails.json")}
 >
   
 </ParamsDetails>
 
 <RequestSchema
-  title={"Body"}
-  body={undefined}
+  {...require("./list-message-links-full.RequestSchema.json")}
 >
   
 </RequestSchema>
 
 <StatusCodes
-  id={undefined}
-  label={undefined}
-  responses={{"200":{"description":"Link metadata returned","content":{"application/json":{"schema":{"type":"object","description":"Simplified extracted links metadata response.","properties":{"links":{"type":"array","items":{"type":"object","properties":{"link":{"type":"string","format":"uri"},"text":{"type":"string"}},"required":["link"],"additionalProperties":true,"title":"MessageLinkDetail"}}},"required":["links"],"title":"MessageLinksFullOnly"}}}},"default":{"description":"Error response","content":{"application/json":{"schema":{"type":"object","properties":{"status":{"type":"string"},"message":{"type":"string"},"errors":{"type":"array","items":{"type":"string"}}},"additionalProperties":true,"title":"ErrorResponse"}}}}}}
+  {...require("./list-message-links-full.StatusCodes.json")}
 >
   
 </StatusCodes>

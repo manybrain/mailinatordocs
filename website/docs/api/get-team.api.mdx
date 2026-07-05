@@ -39,23 +39,18 @@ import Translate from "@docusaurus/Translate";
 
 Get team configuration
 
-<ParamsDetails
-  parameters={undefined}
->
+<ParamsDetails>
   
 </ParamsDetails>
 
 <RequestSchema
-  title={"Body"}
-  body={undefined}
+  {...require("./get-team.RequestSchema.json")}
 >
   
 </RequestSchema>
 
 <StatusCodes
-  id={undefined}
-  label={undefined}
-  responses={{"200":{"description":"Team information retrieved","content":{"application/json":{"schema":{"type":"object","properties":{"private_domains":{"type":"array","items":{"type":"string"}},"webhook_tokens":{"type":"array","items":{"type":"string"}},"sms_numbers":{"type":"array","items":{"type":"string"}},"members":{"type":"array","items":{"type":"string"}},"plan_data":{"type":"object"},"id":{"type":"string"},"plan":{"type":"string"},"team_name":{"type":"string"},"status":{"type":"string"},"token":{"type":"string"}},"title":"TeamResponse"}}}},"default":{"description":"Error response","content":{"application/json":{"schema":{"type":"object","properties":{"status":{"type":"string"},"message":{"type":"string"},"errors":{"type":"array","items":{"type":"string"}}},"additionalProperties":true,"title":"ErrorResponse"}}}}}}
+  {...require("./get-team.StatusCodes.json")}
 >
   
 </StatusCodes>
