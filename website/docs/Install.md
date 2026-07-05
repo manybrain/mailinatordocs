@@ -5,7 +5,15 @@ title: Install Mailinator
 
 # Installing Mailinator
 
-Mailinator has a powerful [API](/documentation/docs/api/), that you can use with your choice of language and tool. Having said this, we provide several official [SDKs](/documentation/docs/sdks/overview/) which you can install.
+Mailinator has a powerful [API](/documentation/docs/api/) that you can use with your choice of language and tool. We also provide official [SDKs](/documentation/docs/sdks/overview/) for common development stacks.
+
+Mailinator can be used through several integration paths depending on what you are testing:
+
+1. **API** - Use the Mailinator API to retrieve messages, inspect content, extract links, read OTP codes, and automate assertions in your tests.
+2. **SDKs** - Use an official SDK when you want typed helpers for common API workflows in your application or test suite.
+3. **[CLI](/documentation/docs/ai-agents/mailinator-cli/)** - Use the Mailinator CLI from a terminal, script, CI job, or local development workflow.
+4. **[MCP Server](/documentation/docs/ai-agents/mailinator-mcp/)** - Connect AI agents to Mailinator so they can inspect inboxes and complete email-driven workflows.
+5. **[Universal IDP](/documentation/docs/features/universal-idp/)** - Use Mailinator's OIDC identity provider to test SSO login flows in development, staging, and QA environments.
 
 ## SDK install commands
 

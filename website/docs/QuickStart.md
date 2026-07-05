@@ -114,6 +114,8 @@ In less than 5 minutes you've learned how to retreive an email with one API call
 - Need to test the signup flow for a new user, but never did it because grabbing that confirmation email was too difficult? Not anymore.
 - Or you simply want to confirm that every email generated from your system is correctly sent? Done!
 
+Next, try Mailinator with [Cypress](/documentation/docs/test-automation/cypress/), [Playwright](/documentation/docs/test-automation/playwright/), [Postman](/documentation/docs/test-automation/postman/), the [Mailinator CLI](/documentation/docs/ai-agents/mailinator-cli/), or [Mailinator MCP](/documentation/docs/ai-agents/mailinator-mcp/).
+
 
 
 <details>

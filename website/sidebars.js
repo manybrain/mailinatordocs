@@ -49,7 +49,7 @@ const sidebars = {
         type: 'generated-index',
         description: 'Learn about how Mailinator can help automate your email testing workflows.',
       },
-      items: ['features/authenticatorinator','features/smtp-logs','features/streaming','features/sso','features/webhooks','features/twiliowebhooks']
+      items: ['features/authenticatorinator','features/smtp-logs','features/streaming','features/sso','features/universal-idp','features/webhooks','features/twiliowebhooks']
     },
     {
       type: 'category',
@@ -62,7 +62,37 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'Working with SDKs',
+      label: 'Test Automation',
+      link: {
+        type: 'generated-index',
+        description: "You can integrate Mailinator into any testing framework or project, regardless of the programming language it's written in.",
+      },
+      items: [
+        'test-automation/cypress',
+        'test-automation/playwright',
+        'test-automation/postman',
+        'test-automation/selenium',
+        'test-automation/vibium',
+        'test-automation/webdriverio',
+      ]
+    },
+    {
+      type: 'category',
+      label: 'AI Agents',
+      link: {
+        type: 'generated-index',
+        description: 'Use Mailinator inboxes, private domains, CLI tooling, and MCP workflows with AI agents.',
+      },
+      items: [
+        'ai-agents/mailinator-cli',
+        'ai-agents/mailinator-mcp',
+        'ai-agents/agent-safety-privacy',
+        'ai-agents/agent-recipes',
+      ]
+    },
+    {
+      type: 'category',
+      label: 'SDKs',
       link: {
         type: 'generated-index',
         description: 'Use our SDKs to integrate Mailinator into your applications quickly.',
